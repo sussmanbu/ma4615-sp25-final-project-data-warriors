@@ -98,18 +98,46 @@
     "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team TEAMNAME. The members of this team are below."
   },
   {
-    "objectID": "about.html#jiaming-hu",
-    "href": "about.html#jiaming-hu",
+    "objectID": "about.html#hannah-choe",
+    "href": "about.html#hannah-choe",
     "title": "About",
-    "section": "Jiaming Hu",
-    "text": "Jiaming Hu\nJiaming is a Ph.D. student in Stats and is the Teaching Fellow for the course."
+    "section": "Hannah Choe",
+    "text": "Hannah Choe\nHannah is a junior majoring in Data Science and minoring in Business Administration Github"
   },
   {
-    "objectID": "about.html#dan-sussman",
-    "href": "about.html#dan-sussman",
+    "objectID": "about.html#rachel-young",
+    "href": "about.html#rachel-young",
     "title": "About",
-    "section": "Dan Sussman",
-    "text": "Dan Sussman\nDan is a professor in the Math/Stat department and is the instructor for the course. Github\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
+    "section": "Rachel Young",
+    "text": "Rachel Young\nRachel is a senior studying Data Science. Github"
+  },
+  {
+    "objectID": "about.html#thao-thiem",
+    "href": "about.html#thao-thiem",
+    "title": "About",
+    "section": "Thao Thiem",
+    "text": "Thao Thiem\nThao is a junior studying BA/MA in Econ and Maths. Github"
+  },
+  {
+    "objectID": "about.html#wenbo-huang",
+    "href": "about.html#wenbo-huang",
+    "title": "About",
+    "section": "Wenbo Huang",
+    "text": "Wenbo Huang\nWenbo is a junior studying math and stats. Github"
+  },
+  {
+    "objectID": "about.html#cuichen-li",
+    "href": "about.html#cuichen-li",
+    "title": "About",
+    "section": "Cuichen Li",
+    "text": "Cuichen Li\nCuichen is a junior, studying stats and econ. Github"
+  },
+  {
+    "objectID": "about.html#section",
+    "href": "about.html#section",
+    "title": "About",
+    "section": "",
+    "text": "About this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
   },
   {
     "objectID": "big_picture.html",
