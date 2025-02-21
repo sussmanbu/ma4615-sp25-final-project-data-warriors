@@ -11,14 +11,28 @@ This comes from the file `about.qmd`.
 This is a website for the final project for MA[46]15 Data Science with R by Team TEAMNAME.
 The members of this team are below.
 
-## Jiaming Hu
+## Hannah Choe 
+Hannah is a junior majoring in Data Science and minoring in Business Administration
+[Github](https://github.com/hanchoe13)
 
-Jiaming is a Ph.D. student in Stats and is the Teaching Fellow for the course.
+## Rachel Young
+Rachel is a senior studying Data Science. 
+[Github](https://github.com/rachely8)
 
-## Dan Sussman
+## Thao Thiem
+Thao is a junior studying BA/MA in Econ and Maths. [Github](https://github.com/thiemthanhthao)
 
-Dan is a professor in the Math/Stat department and is the instructor for the course. [Github](https://github.com/dpmcsuss)
+## Wenbo Huang
+Wenbo is a junior studying math and stats.
+[Github](https://github.com/TonyH0216)
 
+## Cuichen Li 
+Cuichen is a junior, studying stats and econ. 
+[Github](https://github.com/CuiChenLI227)
+
+
+
+## 
 <!-- Please leave in the information below -->
 
 ### About this Template.
