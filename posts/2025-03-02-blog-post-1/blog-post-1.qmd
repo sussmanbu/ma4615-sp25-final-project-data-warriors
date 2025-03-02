@@ -1,8 +1,12 @@
 ---
 title: "Blog Post 1"
+description:  |
+  blog post 1
+author: ""
 date: "2025-03-02"
+date-modified: "2025-03-02"
+draft: FALSE
 ---
-
 # Dataset 1
 
 Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data
