@@ -1,0 +1,18 @@
+---
+title: "Blog Post 1"
+date: "2025-03-02"
+---
+
+# Dataset 1
+
+Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data
+
+The New York City Department of Investigation updates a dataset daily on pending, scheduled and executed evictions within the five boroughs from the year 2017 to the present. The data is compiled from the majority of New York City Marshals, who are independent public officials. The dataset has 104,860 rows that each represent a pending, scheduled, or executed eviction. It also has 20 columns, which iIncludes attributes, such as Court Index Number, Docket Number, Eviction Address, Apartment Number, Executed Date, Marshal First Name, Marshal Last Name, Residential or Commercial (property type), Borough, Zip Code and Scheduled Status (Pending/Scheduled). We will be able to download the data as a csv file from the NYC Open Data website and potentially explore questions, such as the relationship between NYC housing eviction rate and neighborhood, what neighborhoods are more often subject to evictions, and if  there any patterns between the ethnic makeup of the neighborhood with the number of evictions. It may be a challenge to make connections to racial disparities because the dataset itself does not have racial demographic data and this would have to be sourced based on the zip codes of where the evictions are taking place. 
+
+# Dataset 2
+
+Link to Data Description: https://drive.google.com/file/d/1QRubjBCrkqe61iDkxFg7P_Lc1SkR2PhL/view?usp=sharing
+
+The California Office of Environmental Health Hazard Assessment (OEHHA) developed a dataset with 8,035 census tracts and 58 columns to identify communities most burdened by pollution and vulnerable populations. It integrates environmental indicators (e.g., air pollution, drinking water contamination) and population characteristics (e.g., poverty, asthma rates, linguistic isolation) to guide environmental justice policies. Key research questions include whether communities with higher racial/ethnic minority populations face greater air pollution exposure and if specific racial/ethnic groups experience multiple pollution burdens disproportionately. A potential challenge is that the dataset only covers California, limiting generalizability to the U.S. Additionally, the racial/ethnic data is in a separate sheet, requiring a join on the Census Tract column for analysis. The data has been successfully loaded and is ready for cleaning.
+
+# Dataset 3
