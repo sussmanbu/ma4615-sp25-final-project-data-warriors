@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-03-02">
+<meta name="author" content="">
+<meta name="dcterms.date" content="2025-03-17">
 
-<title>Blog Post 1 – Data Warriors MA [46]15 Final Project</title>
+<title>Blog Post 2 – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 1</h1>
+      <h1 class="title">Blog Post 2</h1>
                       </div>
   </div>
     
@@ -127,10 +128,16 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 2, 2025</p>
+        <p class="date">March 17, 2025</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 17, 2025</p>
+      </div>
+    </div>
       
     </div>
     
@@ -146,18 +153,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="dataset-1" class="level1">
-<h1>Dataset 1</h1>
-<p>Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data</p>
-<p>The New York City Department of Investigation updates a dataset daily on pending, scheduled and executed evictions within the five boroughs from the year 2017 to the present. The data is compiled from the majority of New York City Marshals, who are independent public officials. The dataset has 104,860 rows that each represent a pending, scheduled, or executed eviction. It also has 20 columns, which iIncludes attributes, such as Court Index Number, Docket Number, Eviction Address, Apartment Number, Executed Date, Marshal First Name, Marshal Last Name, Residential or Commercial (property type), Borough, Zip Code and Scheduled Status (Pending/Scheduled). We will be able to download the data as a csv file from the NYC Open Data website and potentially explore questions, such as the relationship between NYC housing eviction rate and neighborhood, what neighborhoods are more often subject to evictions, and if there any patterns between the ethnic makeup of the neighborhood with the number of evictions. It may be a challenge to make connections to racial disparities because the dataset itself does not have racial demographic data and this would have to be sourced based on the zip codes of where the evictions are taking place.</p>
-</section>
-<section id="dataset-2" class="level1">
-<h1>Dataset 2</h1>
-<p>Link to Data Description: https://drive.google.com/file/d/1QRubjBCrkqe61iDkxFg7P_Lc1SkR2PhL/view?usp=sharing</p>
-<p>The California Office of Environmental Health Hazard Assessment (OEHHA) developed a dataset with 8,035 census tracts and 58 columns to identify communities most burdened by pollution and vulnerable populations. It integrates environmental indicators (e.g., air pollution, drinking water contamination) and population characteristics (e.g., poverty, asthma rates, linguistic isolation) to guide environmental justice policies. Key research questions include whether communities with higher racial/ethnic minority populations face greater air pollution exposure and if specific racial/ethnic groups experience multiple pollution burdens disproportionately. A potential challenge is that the dataset only covers California, limiting generalizability to the U.S. Additionally, the racial/ethnic data is in a separate sheet, requiring a join on the Census Tract column for analysis. The data has been successfully loaded and is ready for cleaning.</p>
-</section>
-<section id="dataset-3" class="level1">
-<h1>Dataset 3</h1>
+<section id="our-progress" class="level1">
+<h1>Our Progress</h1>
+<p>Our team has officially decided to move forward with our project on disparities in air pollution exposure among racial and ethnic groups. We have made some progress on the Data page, working on the data description section. Our group has decided to split the parts of the rubric to complete the Data page. We are first working on each section of the page on a Google doc and will combine all of our work onto the qmd file later on.</p>
+<p>As for the data, we are focused on integrating racial demographic information by joining our two datasets in the “Census Tract” column. This step allows us to analyze air pollution exposure in the context of racial and ethnic composition across different geographic areas. Currently, our data is separated into two files. One with information on air pollution and the other with demographic information. Once this integration is complete, our next steps will involve exploring and cleaning the data to address missing values, potential inconsistencies, and outliers. This will ensure the dataset is structured properly for in-depth analysis. In the coming weeks, we plan to conduct exploratory data analysis (EDA), visualizing trends and disparities to gain initial insights before diving into more advanced statistical and spatial analysis.</p>
 
 
 </section>
@@ -255,7 +254,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma4615-sp25-final-project-data-warriors\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
