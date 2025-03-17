@@ -4,10 +4,20 @@
 
 library(tidyverse)
 
-loan_data <- read_csv(here::here("dataset", "loan_refusal.csv"))
+
+demographic_data <- read_csv(here::here("dataset", "demographic_data.csv")) 
 
 ## CLEAN the data
-loan_data_clean <- loan_data |>
-  pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
+##loan_data_clean <- loan_data |>
+  ##pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
 
-write_rds(loan_data_clean, file = here::here("dataset", "loan_refusal_clean.rds"))
+write_rds(demographic_data, file = here::here("dataset", "demographic_data.rds"))
+
+pollution_data <- read_csv(here::here("dataset", "pollution_data.csv"), show_col_types = FALSE)
+
+## CLEAN the data
+##loan_data_clean <- loan_data |>
+##pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
+
+write_rds(pollution_data, file = here::here("dataset", "pollution_data.rds"))
+
