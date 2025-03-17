@@ -1,0 +1,27 @@
+---
+title: "Blog Post 2"
+description:  |
+  Our team has officially decided to move forward with our project on
+  disparities in air pollution exposure among racial and ethnic groups. We have
+  made some progress on the Data page, working on the data description section.
+  Our group has decided to split the parts of the rubric to complete the Data
+  page. We are first working on each section of the page on a Google doc and
+  will combine all of our work onto the qmd file later on. As for the data,
+  we are focused on integrating racial demographic information by joining our
+  two datasets in the "Census Tract" column. This step allows us to analyze
+  air pollution exposure in the context of racial and ethnic composition
+  across different geographic areas. Currently, our data is separated into two
+  files. One with information on air pollution and the other with demographic
+  information. Once this integration is complete, our next steps will involve
+  exploring and cleaning the data to address missing values, potential
+  inconsistencies, and outliers. This will ensure the dataset is structured
+  properly for in-depth analysis. In the coming weeks, we plan to conduct
+  exploratory data analysis (EDA), visualizing trends and disparities to gain
+  initial insights before diving into more advanced statistical and spatial
+  analysis.
+author: ""
+date: "2025-03-17"
+date-modified: "2025-03-17"
+draft: FALSE
+---
+

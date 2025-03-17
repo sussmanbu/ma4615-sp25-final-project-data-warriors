@@ -76,3 +76,6 @@ You will
 * Organization, clarity, cleanliness of the page
   * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
   * This page should be self-contained.
+
+## Data Description
+The CalEnviroScreen data, available for download at OEHHA’s website, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
