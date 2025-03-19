@@ -1,5 +1,4 @@
-﻿"Demographic data (total population, age groups and race/ethnicity) by census tract were extracted from the 2019 American Community Survey.",,,,,,,,,,,,,,
-Census Tract,CES 4.0 Score,CES 4.0 Percentile,CES 4.0 Percentile Range,California County,Total Population,Children < 10 years (%),Pop 10-64 years (%),Elderly > 64 years (%),Hispanic (%),White (%),African American (%),Native American (%),Asian American (%),Other/Multiple (%)
+﻿Census Tract,CES 4.0 Score,CES 4.0 Percentile,CES 4.0 Percentile Range,California County,Total Population,Children < 10 years (%),Pop 10-64 years (%),Elderly > 64 years (%),Hispanic (%),White (%),African American (%),Native American (%),Asian American (%),Other/Multiple (%)
 6001400100,4.85,2.80,1-5% (lowest scores),Alameda ,3120,7.82,66.12,26.06,3.78,74.26,3.43,0,12.53,5.99
 6001400200,4.88,2.87,1-5% (lowest scores),Alameda ,2007,10.46,66.32,23.22,8.67,73.49,2.59,0.2,8.52,6.53
 6001400300,11.20,15.94,15-20%,Alameda ,5051,11.42,73.04,15.54,6.95,67.99,9.09,0,12.14,3.84

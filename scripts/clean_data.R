@@ -21,3 +21,7 @@ pollution_data <- read_csv(here::here("dataset", "pollution_data.csv"), show_col
 
 write_rds(pollution_data, file = here::here("dataset", "pollution_data.rds"))
 
+cleaned_dataset <- merge(pollution_data, demographic_data,by = "Census Tract", all.x = TRUE)
+print (cleaned_dataset)
+
+write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
