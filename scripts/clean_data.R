@@ -3,7 +3,6 @@
 # to separate files in order to work on different aspects of your project
 
 library(tidyverse)
-library(dplyr)
 
 
 demographic_data <- read_csv(here::here("dataset", "demographic_data.csv")) 
@@ -34,10 +33,12 @@ columns_to_remove_patterns <- c(
 
 # Remove the columns
 for (pattern in columns_to_remove_patterns) {
-  cleaned_dataset <- cleaned_dataset %>%
+  cleaned_dataset <- cleaned_dataset |>
     select(-contains(pattern))
 }
+View(cleaned_dataset)
 
 # Writing RDS
 write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
+
 
