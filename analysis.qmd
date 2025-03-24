@@ -68,3 +68,13 @@ You will
 -   Organization and cleanliness.
     -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
+    
+```{r}
+library(tidyverse)
+print(getwd())
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+```
+```{r}
+head(data)
+```
+
