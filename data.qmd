@@ -77,5 +77,106 @@ You will
   * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
   * This page should be self-contained.
 
+![](images/data_logo.jpg)
+
+
 ## Data Description
-The CalEnviroScreen data, available for download at OEHHA’s website, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
+
+The CalEnviroScreen data, available for download at ["OEHHA’s website"](https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&sa=D&source=docs&ust=1742852733483866&usg=AOvVaw35FXwtWKeysE4tXW15G9nc), is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
+
+The data was collected to detect air pollution in small communities in California such as San Ysidro in San Diego. Since residents always complain that government air monitoring does not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, state and local government, and collecting data using low-cost technology, the San Ysidro Air Study group can give the rights to the general residents in San Ysidro for making decisions.
+
+#### *Who put it together* 
+
+The San Ysidro Air Study put the data together. But during the  process of collecting data and selecting appropriate data, The San Ysidro Air Study group does corroborate with the local government, local groups(Casa Familiar), schools(University of Washington and San Diego State University), and The Community Steering Committee(including 12 volunteers from San Ysidro community)
+
+#### *Data Usage, Potential Similar Research, Analysis for Policy?*
+
+The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice,  guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border. 
+
+Researchers have used CalEnviroScreen to examine racial and socioeconomic disparities in environmental health risks. Cushing et al. (2015) found that pollution burdens disproportionately impact communities of color, particularly Hispanic and African American populations. Other studies, Alexeeff & Mataka (2014) and Meehan August et al. (2012), have explored methodological improvements and policy applications of the tool. Some of the key questions include how pollution exposure varies with race, how effective is the CalEnviroScreen and how can we improve it through additional indicators. 
+
+## Data Files and Description
+The original data was downloaded from CalEnviroScreen 4.0, which provides statewide data on environmental and demographic indicators at the census tract level. The data came in a single [Excel file](https://oehha.ca.gov/media/downloads/calenviroscreen/document/calenviroscreen40resultsdatadictionaryf2021.zip) with multiple sheets. One sheet contained pollution and environmental exposure indicators, while another contained population and demographic characteristics. To prepare the data for analysis, we extracted each of these sheets and saved them as separate CSV files: `pollution_data.csv` and `demographic_data.csv`.
+
+The `pollution_data.csv` file includes key variables such as `Ozone`, `PM2.5`, `Diesel PM`, and `Traffic`, along with their respective percentiles (e.g., "Ozone Pctl", "PM2.5 Pctl"). These values quantify the level of environmental pollution affecting each census tract. It also includes summary indicators such as "Pollution Burden Score" and "CES 4.0 Score", which are composite measures used by the state to assess environmental vulnerability.
+
+The `demographic_data.csv` file contains population-level statistics, including `Total Population`, `Children < 10 years (%)`, and `Elderly > 64 years (%)`, as well as racial and ethnic breakdowns such as `Hispanic (%)`, `African American (%)`, and `Asian American (%)`. These demographic variables allow for an assessment of how pollution levels intersect with age and race across regions.
+
+To simplify the analysis, we focused on the most relevant environmental and demographic variables and removed columns related to less directly useful metrics like groundwater threats, education, and unemployment. Together, the cleaned and merged dataset allows us to explore the relationship between environmental burdens and community demographics in California.
+
+#### *Variable description:*
+
+**Environmental Related statistics**: like `CES4.0 Score` and `PM 2.5 value`, representing pollution score and levels.
+
+**Age**: Age of sample, ranging from children under 10 to elderly above 64
+
+**Location**: California county that the census tract falls within
+
+**Race**: including races of samples in the research 
+
+**Other related statistics**: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels.
+Offical Data Dictonary
+
+
+## Data Loading and Cleaning
+*Merging Pollution and Demographic Data*
+
+For this project, we worked with two datasets: `pollution_data.csv` and `demographic_data.csv`. Both datasets were read into R using the `read_csv()` function from the tidyverse package, and saved as `.rds` files using `write_rds()` for easier access later. The two datasets share some columns, including `Total Population`, `California County`, `CES 4.0 Score`, `CES 4.0 Percentile`, and `CES 4.0 Percentile Range`. So these columns were dropped from the `pollution_data` dataset before being merged with the `demographic_data` dataset. This was done using the following code:
+```{r}
+#| eval: false
+#| code-overflow: wrap
+pollution_data <- pollution_data |> 
+                    select(-c('Total Population', 'California County', 'CES 4.0 Score', 
+                              'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
+```
+
+The two datasets were then merged using a left join on the shared column "Census Tract" to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:
+```{r}
+#| eval: false
+#| code-overflow: wrap
+cleaned_dataset <- merge(pollution_data, demographic_data, by = "Census Tract", all.x = TRUE)
+```
+
+
+*Removing Columns*
+
+After merging, we removed several columns that were not relevant to our analysis. The original dataset included data for both air and water pollution. However, since our project is focused on air pollution we have removed the columns relevant to water pollution. These included environmental and social indicators such as drinking water, lead, pesticides, unemployment, and housing burden. Because the merge process introduced suffixes like .x and .y to distinguish duplicate column names, we used a for loop combined with select(-contains(...)) to remove all columns containing those key patterns, regardless of suffix:
+
+```{r}
+#| eval: false
+#| code-overflow: wrap
+columns_to_remove_patterns <- c(
+"Drinking Water", "Lead", "Pesticides", "Groundwater Threats", "Imp. Water Bodies", "Education", "Linguistic Isolation","Poverty", "Unemployment", "Housing Burden"
+)
+
+for (pattern in columns_to_remove_patterns) {
+  cleaned_dataset <- cleaned_dataset %>%
+    select(-contains(pattern))
+}
+```
+
+
+*Removing Missing Values*
+
+We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that the variable with the most missing data was related to low birth weight. Despite this, we chose to remove all rows containing any missing values in the dataset using the drop_na() function from the tidyr package:
+```{r}
+#| eval: false
+#| code-overflow: wrap
+cleaned_dataset <- cleaned_dataset %>%
+  drop_na()
+```
+
+
+*Writing the Transformation to Clenaed Dataset*
+
+Finally, the cleaned dataset was saved using:
+
+```{r}
+#| eval: false
+#| code-overflow: wrap
+write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
+```
+
+
+All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: [clean_data.R](/scripts/clean_data.R).
