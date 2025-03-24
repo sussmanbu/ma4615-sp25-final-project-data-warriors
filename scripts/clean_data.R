@@ -36,7 +36,12 @@ for (pattern in columns_to_remove_patterns) {
   cleaned_dataset <- cleaned_dataset |>
     select(-contains(pattern))
 }
-View(cleaned_dataset)
+
+# Seeing how many Null values within dataset and dropping them
+colSums(is.na(cleaned_dataset)) # seems like Low birth has the largest amount of
+# missing values, should we still drop everything?
+cleaned_dataset <- cleaned_dataset |>
+  drop_na()
 
 # Writing RDS
 write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
