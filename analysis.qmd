@@ -71,6 +71,7 @@ You will
     
 ```{r}
 library(tidyverse)
+library(dplyr)
 print(getwd())
 data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
 ```

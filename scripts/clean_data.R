@@ -11,6 +11,11 @@ write_rds(demographic_data, file = here::here("dataset", "demographic_data.rds")
 
 pollution_data <- read_csv(here::here("dataset", "pollution_data.csv"), show_col_types = FALSE)
 
+#remove columns from pollution dataset that already exist in the demographic dataset
+pollution_data <- pollution_data |> 
+                    select(-c('Total Population', 'California County', 'CES 4.0 Score', 
+                              'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
+
 write_rds(pollution_data, file = here::here("dataset", "pollution_data.rds"))
 
 # Merging demographic data to pollution data
