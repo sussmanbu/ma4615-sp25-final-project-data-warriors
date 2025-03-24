@@ -7,17 +7,14 @@ library(tidyverse)
 
 demographic_data <- read_csv(here::here("dataset", "demographic_data.csv")) 
 
-## CLEAN the data
-##loan_data_clean <- loan_data |>
-  ##pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
-
 write_rds(demographic_data, file = here::here("dataset", "demographic_data.rds"))
 
 pollution_data <- read_csv(here::here("dataset", "pollution_data.csv"), show_col_types = FALSE)
 
-## CLEAN the data
-##loan_data_clean <- loan_data |>
-##pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
+#remove columns from pollution dataset that already exist in the demographic dataset
+pollution_data <- pollution_data |> 
+                    select(-c('Total Population', 'California County', 'CES 4.0 Score', 
+                              'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
 
 write_rds(pollution_data, file = here::here("dataset", "pollution_data.rds"))
 

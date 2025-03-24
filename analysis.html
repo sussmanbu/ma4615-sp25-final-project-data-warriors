@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/hannahchoe/MA415/Project"</code></pre>
+<pre><code>[1] "/Users/rachelyoung/Desktop/Spring 2025/MA415/ma4615-sp25-final-project-data-warriors"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/loan_refusal_clean.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -265,6 +265,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>This page should be self-contained, i.e.&nbsp;provide a description of the relevant data.</li>
 </ul></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/rachelyoung/Desktop/Spring 2025/MA415/ma4615-sp25-final-project-data-warriors"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/cleaned_dataset.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Census Tract   ZIP Approximate Location Longitude Latitude Ozone Ozone Pctl
+1   6001400100 94704              Oakland -122.2319 37.86759 0.029       3.12
+2   6001400200 94618              Oakland -122.2496 37.84817 0.029       3.12
+3   6001400300 94618              Oakland -122.2544 37.84060 0.029       3.12
+4   6001400400 94609              Oakland -122.2575 37.84821 0.029       3.12
+5   6001400500 94609              Oakland -122.2647 37.84852 0.029       3.12
+6   6001400600 94609              Oakland -122.2649 37.84199 0.029       3.12
+     PM2.5 PM2.5 Pctl Diesel PM Diesel PM Pctl Tox. Release Tox. Release Pctl
+1 8.953297      36.27     0.093          34.76     626.7743             56.03
+2 9.298860      41.97     0.591          92.71     609.9600             55.43
+3 9.445812      43.90     0.497          89.77     598.8777             55.04
+4 9.369731      42.81     0.327          79.10     624.6293             55.90
+5 9.369731      42.81     0.233          67.58     641.7227             56.48
+6 9.369731      42.81     0.383          83.76     616.1283             55.65
+    Traffic Traffic Pctl Cleanup Sites Cleanup Sites Pctl Haz. Waste
+1  965.9462        55.94          9.00              58.17      2.000
+2  716.8225        37.49          0.00               0.00      0.165
+3  776.4908        42.48          0.90              11.83      0.595
+4  721.5428        38.00          0.00               0.00      0.315
+5  862.2669        48.68          3.50              33.87      0.350
+6 1164.2152        67.06          1.75              22.62      0.370
+  Haz. Waste Pctl Solid Waste Solid Waste Pctl Pollution Burden
+1           92.52           1            35.72            34.02
+2           28.51           0             0.00            33.02
+3           74.07           0             0.00            36.64
+4           51.89           0             0.00            33.82
+5           56.40           0             0.00            35.88
+6           58.27           0             0.00            37.86
+  Pollution Burden Score Pollution Burden Pctl Asthma Asthma Pctl
+1                   4.15                 26.62  15.65        4.44
+2                   4.03                 24.18  20.47        9.80
+3                   4.47                 33.37  30.88       26.57
+4                   4.13                 26.24  49.61       55.98
+5                   4.38                 31.40  86.57       88.38
+6                   4.62                 36.94 101.53       93.07
+  Low Birth Weight Low Birth Weight Pctl Cardiovascular Disease
+1             3.85                 23.06                   5.24
+2             4.05                 27.92                   8.14
+3             3.78                 21.62                   8.88
+4             4.44                 37.02                   8.08
+5             3.64                 19.00                  11.13
+6             2.56                  5.03                  12.80
+  Cardiovascular Disease Pctl Pop. Char. Pop. Char. Score Pop. Char. Pctl
+1                        1.42      11.25             1.17            1.53
+2                       14.53      11.67             1.21            1.65
+3                       20.11      24.14             2.50           12.27
+4                       14.28      28.93             3.00           18.43
+5                       38.87      36.83             3.82           30.16
+6                       52.78      41.76             4.33           37.70
+  CES 4.0 Score CES 4.0 Percentile CES 4.0 Percentile Range California County
+1          4.85               2.80     1-5% (lowest scores)           Alameda
+2          4.88               2.87     1-5% (lowest scores)           Alameda
+3         11.20              15.94                   15-20%           Alameda
+4         12.39              18.97                   15-20%           Alameda
+5         16.73              29.74                   25-30%           Alameda
+6         20.02              37.59                   35-40%           Alameda
+  Total Population Children &lt; 10 years (%) Pop 10-64 years (%)
+1             3120                    7.82               66.12
+2             2007                   10.46               66.32
+3             5051                   11.42               73.04
+4             4007                    9.38               78.79
+5             4124                    9.12               81.96
+6             1745                    9.97               81.43
+  Elderly &gt; 64 years (%) Hispanic (%) White (%) African American (%)
+1                  26.06         3.78     74.26                 3.43
+2                  23.22         8.67     73.49                 2.59
+3                  15.54         6.95     67.99                 9.09
+4                  11.83        12.10     63.74                 6.64
+5                   8.92         9.46     45.44                21.39
+6                   8.60         7.51     49.28                20.52
+  Native American (%) Asian American (%) Other/Multiple (%)
+1                0.00              12.53               5.99
+2                0.20               8.52               6.53
+3                0.00              12.14               3.84
+4                0.87              10.48               6.16
+5                0.00              11.34              12.37
+6                0.17              10.54              11.98</code></pre>
+</div>
+</div>
 
 
 </section>
