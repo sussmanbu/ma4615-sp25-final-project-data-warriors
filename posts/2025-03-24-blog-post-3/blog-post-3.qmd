@@ -6,9 +6,27 @@ date: "2025-03-24"
 date-modified: "2025-03-24"
 draft: FALSE
 ---
+# Our Progress
+
 Over the past week, we made substantial progress in preparing our dataset for analysis. The original data came from the CalEnviroScreen 4.0 Excel file, which included multiple sheets—one containing pollution and environmental exposure data, and another with demographic indicators. We exported each sheet into separate CSV files, resulting in pollution_data.csv and demographic_data.csv. These were then read into R using read_csv() and merged using a left join on the "Census Tract" column to retain all pollution records while appending demographic information wherever available. After the merge, we removed several columns that were not directly relevant to our analysis, such as "Drinking Water", "Groundwater Threats", "Unemployment", and "Housing Burden", using a loop with select(-contains(...)). This approach allowed us to cleanly remove both the original and duplicated columns (e.g., .x, .y suffixes) introduced during merging.
 
 We also addressed missing values by running colSums(is.na(cleaned_dataset)) to identify which variables had the most missing data. After reviewing the results—where "Low Birth Weight" had the highest number of NA values—we chose to drop all rows with missing values using drop_na() to ensure a clean dataset moving forward. 
 
 Looking ahead, we plan to begin our exploratory data analysis by visualizing how pollution exposure correlates with demographic indicators such as race, age, and income. We are also beginning to consider additional data sources that could enrich our analysis—such as housing data, health outcome statistics, or climate-related variables—to explore deeper patterns of environmental injustice and vulnerability across California communities.
+
+
+
+## Data for Equity
+Please read this article on Data for Equity Principals. While all aspects of this are not relevant for your projects, and the relevance may vary depending on your chosen data sets, there are some important things to think about in general about collecting and working with data.
+Site: https://www.urban.org/research/publication/principles-advancing-equitable-data-practice
+
+
+pdf: https://friendsnrc.org/wp-content/uploads/2021/05/Principles-for-Advancing-Equitable-Data-Practice.pdf
+Think about how the principles for advancing equitable data practice are relevant to your data. I realize that many of the principles require interaction with communities, but think about how the principles could be applied if possible. For two or three of the principles, write about how they are relevant and what adhering to the practice would entail for your data. A particularly important principle is transparency. Think about what might be some limitations of your analysis and the potential for abuse or misuse of the data.
+Principles: 
+	The beneficence principle applies where we have to be transparent about the limits of the data when processing and analyzing our data because we can only draw a limited number of conclusions using only the columns we have. Despite any wishes we may have to extend arguments to what causes the air pollution in some neighborhoods compared to others, our dataset only focuses on the pollution and health impacts without collecting data on how the neighborhoods may be developed infrastructurally to affect these outcomes. Regardless of what analytics we produce, we don’t have the data to make claims that the increased pollution is directly caused by any of the variables we have. In addition, we should also be clear about how any previous analysis done on the dataset informed our own analysis. 
+	Another principle that applies is justice. When conceiving the idea of the project, we should be clear on what the analysis would contribute to the communities it would affect. Although we may not be able to hold listening communities, we as analysts can take the responsibility to research more on the background of how air pollution can negatively impact vulnerable communities in California, and also understand the current state of what is being done to try and address the issue. For this dataset, there could be potential abuse or misuse if we try to conclude more about what causes the increased pollution, which would be not informed by the data we have available. Also, by understanding if communities are disproportionately impacted by air pollution, there is potential that the analysis could be used to support projects that push for developments in these neighborhoods that may not necessarily be wanted by the community.  
+
+
+
 
