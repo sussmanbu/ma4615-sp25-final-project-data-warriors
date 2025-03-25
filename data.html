@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -129,6 +163,8 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  <li><a href="#data-files-and-description" id="toc-data-files-and-description" class="nav-link" data-scroll-target="#data-files-and-description">Data Files and Description</a></li>
+  <li><a href="#data-loading-and-cleaning" id="toc-data-loading-and-cleaning" class="nav-link" data-scroll-target="#data-loading-and-cleaning">Data Loading and Cleaning</a></li>
   </ul>
 </nav>
     </div>
@@ -219,10 +255,74 @@ ul.task-list li input[type="checkbox"] {
 <li>This page should be self-contained.</li>
 </ul></li>
 </ul>
+<p><img src="images/data_logo.jpg" class="img-fluid"></p>
 </section>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
-<p>The CalEnviroScreen data, available for download at OEHHA’s website, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.</p>
+<p>The CalEnviroScreen data, available for download at <a href="https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&amp;sa=D&amp;source=docs&amp;ust=1742852733483866&amp;usg=AOvVaw35FXwtWKeysE4tXW15G9nc">“OEHHA’s website”</a>, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.</p>
+<p>The data was collected to detect air pollution in small communities in California such as San Ysidro in San Diego. Since residents always complain that government air monitoring does not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, state and local government, and collecting data using low-cost technology, the San Ysidro Air Study group can give the rights to the general residents in San Ysidro for making decisions.</p>
+<section id="who-put-it-together" class="level4">
+<h4 class="anchored" data-anchor-id="who-put-it-together"><em>Who put it together</em></h4>
+<p>The San Ysidro Air Study put the data together. But during the process of collecting data and selecting appropriate data, The San Ysidro Air Study group does corroborate with the local government, local groups(Casa Familiar), schools(University of Washington and San Diego State University), and The Community Steering Committee(including 12 volunteers from San Ysidro community)</p>
+</section>
+<section id="data-usage-potential-similar-research-analysis-for-policy" class="level4">
+<h4 class="anchored" data-anchor-id="data-usage-potential-similar-research-analysis-for-policy"><em>Data Usage, Potential Similar Research, Analysis for Policy?</em></h4>
+<p>The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border.</p>
+<p>Researchers have used CalEnviroScreen to examine racial and socioeconomic disparities in environmental health risks. Cushing et al.&nbsp;(2015) found that pollution burdens disproportionately impact communities of color, particularly Hispanic and African American populations. Other studies, Alexeeff &amp; Mataka (2014) and Meehan August et al.&nbsp;(2012), have explored methodological improvements and policy applications of the tool. Some of the key questions include how pollution exposure varies with race, how effective is the CalEnviroScreen and how can we improve it through additional indicators.</p>
+</section>
+</section>
+<section id="data-files-and-description" class="level2">
+<h2 class="anchored" data-anchor-id="data-files-and-description">Data Files and Description</h2>
+<p>The original data was downloaded from CalEnviroScreen 4.0, which provides statewide data on environmental and demographic indicators at the census tract level. The data came in a single <a href="https://oehha.ca.gov/media/downloads/calenviroscreen/document/calenviroscreen40resultsdatadictionaryf2021.zip">Excel file</a> with multiple sheets. One sheet contained pollution and environmental exposure indicators, while another contained population and demographic characteristics. To prepare the data for analysis, we extracted each of these sheets and saved them as separate CSV files: <code>pollution_data.csv</code> and <code>demographic_data.csv</code>.</p>
+<p>The <code>pollution_data.csv</code> file includes key variables such as <code>Ozone</code>, <code>PM2.5</code>, <code>Diesel PM</code>, and <code>Traffic</code>, along with their respective percentiles (e.g., “Ozone Pctl”, “PM2.5 Pctl”). These values quantify the level of environmental pollution affecting each census tract. It also includes summary indicators such as “Pollution Burden Score” and “CES 4.0 Score”, which are composite measures used by the state to assess environmental vulnerability.</p>
+<p>The <code>demographic_data.csv</code> file contains population-level statistics, including <code>Total Population</code>, <code>Children &lt; 10 years (%)</code>, and <code>Elderly &gt; 64 years (%)</code>, as well as racial and ethnic breakdowns such as <code>Hispanic (%)</code>, <code>African American (%)</code>, and <code>Asian American (%)</code>. These demographic variables allow for an assessment of how pollution levels intersect with age and race across regions.</p>
+<p>To simplify the analysis, we focused on the most relevant environmental and demographic variables and removed columns related to less directly useful metrics like groundwater threats, education, and unemployment. Together, the cleaned and merged dataset allows us to explore the relationship between environmental burdens and community demographics in California.</p>
+<section id="variable-description" class="level4">
+<h4 class="anchored" data-anchor-id="variable-description"><em>Variable description:</em></h4>
+<p><strong>Environmental Related statistics</strong>: like <code>CES4.0 Score</code> and <code>PM 2.5 value</code>, representing pollution score and levels.</p>
+<p><strong>Age</strong>: Age of sample, ranging from children under 10 to elderly above 64</p>
+<p><strong>Location</strong>: California county that the census tract falls within</p>
+<p><strong>Race</strong>: including races of samples in the research</p>
+<p><strong>Other related statistics</strong>: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels. Offical Data Dictonary</p>
+</section>
+</section>
+<section id="data-loading-and-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-loading-and-cleaning">Data Loading and Cleaning</h2>
+<p><em>Merging Pollution and Demographic Data</em></p>
+<p>For this project, we worked with two datasets: <code>pollution_data.csv</code> and <code>demographic_data.csv</code>. Both datasets were read into R using the <code>read_csv()</code> function from the tidyverse package, and saved as <code>.rds</code> files using <code>write_rds()</code> for easier access later. The two datasets share some columns, including <code>Total Population</code>, <code>California County</code>, <code>CES 4.0 Score</code>, <code>CES 4.0 Percentile</code>, and <code>CES 4.0 Percentile Range</code>. So these columns were dropped from the <code>pollution_data</code> dataset before being merged with the <code>demographic_data</code> dataset. This was done using the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pollution_data <span class="ot">&lt;-</span> pollution_data <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Total Population'</span>, <span class="st">'California County'</span>, <span class="st">'CES 4.0 Score'</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'CES 4.0 Percentile'</span>, <span class="st">'CES 4.0 Percentile Range'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The two datasets were then merged using a left join on the shared column “Census Tract” to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cleaned_dataset <span class="ot">&lt;-</span> <span class="fu">merge</span>(pollution_data, demographic_data, <span class="at">by =</span> <span class="st">"Census Tract"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Removing Columns</em></p>
+<p>After merging, we removed several columns that were not relevant to our analysis. The original dataset included data for both air and water pollution. However, since our project is focused on air pollution we have removed the columns relevant to water pollution. These included environmental and social indicators such as drinking water, lead, pesticides, unemployment, and housing burden. Because the merge process introduced suffixes like .x and .y to distinguish duplicate column names, we used a for loop combined with select(-contains(…)) to remove all columns containing those key patterns, regardless of suffix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>columns_to_remove_patterns <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Drinking Water"</span>, <span class="st">"Lead"</span>, <span class="st">"Pesticides"</span>, <span class="st">"Groundwater Threats"</span>, <span class="st">"Imp. Water Bodies"</span>, <span class="st">"Education"</span>, <span class="st">"Linguistic Isolation"</span>,<span class="st">"Poverty"</span>, <span class="st">"Unemployment"</span>, <span class="st">"Housing Burden"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pattern <span class="cf">in</span> columns_to_remove_patterns) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(pattern))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Removing Missing Values</em></p>
+<p>We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that the variable with the most missing data was related to low birth weight. Despite this, we chose to remove all rows containing any missing values in the dataset using the drop_na() function from the tidyr package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Writing the Transformation to Clenaed Dataset</em></p>
+<p>Finally, the cleaned dataset was saved using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(cleaned_dataset, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset"</span>, <span class="st">"cleaned_dataset.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: <a href="./scripts/clean_data.R">clean_data.R</a>.</p>
 
 
 </section>
