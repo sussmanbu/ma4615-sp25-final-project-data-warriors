@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-03-02">
+<meta name="author" content="">
+<meta name="dcterms.date" content="2025-03-31">
 
-<title>Blog Post 1 – Data Warriors MA [46]15 Final Project</title>
+<title>Blog Post 4 – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 1</h1>
+      <h1 class="title">Blog Post 4</h1>
                       </div>
   </div>
     
@@ -127,10 +128,16 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 2, 2025</p>
+        <p class="date">March 31, 2025</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 31, 2025</p>
+      </div>
+    </div>
       
     </div>
     
@@ -146,18 +153,22 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="dataset-1" class="level1">
-<h1>Dataset 1</h1>
-<p>Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data</p>
-<p>The New York City Department of Investigation updates a dataset daily on pending, scheduled and executed evictions within the five boroughs from the year 2017 to the present. The data is compiled from the majority of New York City Marshals, who are independent public officials. The dataset has 104,860 rows that each represent a pending, scheduled, or executed eviction. It also has 20 columns, which iIncludes attributes, such as Court Index Number, Docket Number, Eviction Address, Apartment Number, Executed Date, Marshal First Name, Marshal Last Name, Residential or Commercial (property type), Borough, Zip Code and Scheduled Status (Pending/Scheduled). We will be able to download the data as a csv file from the NYC Open Data website and potentially explore questions, such as the relationship between NYC housing eviction rate and neighborhood, what neighborhoods are more often subject to evictions, and if there any patterns between the ethnic makeup of the neighborhood with the number of evictions. It may be a challenge to make connections to racial disparities because the dataset itself does not have racial demographic data and this would have to be sourced based on the zip codes of where the evictions are taking place.</p>
+<p>In this analysis, we extend our exploratory data analysis (EDA) by investigating the relationships between pollution burden and demographic variables across California census tracts. Our goal is to determine whether the pollution burden disproportionately affects certain racial groups and to model this relationship statistically. By considering both breadth and depth in our analysis, we aim to uncover key trends that inform environmental justice discussions.</p>
+<section id="demographic-distributions-and-pollution-exposure" class="level3">
+<h3 class="anchored" data-anchor-id="demographic-distributions-and-pollution-exposure">Demographic Distributions and Pollution Exposure</h3>
+<p>We decided to do a scatter plot comparing Pollution Burden and ethnic groups. We began by looking at the Hispanic population and plotted pollution burden scores against the percentage of Hispanic populations, showing a positive relationship. It will be interesting to see what the other population’s relationship is with pollution burden.</p>
+<p>Figure 2: Pollution Burden plotted aginst Hispanic Population Proportion <img src="http://127.0.0.1:14795/chunk_output/s/BB6FBB80/c3c9qjf1v22oi/000012.png?resize=2" class="img-fluid"></p>
 </section>
-<section id="dataset-2" class="level1">
-<h1>Dataset 2</h1>
-<p>Link to Data Description: https://drive.google.com/file/d/1QRubjBCrkqe61iDkxFg7P_Lc1SkR2PhL/view?usp=sharing</p>
-<p>The California Office of Environmental Health Hazard Assessment (OEHHA) developed a dataset with 8,035 census tracts and 58 columns to identify communities most burdened by pollution and vulnerable populations. It integrates environmental indicators (e.g., air pollution, drinking water contamination) and population characteristics (e.g., poverty, asthma rates, linguistic isolation) to guide environmental justice policies. Key research questions include whether communities with higher racial/ethnic minority populations face greater air pollution exposure and if specific racial/ethnic groups experience multiple pollution burdens disproportionately. A potential challenge is that the dataset only covers California, limiting generalizability to the U.S. Additionally, the racial/ethnic data is in a separate sheet, requiring a join on the Census Tract column for analysis. The data has been successfully loaded and is ready for cleaning.</p>
+<section id="top-10-most-polluted-counties" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-most-polluted-counties">Top 10 Most Polluted Counties</h3>
+<p>A summary of pollution burden by county reveals the ten most polluted counties in California. This ranking highlights the regions with the greatest environmental challenges. The most polluted county resulted in Los Angeles which confirmed our assumptions before EDA. This is reasonable as Los Angeles is a very densely populated county.</p>
+<p>Figure 4: Top 10 Most Polluted Counties <img src="http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqvu9jk712dj6/000012.png?resize=3g" class="img-fluid"> ## Statistical Modeling To formally assess the relationship between demographic composition and pollution burden, we fitted a multiple linear regression model:</p>
+<p>Our model estimates indicate that higher percentages of Hispanic, African American, and Asian American populations are associated with increased pollution burden, while Native American and Other/Multiple groups show weaker associations.</p>
+<p>Figure 5: Demographic Predictors of Pollution Burden <img src="http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqxu57a8gki6u/000012.png?resize=5" class="img-fluid"></p>
 </section>
-<section id="dataset-3" class="level1">
-<h1>Dataset 3</h1>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps:</h2>
+<p>Our analysis suggests that the pollution burden is not evenly distributed across demographic groups, with Hispanic and African American communities experiencing the highest pollution levels. Further analysis could include: - Exploring non-linear models or interaction effects. - Incorporating socioeconomic factors such as income and housing density. - Investigating potential policy interventions for mitigating disparities. - Through continued analysis, we hope to contribute to a better understanding of environmental justice in California.</p>
 
 
 </section>
@@ -255,7 +266,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma4615-sp25-final-project-data-warriors\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
