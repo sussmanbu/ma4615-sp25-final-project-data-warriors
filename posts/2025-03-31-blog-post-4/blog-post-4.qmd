@@ -21,12 +21,28 @@ Figure 4: Top 10 Most Polluted Counties
 ![](http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqvu9jk712dj6/000012.png?resize=3g)
 ## Statistical Modeling
 To formally assess the relationship between demographic composition and pollution burden, we fitted a multiple linear regression model:
+    
+y = x1 + x2 + x3 + x4 + x5 + x6
 
+Where:
 
+y = Pollution Burden Score <- our predictor variable
+
+x1 = Hispanic (%)
+
+x2 = African American (%)
+
+x3 = Asian American (%)
+
+x4 = Native American (%)
+
+x5 = Other/Multiple (%)
+    
 Our model estimates indicate that higher percentages of Hispanic, African American, and Asian American populations are associated with increased pollution burden, while Native American and Other/Multiple groups show weaker associations.
 
 Figure 5: Demographic Predictors of Pollution Burden
 ![](http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqxu57a8gki6u/000012.png?resize=5)
+
 
 ## Next Steps:
 Our analysis suggests that the pollution burden is not evenly distributed across demographic groups, with Hispanic and African American communities experiencing the highest pollution levels. Further analysis could include:
