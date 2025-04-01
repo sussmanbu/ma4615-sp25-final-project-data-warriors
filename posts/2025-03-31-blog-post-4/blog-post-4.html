@@ -163,6 +163,14 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="top-10-most-polluted-counties">Top 10 Most Polluted Counties</h3>
 <p>A summary of pollution burden by county reveals the ten most polluted counties in California. This ranking highlights the regions with the greatest environmental challenges. The most polluted county resulted in Los Angeles which confirmed our assumptions before EDA. This is reasonable as Los Angeles is a very densely populated county.</p>
 <p>Figure 4: Top 10 Most Polluted Counties <img src="http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqvu9jk712dj6/000012.png?resize=3g" class="img-fluid"> ## Statistical Modeling To formally assess the relationship between demographic composition and pollution burden, we fitted a multiple linear regression model:</p>
+<p>y = x1 + x2 + x3 + x4 + x5 + x6</p>
+<p>Where:</p>
+<p>y = Pollution Burden Score &lt;- our predictor variable</p>
+<p>x1 = Hispanic (%)</p>
+<p>x2 = African American (%)</p>
+<p>x3 = Asian American (%)</p>
+<p>x4 = Native American (%)</p>
+<p>x5 = Other/Multiple (%)</p>
 <p>Our model estimates indicate that higher percentages of Hispanic, African American, and Asian American populations are associated with increased pollution burden, while Native American and Other/Multiple groups show weaker associations.</p>
 <p>Figure 5: Demographic Predictors of Pollution Burden <img src="http://127.0.0.1:14795/chunk_output/s/BB6FBB80/cqxu57a8gki6u/000012.png?resize=5" class="img-fluid"></p>
 </section>
