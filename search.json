@@ -133,6 +133,13 @@
     "text": "In this analysis, we extend our exploratory data analysis (EDA) by investigating the relationships between pollution burden and demographic variables across California census tracts. Our goal is to determine whether the pollution burden disproportionately affects certain racial groups and to model this relationship statistically. By considering both breadth and depth in our analysis, we aim to uncover key trends that inform environmental justice discussions."
   },
   {
+    "objectID": "posts/2025-03-31-blog-post-4/blog-post-4.html#statistical-modeling",
+    "href": "posts/2025-03-31-blog-post-4/blog-post-4.html#statistical-modeling",
+    "title": "Blog Post 4",
+    "section": "Statistical Modeling",
+    "text": "Statistical Modeling\nTo formally assess the relationship between demographic composition and pollution burden, we fitted a multiple linear regression model:\ny = x1 + x2 + x3 + x4 + x5 + x6\nWhere:\ny = Pollution Burden Score &lt;- our predictor variable\nx1 = Hispanic (%)\nx2 = African American (%)\nx3 = Asian American (%)\nx4 = Native American (%)\nx5 = Other/Multiple (%)\nOur model estimates indicate that higher percentages of Hispanic, African American, and Asian American populations are associated with increased pollution burden, while Native American and Other/Multiple groups show weaker associations.\nFigure 3: Demographic Predictors of Pollution Burden"
+  },
+  {
     "objectID": "posts/2025-03-31-blog-post-4/blog-post-4.html#next-steps",
     "href": "posts/2025-03-31-blog-post-4/blog-post-4.html#next-steps",
     "title": "Blog Post 4",
