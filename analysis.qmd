@@ -120,5 +120,53 @@ ggplot(demo_long, aes(x = Percentage)) +
        x = "Percentage",
        y = "Frequency")
 ```
+Pollution vs. Race
+```{r}
+ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
+  geom_point(alpha = 0.3, color = "darkgreen") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Pollution Burden vs. Hispanic")
+```
+Top 10 Most Polluted Counties
+```{r}
+data %>%
+  group_by(`California County`) %>%
+  summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
+  top_n(10, mean_pollution) %>%
+  ggplot(aes(x = reorder(`California County`, mean_pollution), y = mean_pollution)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Top 10 Most Polluted Counties", x = NULL, y = "Avg. Pollution Score")
+```
 
+# Model
+```{r}
+model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + 
+            `African American (%)` + `Asian American (%)` + 
+            `Native American (%)` + `Other/Multiple (%)`,
+          data = data)
+
+# Get model summary with confidence intervals
+summary(model)
+confint(model)
+```
+```{r}
+coef_plot <- ggplot(data.frame(
+  term = c("Hispanic", "African American", "Asian American", 
+           "Native American", "Other/Multiple"),
+  estimate = c(0.030, 0.018, 0.013, 0.006, -0.016),
+  ci_lower = c(0.029, 0.015, 0.011, -0.007, -0.030),
+  ci_upper = c(0.031, 0.022, 0.015, 0.020, -0.002)
+), aes(x = estimate, y = term)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper), height = 0.2) +
+  labs(title = "Demographic Predictors of Pollution Burden",
+       subtitle = "Coefficient estimates with 95% confidence intervals",
+       x = "Effect Size (Change in Pollution Score per 1% Increase)",
+       y = "Demographic Group") +
+  theme_minimal()
+
+print(coef_plot)
+```
 
