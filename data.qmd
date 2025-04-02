@@ -135,8 +135,7 @@ The two datasets were then joined using a left join on the shared column "Census
 ```{r}
 #| eval: false
 #| code-overflow: wrap
-cleaned_dataset <- demographic_data |>
-  left_join(pollution_data, join_by("Census Tract"))
+cleaned_dataset <- left_join(pollution_data, demographic_data, by ="Census Tract")
 ```
 
 
