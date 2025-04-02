@@ -68,7 +68,7 @@ You will
 -   Organization and cleanliness.
     -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
-    
+
 ```{r}
 library(tidyverse)
 library(dplyr)
@@ -76,6 +76,7 @@ data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
 pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
 demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 ```
+
 
 There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset. 
 ```{r}

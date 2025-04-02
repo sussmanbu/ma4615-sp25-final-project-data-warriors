@@ -131,11 +131,12 @@ pollution_data <- pollution_data |>
                               'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
 ```
 
-The two datasets were then merged using a left join on the shared column "Census Tract" to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:
+The two datasets were then joined using a left join on the shared column "Census Tract" to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:
 ```{r}
 #| eval: false
 #| code-overflow: wrap
-cleaned_dataset <- merge(pollution_data, demographic_data, by = "Census Tract", all.x = TRUE)
+cleaned_dataset <- demographic_data |>
+  left_join(pollution_data, join_by("Census Tract"))
 ```
 
 
