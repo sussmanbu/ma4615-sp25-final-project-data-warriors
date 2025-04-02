@@ -19,8 +19,7 @@ demographic_data <- demographic_data |>
 write_rds(pollution_data, file = here::here("dataset", "pollution_data.rds"))
 
 # Join demographic data to pollution data
-cleaned_dataset <- demographic_data |>
-  left_join(pollution_data, join_by("Census Tract"))
+cleaned_dataset <- left_join(pollution_data, demographic_data, by ="Census Tract")
 
 # Removing Columns
 columns_to_remove_patterns <- c(
