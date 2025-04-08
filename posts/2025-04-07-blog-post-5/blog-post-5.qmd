@@ -1,0 +1,27 @@
+---
+title: "blog post 5"
+author: ""
+date: "2025-04-07"
+date-modified: "2025-04-07"
+draft: FALSE
+---
+Our CalEnviroScreen data came in a single Excel file with multiple sheets. One sheet contained pollution and environmental exposure indicators and another sheet contained population and demographic characteristics. We joined these two datasets to inform our research question of understanding which demographics may be disproportionately impacted by environmental health risks. Both datasets contain a column named “Census Tract”, which allows us to do a left join on the pollution and environmental exposure indicators to add demographic information about each census tract. We used a left join to preserve all pollution data records while adding any available demographic data. The data joining process didn’t have too many challenges, but in order to ensure that columns were not duplicated between the pollution dataset and the demographic dataset, we had to drop the columns 'Total Population', 'California County', 'CES 4.0 Score',  'CES 4.0 Percentile', and 'CES 4.0 Percentile Range' from the demographic data first.
+
+
+Our initial findings suggest there’s a relationship between pollution burden and the proportion of a census tract that is Hispanic, which is from Blog post 4. However, in our next steps we also plan to explore the relationship between pollution scores and more columns within our dataset outside of demographics, such as poverty percentile, unemployment percentile, and housing percentile. This week we spent more time understanding what rows we missed out on by dropping any rows with nulls because initially when we were cleaning our dataset we removed any nulls. In our exploration we found that while the pollution data didn’t have any nulls in the pollution burden columns, the nulls were largely concentrated in many of the columns we planned to look into related to other characteristics including Housing Burden Pctl, Poverty Pctl, and Unemployment Pctl as seen in the code below. The nulls are also mainly concentrated in Los Angeles, Riverside, and Orange county. Moving forward we'd have to do more exploratory data analysis to understand the demographic communities we'd be missing out on by dropping these rows as a next step.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyverse))
+pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
+demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
+
+colSums(is.na(pollution_data))
+
+pollution_data |>
+  filter(if_any(everything(), is.na)) |>
+  select("Census Tract", "California County") |>
+  count(`California County`, sort = TRUE)
+
+```
+

@@ -109,7 +109,7 @@ demographic_data
 ```
 For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract. 
 ```{r}
-demo_long <- demographic_data %>%
+demo_long <- demographic_data |>
   pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`,`Asian American (%)`,`Other/Multiple (%)`),
                names_to = "Race",
                values_to = "Percentage")
