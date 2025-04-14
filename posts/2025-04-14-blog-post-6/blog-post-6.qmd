@@ -1,0 +1,12 @@
+---
+title: "Blog Post 6"
+author: ""
+date: "2025-04-14"
+date-modified: "2025-04-14"
+draft: FALSE
+---
+
+## Updates 
+
+This week, our group is focusing on wrapping up the Analysis page by continuing to explore deeper relationships in the data and refining our modeling approach. Based on the professor’s feedback, we are rethinking how we handle missing values—moving away from simple averaging and testing more meaningful imputation strategies. We’re also in the process of building multivariate models to better understand the impact of variables like race, age, and income level on pollution scores. Our goal is to uncover patterns that might explain why certain communities experience higher pollution burdens. As part of this, we’re diving into additional variables that could influence environmental vulnerability. This will help us transition smoothly into planning the Big Picture page, where we’ll synthesize these findings to highlight broader trends and implications for environmental justice policy.
+
