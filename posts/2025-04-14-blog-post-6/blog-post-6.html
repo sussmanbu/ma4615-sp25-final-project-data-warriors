@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-03-02">
+<meta name="author" content="">
+<meta name="dcterms.date" content="2025-04-14">
 
-<title>Blog Post 1 – Data Warriors MA [46]15 Final Project</title>
+<title>Blog Post 6 – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 1</h1>
+      <h1 class="title">Blog Post 6</h1>
                       </div>
   </div>
     
@@ -127,10 +128,16 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 2, 2025</p>
+        <p class="date">April 14, 2025</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">April 14, 2025</p>
+      </div>
+    </div>
       
     </div>
     
@@ -146,18 +153,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="dataset-1" class="level1">
-<h1>Dataset 1</h1>
-<p>Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data</p>
-<p>The New York City Department of Investigation updates a dataset daily on pending, scheduled and executed evictions within the five boroughs from the year 2017 to the present. The data is compiled from the majority of New York City Marshals, who are independent public officials. The dataset has 104,860 rows that each represent a pending, scheduled, or executed eviction. It also has 20 columns, which iIncludes attributes, such as Court Index Number, Docket Number, Eviction Address, Apartment Number, Executed Date, Marshal First Name, Marshal Last Name, Residential or Commercial (property type), Borough, Zip Code and Scheduled Status (Pending/Scheduled). We will be able to download the data as a csv file from the NYC Open Data website and potentially explore questions, such as the relationship between NYC housing eviction rate and neighborhood, what neighborhoods are more often subject to evictions, and if there any patterns between the ethnic makeup of the neighborhood with the number of evictions. It may be a challenge to make connections to racial disparities because the dataset itself does not have racial demographic data and this would have to be sourced based on the zip codes of where the evictions are taking place.</p>
-</section>
-<section id="dataset-2" class="level1">
-<h1>Dataset 2</h1>
-<p>Link to Data Description: https://drive.google.com/file/d/1QRubjBCrkqe61iDkxFg7P_Lc1SkR2PhL/view?usp=sharing</p>
-<p>The California Office of Environmental Health Hazard Assessment (OEHHA) developed a dataset with 8,035 census tracts and 58 columns to identify communities most burdened by pollution and vulnerable populations. It integrates environmental indicators (e.g., air pollution, drinking water contamination) and population characteristics (e.g., poverty, asthma rates, linguistic isolation) to guide environmental justice policies. Key research questions include whether communities with higher racial/ethnic minority populations face greater air pollution exposure and if specific racial/ethnic groups experience multiple pollution burdens disproportionately. A potential challenge is that the dataset only covers California, limiting generalizability to the U.S. Additionally, the racial/ethnic data is in a separate sheet, requiring a join on the Census Tract column for analysis. The data has been successfully loaded and is ready for cleaning.</p>
-</section>
-<section id="dataset-3" class="level1">
-<h1>Dataset 3</h1>
+<section id="updates" class="level2">
+<h2 class="anchored" data-anchor-id="updates">Updates</h2>
+<p>This week, our group is focusing on wrapping up the Analysis page by continuing to explore deeper relationships in the data and refining our modeling approach. Based on the professor’s feedback, we are rethinking how we handle missing values—moving away from simple averaging and testing more meaningful imputation strategies. We’re also in the process of building multivariate models to better understand the impact of variables like race, age, and income level on pollution scores. Our goal is to uncover patterns that might explain why certain communities experience higher pollution burdens. As part of this, we’re diving into additional variables that could influence environmental vulnerability. This will help us transition smoothly into planning the Big Picture page, where we’ll synthesize these findings to highlight broader trends and implications for environmental justice policy.</p>
 
 
 </section>
@@ -255,7 +253,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma4615-sp25-final-project-data-warriors\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
