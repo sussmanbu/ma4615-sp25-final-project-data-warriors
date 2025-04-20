@@ -5,44 +5,13 @@ toc: true
 draft: false
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
-
-This comes from the file `analysis.qmd`.
-
 We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
 
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
+The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.
 
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
+While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.
 
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
-
-### Example of loading data
-
-The code below shows an example of loading the loan refusal data set (which you should delete at some point).
-
-```{r}
-library(tidyverse)
-print(getwd())
-data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
-```
-
-## Note on Attribution
-
-In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
-
-If you are directly quoting from a source, please make that clear. You can show long quotes using `>` like this
-
-```         
-> To be or not to be.
-```
-
-> To be or not to be.
-
-------------------------------------------------------------------------
+The style of this paper should aim to be that of an academic paper. I don't expect this to be of publication quality but you should keep that aim in mind. Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
 
 ## Rubric: On this page
 
@@ -69,6 +38,27 @@ You will
     -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
 
+![](images/air_pollution.jpg)
+
+## Introduction
+
+### Motivation
+
+The analysis aims to investigate the relationship between demographic factors (e.g., race, ethnicity) and pollution burden in California’s census tracts. Understanding these relationships is essential for targeting environmental policies that mitigate pollution's impact on vulnerable communities. By examining how demographic characteristics influence the pollution burden, we can highlight areas that may need focused intervention to reduce environmental inequities.
+
+### Key Questions
+
+We are particularly interested in understanding how the proportion of Hispanic, African American, and Asian American populations within census tracts correlates with the pollution burden score. Specifically, we seek to answer the following questions:
+
+- How does the percentage of each racial/ethnic group (Hispanic, African American, Asian American, etc.) correlate with the pollution burden score in California census tracts?
+
+- Are certain demographic groups more likely to live in high-pollution areas?
+
+To explore these questions, we present visualizations and statistical models that analyze these relationships. The following figures and tables will provide insights into the distribution of demographic groups, the extent of pollution in different counties, and the impact of racial composition on pollution levels.
+
+
+## Data Overview and Inital Exploration
+
 ```{r}
 library(tidyverse)
 library(dplyr)
@@ -77,18 +67,22 @@ pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
 demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 ```
 
+There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset.
 
-There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset. 
 ```{r}
 n_distinct(unique(pollution_data$`Census Tract`))
 n_distinct(unique(pollution_data$`California County`))
 n_distinct(unique(pollution_data$`Approximate Location`))
 ```
-There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing. 
+
+There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing.
+
 ```{r}
 colSums(is.na(pollution_data))
 ```
-This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from [Substack](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) 
+
+This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from [Substack](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2)
+
 ```{r}
 missing_counts <- pollution_data |>
   group_by(`California County`) |> 
@@ -104,10 +98,12 @@ ggplot(missing_counts, aes(x = `California County`, y = `missing_count`, fill = 
        y = "Number of Missing Values") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
-```{r}
-demographic_data
-```
-For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract. 
+
+
+## Data Visualization
+
+For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.
+
 ```{r}
 demo_long <- demographic_data |>
   pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`,`Asian American (%)`,`Other/Multiple (%)`),
@@ -121,14 +117,18 @@ ggplot(demo_long, aes(x = Percentage)) +
        x = "Percentage",
        y = "Frequency")
 ```
+
 Pollution vs. Race
+
 ```{r}
 ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.3, color = "darkgreen") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   labs(title = "Pollution Burden vs. Hispanic")
 ```
+
 Top 10 Most Polluted Counties
+
 ```{r}
 data %>%
   group_by(`California County`) %>%
@@ -139,8 +139,107 @@ data %>%
   coord_flip() +
   labs(title = "Top 10 Most Polluted Counties", x = NULL, y = "Avg. Pollution Score")
 ```
+```{r}
+top_polluted_counties <- data %>%
+  group_by(`California County`) %>%
+  summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
+  top_n(10, mean_pollution) 
 
-# Model
+ggplot(top_polluted_counties, aes(x = reorder(`California County`, mean_pollution), y = mean_pollution, fill = mean_pollution)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = "Top 10 Most Polluted Counties in California",
+       x = "County",
+       y = "Average Pollution Score") +
+  scale_fill_viridis_c() +
+  theme_minimal()
+```
+
+
+From Chat
+
+```{r}
+missing_counts <- data %>%
+  summarise(across(everything(), ~sum(is.na(.)))) %>%
+  gather(key = "variable", value = "missing_count")
+
+ggplot(missing_counts, aes(x = reorder(variable, missing_count), y = missing_count, fill = missing_count)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Missing Data in Variables",
+       x = "Variable",
+       y = "Number of Missing Values") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  scale_fill_viridis_c()
+```
+```{r}
+demo_long <- data %>%
+  pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`, 
+                        `Children < 10 years (%)`, `Pop 10-64 years (%)`, `Elderly > 64 years (%)`),
+               names_to = "Demographic", values_to = "Percentage")
+
+
+ggplot(demo_long, aes(x = Demographic, y = Percentage, fill = Demographic)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Demographic Percentages Across Census Tracts",
+       x = "Demographic Group",
+       y = "Percentage of Population") +
+  theme_minimal() +
+  coord_flip() 
+
+```
+
+```{r}
+ggplot(data, aes(x = `Pollution Burden Score`)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Pollution Burden Scores",
+       x = "Pollution Burden Score",
+       y = "Frequency") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
+  geom_point(alpha = 0.3, color = "orange") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Pollution Burden vs. Asthma Rate",
+       x = "Pollution Burden Score",
+       y = "Asthma Rate")
+```
+
+
+```{r}
+library(corrplot)
+
+exclude_vars <- c("CES 4.0 Score.x", "CES 4.0 Percentile.x", "CES 4.0 Percentile Range.x", 
+                  "CES 4.0 Score.y", "CES 4.0 Percentile.y", "Pollution Burden Pctl")
+
+numeric_data <- data %>%
+  select_if(is.numeric) %>%
+  select(-one_of(exclude_vars))
+
+correlation_matrix_filtered <- cor(numeric_data, use = "complete.obs")
+
+pollution_burden_corr <- correlation_matrix_filtered["Pollution Burden Score",]
+
+sorted_corr <- sort(abs(pollution_burden_corr), decreasing = TRUE)
+
+top_10_variables <- names(sorted_corr[2:11])
+
+top_corr_matrix <- correlation_matrix_filtered[top_10_variables, top_10_variables]
+
+corrplot(top_corr_matrix, 
+         method = "color", 
+         type = "upper", 
+         title = "Top 10 Variables Correlated with Pollution Burden Score (Excluding CES 4.0 Score)", 
+         tl.cex = 0.7, 
+         tl.srt = 45, # Rotate text labels for readability
+         mar = c(0, 0, 3, 0), # Increase space around the plot
+         number.cex = 0.7) # Adjust number size
+
+```
+
+### Modeling and Inference
+
 ```{r}
 model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + 
             `African American (%)` + `Asian American (%)` + 
@@ -151,6 +250,7 @@ model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` +
 summary(model)
 confint(model)
 ```
+
 ```{r}
 coef_plot <- ggplot(data.frame(
   term = c("Hispanic", "African American", "Asian American", 
