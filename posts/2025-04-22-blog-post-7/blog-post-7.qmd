@@ -1,0 +1,78 @@
+---
+title: "Blog Post 7"
+author: ""
+date: "2025-04-22"
+date-modified: "2025-04-22"
+draft: FALSE
+filters:
+  - shinylive
+---
+This week, we are in the process of developing an interactive Shiny app for our final project. This users to explore pollution burden scores by selecting a county and a demographic group. It dynamically visualizes how the percentage of a specific group relates to pollution levels within that county.
+
+Our interactive supports both broad trend exploration and zoomed-in analysis of local data. It includes user input for customization and a clean layout for clarity. We're planning to add brief instructions to guide users through the visualizations.
+
+We’re also exploring a new feature that compares a selected county’s average pollution burden score to the statewide average. This would make the tool more personal, helping California residents understand how their local environment compares to the rest of the state.
+
+Next steps include:
+
+- Implementing the county vs. state average comparison.
+
+- Improving the app’s visual design.
+
+- Highlighting counties with especially high pollution burdens.
+
+
+
+
+Here is a interactive that is in the works:
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 500
+ 
+library(shiny)
+library(tidyverse)
+
+ 
+data <- read_rds("https://raw.githubusercontent.com/sussmanbu/ma4615-sp25-final-project-data-warriors/main/dataset_for_shiny/county_demographic.rds")
+
+ui <- fluidPage(
+  titlePanel("Explore Pollution Burden by County and Demographics"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("county", "Select a County:",
+                  choices = sort(unique(data$`California County`))),
+      selectInput("demographic", "Select Demographic Group:",
+                  choices = c("Hispanic (%)", "White (%)", "African American(%)", "Asian American (%)", "Native American (%)", "Other/Multiple (%)"))
+    ),
+    mainPanel(
+      plotOutput("demoPlot")
+    )
+  )
+)
+ 
+server <- function(input, output) {
+  output$demoPlot <- renderPlot({
+    plot_data <- data %>% filter(`California County` == input$county)
+ 
+    ggplot(
+      plot_data,
+      aes_string(
+        x = paste0("`", input$demographic, "`"),
+        y = "`Pollution Burden Score`"
+      )
+    ) +
+      geom_point(alpha = 0.5, color = "darkblue") +
+      geom_smooth(method = "lm", se = FALSE, color = "red") +
+      labs(
+        title = paste("Pollution vs.", input$demographic, "in", input$county),
+        x = input$demographic,
+        y = "Pollution Burden Score"
+      ) +
+      theme_minimal()
+  })
+}
+ 
+ 
+shinyApp(ui = ui, server = server)
+```
