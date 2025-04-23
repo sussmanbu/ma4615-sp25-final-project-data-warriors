@@ -9,7 +9,7 @@ filters:
 ---
 This week, we are in the process of developing an interactive Shiny app for our final project. This users to explore pollution burden scores by selecting a county and a demographic group. It dynamically visualizes how the percentage of a specific group relates to pollution levels within that county.
 
-Our interactive supports both broad trend exploration and zoomed-in analysis of local data. It includes user input for customization and a clean layout for clarity. We're planning to add brief instructions to guide users through the visualizations.
+Our interactive supports both broad trend exploration of the data. It includes user input for customization and a clean layout for clarity. We're planning to add brief instructions to guide users through the visualizations as well as zoom-in analysis.
 
 We’re also exploring a new feature that compares a selected county’s average pollution burden score to the statewide average. This would make the tool more personal, helping California residents understand how their local environment compares to the rest of the state.
 
