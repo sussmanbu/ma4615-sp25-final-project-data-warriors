@@ -210,11 +210,10 @@ ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
 ```{r}
 library(corrplot)
 
-exclude_vars <- c("CES 4.0 Score.x", "CES 4.0 Percentile.x", "CES 4.0 Percentile Range.x", 
-                  "CES 4.0 Score.y", "CES 4.0 Percentile.y", "Pollution Burden Pctl")
+exclude_vars <- c("CES 4.0 Score", "CES 4.0 Percentile", "CES 4.0 Percentile Range", "Pollution                        Burden Pctl")
 
-numeric_data <- data %>%
-  select_if(is.numeric) %>%
+numeric_data <- data |>
+  select_if(is.numeric) |>
   select(-one_of(exclude_vars))
 
 correlation_matrix_filtered <- cor(numeric_data, use = "complete.obs")
