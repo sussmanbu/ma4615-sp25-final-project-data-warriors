@@ -1,0 +1,53 @@
+---
+title: "Blog Post 8"
+author: "Hannah, Rachel, Thao, Wenbo, Cuichen"
+date: "2025-04-30"
+date-modified: "2025-04-30"
+draft: FALSE
+---
+
+### Thesis
+Pollution burdens in California disproportionately impact communities of color—especially Hispanic, African American, and Asian American populations—across census tracts, as measured by CalEnviroScreen scores. These disparities reflect deep-rooted structural inequities and demand targeted environmental and public health interventions.
+
+### Continuing Exploratory Data Analysis
+Over the past few weeks, we extended our exploratory data analysis by digging deeper into relationships between racial/ethnic composition and pollution burden across California’s census tracts. Initially, we focused on distribution plots, county-level comparisons, and visual trends. As we moved forward, we examined linear relationships through scatterplots and began incorporating more statistical rigor through correlation matrices and formal regression modeling.
+
+Our bar chart analysis of missing CES 4.0 Scores by county revealed data gaps in certain regions—especially Los Angeles—which may reflect underreporting or challenges in data collection in historically underserved communities. We plan to revisit these data gaps by exploring whether additional demographic variables (like poverty or linguistic isolation) correlate with missingness, potentially indicating areas where additional monitoring efforts are needed.
+
+We also added visualizations to explore relationships between pollution burden and asthma rates, age group distributions, and socioeconomic indicators. The correlation heatmap helped identify variables that strongly align with pollution scores, guiding our model design.
+
+### Modeling and Inference
+We fit a linear regression model to quantify how racial and ethnic group percentages within a census tract predict the pollution burden score. The results are both statistically significant and substantively meaningful:
+
+- Hispanic (%): For every 1% increase in Hispanic population share, the pollution burden score increases by approximately 0.029 units (p < 2e-16).
+- African American (%): Similarly, a 1% increase corresponds to a 0.018 unit increase in pollution burden.
+- Asian American (%): A smaller but still significant increase of 0.012 per percentage point.
+- Native American (%) and Other/Multiple (%) were negatively associated with pollution burden, though the estimates were smaller in magnitude.
+
+
+This suggests that communities of color, especially Hispanic populations, face higher pollution burdens on average. While correlation is not causation, these associations are consistent with prior research and public health reporting.
+
+We visualized these relationships with a coefficient plot, making the results interpretable even to non-technical audiences. The model’s R² value of 0.25 indicates that race alone explains a moderate portion of the variance in pollution burden, but other structural and geographic variables likely contribute as well.
+
+### Visualization and Communication Polishing
+We’ve taken several steps to polish our visualizations and make them more publication-ready:
+
+- Clear Titles & Captions: Each figure includes descriptive titles that summarize the insight (“Pollution vs. Hispanic (%)”, “Top 10 Polluted Counties”).
+- Faceted Histograms: We used facet_wrap() to break down racial distribution histograms, improving clarity.
+- Color Gradients: The use of viridis scales for bar charts improves accessibility and visual appeal.
+- Coefficient Plots: These were added to supplement raw regression output and emphasize confidence intervals in a clean, annotated layout.
+
+
+As a next step, we’re exploring ggpubr to further standardize styling across plots, and looking into interactive visualizations using plotly or DT tables to support user exploration in the Shiny app.
+
+### Reflection and Future Directions
+Our project reinforces a troubling but crucial finding: environmental inequity remains tightly linked to race in California. Communities of color are often located in higher-pollution census tracts, which can have long-term health and quality-of-life consequences.
+That said, there’s more to explore. Future directions include:
+
+- Incorporating interaction terms (e.g., race × poverty) to understand compounding effects.
+- Including geographic features (like proximity to highways or industrial zones).
+- Improving spatial visualizations to highlight regional hot spots.
+- Collaborating with policy experts or community organizations to translate findings into action.
+
+
+Our final Shiny app will bring this work together into an interactive tool where users can select counties and demographic groups to explore local pollution impacts. We hope it serves as both a resource for informed advocacy and a starting point for deeper community-driven research.
