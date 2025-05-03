@@ -262,14 +262,12 @@ cat_summary %>%
 
 ## Data Loading and Cleaning
 *Merging Pollution and Demographic Data*
-
 For this project, we worked with two datasets: `pollution_data.csv` and `demographic_data.csv`. Both datasets were read into R using the `read_csv()` function from the tidyverse package, and saved as `.rds` files using `write_rds()` for easier access later. The two datasets share some columns, including `Total Population`, `California County`, `CES 4.0 Score`, `CES 4.0 Percentile`, and `CES 4.0 Percentile Range`. So these columns were dropped from the `pollution_data` dataset before being merged with the `demographic_data` dataset. This was done using the following code:
 ```{r}
 #| eval: false
 #| code-overflow: wrap
 pollution_data <- pollution_data |> 
-                    select(-c('Total Population', 'California County', 'CES 4.0 Score', 
-                              'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
+    select(-c('Total Population', 'California County', 'CES 4.0 Score', 'CES 4.0 Percentile', 'CES 4.0 Percentile Range'))
 ```
 
 The two datasets were then joined using a left join on the shared column "Census Tract" to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:
@@ -299,20 +297,29 @@ for (pattern in columns_to_remove_patterns) {
 ```
 
 
-*Removing Missing Values*
+*Imputing Missing Values*
 
-We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that the variable with the most missing data was related to low birth weight. Despite this, we chose to remove all rows containing any missing values in the dataset using the drop_na() function from the tidyr package:
+We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that several columns were missing data, particularly in Los Angeles. Despite this, we decided to impute any missing values using a k-nearest neighbors imputation method:
 ```{r}
 #| eval: false
 #| code-overflow: wrap
+# convert character columns to factors 
 cleaned_dataset <- cleaned_dataset |>
-  drop_na()
+  mutate(across(where(is.character), as.factor))
+
+# Impute any null values using KNN approach 
+pollution_recipe <- recipe(~ ., data = cleaned_dataset) |>
+  step_impute_knn(all_predictors(), , neighbors = 3)
+
+prepared_recipe <- prep(pollution_recipe)
+
+imputed_data <- bake(prepared_recipe, cleaned_dataset)
 ```
 
 
-*Writing the Transformation to Clenaed Dataset*
+*Writing the Transformation to Cleaned Dataset*
 
-Finally, the cleaned dataset was saved using:
+Finally, the cleaned dataset was saved to an .rds file using:
 
 ```{r}
 #| eval: false
@@ -320,9 +327,8 @@ Finally, the cleaned dataset was saved using:
 write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
 ```
 
+All steps were carried out using packages from the tidyverse, including dplyr and tidyr for data manipulation, readr for reading in the datasets, and gt for creating summary tables. We used the additional recipes package to use imputation to handle missing values using a KNN methodology. A full record of these operations is provided in the script: [clean_data.R](/scripts/clean_data.R).
 
-All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: [clean_data.R](/scripts/clean_data.R).
-
-For some research on missing data could be found in Blog Post 3
+Metrics on what data was missing in the original pollution dataset can be found in Blog Post 3.
 
 
