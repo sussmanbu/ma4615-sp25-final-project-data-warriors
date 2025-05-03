@@ -118,10 +118,18 @@ variable_table <- data.frame(
 ```
 
 
+
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
+demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 
 library(gt)
 
@@ -138,6 +146,120 @@ variable_table %>%
 
 ```
 
+### Distributions
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+ggplot(data, aes(x = `Pollution Burden Score`)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Pollution Burden Scores",
+       x = "Pollution Burden Score",
+       y = "Frequency") +
+  theme_minimal()
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+demo_long <- data %>%
+  pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`, 
+                        `Children < 10 years (%)`, `Pop 10-64 years (%)`, `Elderly > 64 years (%)`),
+               names_to = "Demographic", values_to = "Percentage")
+
+
+ggplot(demo_long, aes(x = Demographic, y = Percentage, fill = Demographic)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Demographic Percentages Across Census Tracts",
+       x = "Demographic Group",
+       y = "Percentage of Population") +
+  theme_minimal() +
+  coord_flip() 
+
+```
+
+
+
+```{r}
+#| echo: false
+library(dplyr)
+library(tidyr)
+library(gt)
+
+# Use this version to safely exclude ZIP only if it's present
+
+
+
+# === NUMERICAL SUMMARY TABLE ===
+
+numeric_summary <- data %>%
+  select(where(is.numeric), -ZIP) %>%  # Exclude ZIP code
+  summarise(across(
+    everything(),
+    list(
+      Mean = ~mean(., na.rm = TRUE),
+      Median = ~median(., na.rm = TRUE),
+      Minimum = ~min(., na.rm = TRUE),
+      Maximum = ~max(., na.rm = TRUE)
+    ),
+    .names = "{.col}_{.fn}"
+  )) %>%
+  pivot_longer(everything(), names_to = c("Variable", "Statistic"), names_sep = "_") %>%
+  pivot_wider(names_from = Statistic, values_from = value)
+
+numeric_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Summary Statistics for Numerical Variables",
+    subtitle = "Includes mean, median, minimum, and maximum values"
+  ) %>%
+  fmt_number(
+    columns = c(Mean, Median, Minimum, Maximum),
+    decimals = 2,
+    use_seps = TRUE
+  ) %>%
+  tab_options(
+    table.width = pct(100),
+    data_row.padding = px(6)
+  )
+```
+
+```{r}
+#| echo: false
+library(dplyr)
+library(tidyr)
+library(gt)
+
+# Select categorical variables from your dataset
+categorical_vars <- data %>%
+  select(where(is.factor))
+
+# Create summary table: top 5 most common values per categorical variable
+cat_summary <- categorical_vars %>%
+  pivot_longer(cols = everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value, sort = TRUE) %>%
+  group_by(Variable) %>%
+  slice_max(n, n = 5, with_ties = FALSE) %>%
+  ungroup()
+
+# Format and display with gt
+cat_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Top Categories by Frequency",
+    subtitle = "Most common values for each categorical variable"
+  ) %>%
+  cols_label(n = "Count") %>%
+  tab_options(
+    table.width = pct(100),
+    data_row.padding = px(6)
+  )
+
+```
 
 
 ## Data Loading and Cleaning
@@ -202,5 +324,7 @@ write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
 
 
 All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: [clean_data.R](/scripts/clean_data.R).
+
+For some research on missing data could be found in Blog Post 3
 
 

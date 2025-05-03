@@ -1,7 +1,7 @@
 ---
 title: "Blog Post 3"
 subtitle: "Updates and Next Steps"
-author: ""
+author: "Hannah, Rachel, Thao, Wenbo, Cuichen"
 date: "2025-03-24"
 date-modified: "2025-03-24"
 draft: FALSE
@@ -22,5 +22,52 @@ Another principle that applies is justice. When conceiving the idea of the proje
 
 
 
+## Looking into the Data + Cleaning
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
+demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
+```
+
+There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset.
+
+```{r}
+n_distinct(unique(pollution_data$`Census Tract`))
+n_distinct(unique(pollution_data$`California County`))
+n_distinct(unique(pollution_data$`Approximate Location`))
+```
+
+There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing.
+
+```{r}
+colSums(is.na(data))
+```
+
+This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from [Substack](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2)
+
+```{r}
+missing_counts <- pollution_data |>
+  group_by(`California County`) |> 
+  summarize(missing_count = sum(is.na(`CES 4.0 Score`))) |>
+  filter(missing_count > 0) |>
+  arrange(missing_count)
 
 
+ggplot(missing_counts, aes(x = `California County`, y = `missing_count`, fill = `missing_count`)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Missing Data Count by County",
+       x = "California County",
+       y = "Number of Missing Values") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+Will implement some sort of imputation to deal with the missing data. 

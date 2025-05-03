@@ -59,48 +59,20 @@ To explore these questions, we present visualizations and statistical models tha
 
 ## Data Overview and Inital Exploration
 
+## Data Visualization
+
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
 pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
 demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 ```
-
-There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset.
-
-```{r}
-n_distinct(unique(pollution_data$`Census Tract`))
-n_distinct(unique(pollution_data$`California County`))
-n_distinct(unique(pollution_data$`Approximate Location`))
-```
-
-There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing.
-
-```{r}
-colSums(is.na(data))
-```
-
-This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from [Substack](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2)
-
-```{r}
-missing_counts <- pollution_data |>
-  group_by(`California County`) |> 
-  summarize(missing_count = sum(is.na(`CES 4.0 Score`))) |>
-  filter(missing_count > 0) |>
-  arrange(missing_count)
-
-
-ggplot(missing_counts, aes(x = `California County`, y = `missing_count`, fill = `missing_count`)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Missing Data Count by County",
-       x = "California County",
-       y = "Number of Missing Values") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-```
-
-
-## Data Visualization
 
 For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.
 
@@ -139,63 +111,8 @@ data %>%
   coord_flip() +
   labs(title = "Top 10 Most Polluted Counties", x = NULL, y = "Avg. Pollution Score")
 ```
-```{r}
-top_polluted_counties <- data %>%
-  group_by(`California County`) %>%
-  summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
-  top_n(10, mean_pollution) 
-
-ggplot(top_polluted_counties, aes(x = reorder(`California County`, mean_pollution), y = mean_pollution, fill = mean_pollution)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  labs(title = "Top 10 Most Polluted Counties in California",
-       x = "County",
-       y = "Average Pollution Score") +
-  scale_fill_viridis_c() +
-  theme_minimal()
-```
 
 
-From Chat
-
-```{r}
-missing_counts <- data %>%
-  summarise(across(everything(), ~sum(is.na(.)))) %>%
-  gather(key = "variable", value = "missing_count")
-
-ggplot(missing_counts, aes(x = reorder(variable, missing_count), y = missing_count, fill = missing_count)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Missing Data in Variables",
-       x = "Variable",
-       y = "Number of Missing Values") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  scale_fill_viridis_c()
-```
-```{r}
-demo_long <- data %>%
-  pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`, 
-                        `Children < 10 years (%)`, `Pop 10-64 years (%)`, `Elderly > 64 years (%)`),
-               names_to = "Demographic", values_to = "Percentage")
-
-
-ggplot(demo_long, aes(x = Demographic, y = Percentage, fill = Demographic)) +
-  geom_boxplot() +
-  labs(title = "Boxplot of Demographic Percentages Across Census Tracts",
-       x = "Demographic Group",
-       y = "Percentage of Population") +
-  theme_minimal() +
-  coord_flip() 
-
-```
-
-```{r}
-ggplot(data, aes(x = `Pollution Burden Score`)) +
-  geom_histogram(binwidth = 1, fill = "steelblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Pollution Burden Scores",
-       x = "Pollution Burden Score",
-       y = "Frequency") +
-  theme_minimal()
-```
 
 ```{r}
 ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
