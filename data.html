@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./big_picture.html"> 
-<span class="menu-text">Big Picture</span></a>
+<span class="menu-text">Toxic Truths: What the Data Says About What We Breathe</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html"> 
@@ -156,7 +156,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-description" id="toc-data-description" class="nav-link active" data-scroll-target="#data-description">Data Description</a></li>
-  <li><a href="#data-files-and-description" id="toc-data-files-and-description" class="nav-link" data-scroll-target="#data-files-and-description">Data Files and Description</a></li>
+  <li><a href="#data-files-and-description" id="toc-data-files-and-description" class="nav-link" data-scroll-target="#data-files-and-description">Data Files and Description</a>
+  <ul class="collapse">
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
+  </ul></li>
   <li><a href="#data-loading-and-cleaning" id="toc-data-loading-and-cleaning" class="nav-link" data-scroll-target="#data-loading-and-cleaning">Data Loading and Cleaning</a></li>
   </ul>
 </nav>
@@ -188,15 +191,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="images/data_logo.jpg" class="img-fluid"></p>
+<p><img src="images/logo.png" class="img-fluid"></p>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
 <p>The CalEnviroScreen data, available for download at <a href="https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&amp;sa=D&amp;source=docs&amp;ust=1742852733483866&amp;usg=AOvVaw35FXwtWKeysE4tXW15G9nc">“OEHHA’s website”</a>, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.</p>
-<p>The data was collected to detect air pollution in small communities in California such as San Ysidro in San Diego. Since residents always complain that government air monitoring does not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, state and local government, and collecting data using low-cost technology, the San Ysidro Air Study group can give the rights to the general residents in San Ysidro for making decisions.</p>
-<section id="who-put-it-together" class="level4">
-<h4 class="anchored" data-anchor-id="who-put-it-together"><em>Who put it together</em></h4>
-<p>The San Ysidro Air Study put the data together. But during the process of collecting data and selecting appropriate data, The San Ysidro Air Study group does corroborate with the local government, local groups(Casa Familiar), schools(University of Washington and San Diego State University), and The Community Steering Committee(including 12 volunteers from San Ysidro community)</p>
-</section>
+<p>This data has been used for research in the San Ysidro, California community because it’s located near the world’s busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities.</p>
 <section id="data-usage-potential-similar-research-analysis-for-policy" class="level4">
 <h4 class="anchored" data-anchor-id="data-usage-potential-similar-research-analysis-for-policy"><em>Data Usage, Potential Similar Research, Analysis for Policy?</em></h4>
 <p>The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border.</p>
@@ -216,16 +215,2015 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Location</strong>: California county that the census tract falls within</p>
 <p><strong>Race</strong>: including races of samples in the research</p>
 <p><strong>Other related statistics</strong>: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels. Offical Data Dictonary</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ywqbosgldr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ywqbosgldr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ywqbosgldr thead, #ywqbosgldr tbody, #ywqbosgldr tfoot, #ywqbosgldr tr, #ywqbosgldr td, #ywqbosgldr th {
+  border-style: none;
+}
+
+#ywqbosgldr p {
+  margin: 0;
+  padding: 0;
+}
+
+#ywqbosgldr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 120%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ywqbosgldr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ywqbosgldr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ywqbosgldr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ywqbosgldr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ywqbosgldr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ywqbosgldr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ywqbosgldr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ywqbosgldr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ywqbosgldr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ywqbosgldr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ywqbosgldr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ywqbosgldr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ywqbosgldr .gt_row {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ywqbosgldr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ywqbosgldr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ywqbosgldr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ywqbosgldr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ywqbosgldr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ywqbosgldr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ywqbosgldr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ywqbosgldr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ywqbosgldr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ywqbosgldr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ywqbosgldr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ywqbosgldr .gt_left {
+  text-align: left;
+}
+
+#ywqbosgldr .gt_center {
+  text-align: center;
+}
+
+#ywqbosgldr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ywqbosgldr .gt_font_normal {
+  font-weight: normal;
+}
+
+#ywqbosgldr .gt_font_bold {
+  font-weight: bold;
+}
+
+#ywqbosgldr .gt_font_italic {
+  font-style: italic;
+}
+
+#ywqbosgldr .gt_super {
+  font-size: 65%;
+}
+
+#ywqbosgldr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ywqbosgldr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ywqbosgldr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ywqbosgldr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ywqbosgldr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ywqbosgldr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ywqbosgldr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ywqbosgldr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ywqbosgldr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Description" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Description</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Census Tract</td>
+<td class="gt_row gt_left" headers="Description">Census Tract ID from the 2010 Census</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Total Population</td>
+<td class="gt_row gt_left" headers="Description">Estimated population in each census tract (2019 ACS)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_left" headers="Description">County in which each census tract is located</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">ZIP</td>
+<td class="gt_row gt_left" headers="Description">ZIP code for each census tract</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_left" headers="Description">Approximate city or area name based on boundary files</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Longitude</td>
+<td class="gt_row gt_left" headers="Description">Longitude of the census tract centroid</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Latitude</td>
+<td class="gt_row gt_left" headers="Description">Latitude of the census tract centroid</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Score</td>
+<td class="gt_row gt_left" headers="Description">Final CalEnviroScreen score (Pollution Burden × Pop. Characteristics)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile</td>
+<td class="gt_row gt_left" headers="Description">Statewide percentile of the CES score</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_left" headers="Description">Grouped CES percentile (e.g., 0–5%, 5–10%, etc.)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Ozone</td>
+<td class="gt_row gt_left" headers="Description">Daily max 8-hour ozone concentration</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Ozone Pctl</td>
+<td class="gt_row gt_left" headers="Description">Ozone percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">PM2.5</td>
+<td class="gt_row gt_left" headers="Description">Annual average PM2.5 concentration</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">PM2.5 Pctl</td>
+<td class="gt_row gt_left" headers="Description">PM2.5 percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Diesel PM</td>
+<td class="gt_row gt_left" headers="Description">Diesel particulate emissions from transportation</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Diesel PM Pctl</td>
+<td class="gt_row gt_left" headers="Description">Diesel PM percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Tox. Release</td>
+<td class="gt_row gt_left" headers="Description">Toxic air releases from facilities (modeled)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Tox. Release Pctl</td>
+<td class="gt_row gt_left" headers="Description">Toxic release percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Traffic</td>
+<td class="gt_row gt_left" headers="Description">Traffic density near census tract boundary</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Traffic Pctl</td>
+<td class="gt_row gt_left" headers="Description">Traffic percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Cleanup Sites</td>
+<td class="gt_row gt_left" headers="Description">Count of cleanup sites weighted by proximity</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Cleanup Sites Pctl</td>
+<td class="gt_row gt_left" headers="Description">Cleanup sites percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Haz. Waste</td>
+<td class="gt_row gt_left" headers="Description">Hazardous waste sites/facilities</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Haz. Waste Pctl</td>
+<td class="gt_row gt_left" headers="Description">Hazardous waste percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Solid Waste</td>
+<td class="gt_row gt_left" headers="Description">Solid waste sites/facilities</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Solid Waste Pctl</td>
+<td class="gt_row gt_left" headers="Description">Solid waste percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden</td>
+<td class="gt_row gt_left" headers="Description">Average of pollution percentiles (weighted)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden Score</td>
+<td class="gt_row gt_left" headers="Description">Scaled pollution burden score (0–10)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden Pctl</td>
+<td class="gt_row gt_left" headers="Description">Pollution burden percentile</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Asthma</td>
+<td class="gt_row gt_left" headers="Description">Emergency department visit rate for asthma</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Asthma Pctl</td>
+<td class="gt_row gt_left" headers="Description">Asthma percentile</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Low Birth Weight</td>
+<td class="gt_row gt_left" headers="Description">Percent of low birth weight infants</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Low Birth Weight Pctl</td>
+<td class="gt_row gt_left" headers="Description">Low birth weight percentile</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Cardiovascular Disease</td>
+<td class="gt_row gt_left" headers="Description">Emergency visit rate for heart attacks</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Cardiovascular Disease Pctl</td>
+<td class="gt_row gt_left" headers="Description">Cardiovascular disease percentile</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop. Char.</td>
+<td class="gt_row gt_left" headers="Description">Average of population vulnerability percentiles</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pop. Char. Score</td>
+<td class="gt_row gt_left" headers="Description">Scaled population characteristics score (0–10)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop. Char. Pctl</td>
+<td class="gt_row gt_left" headers="Description">Population characteristics percentile</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Children &lt; 10 years (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent of population under age 10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop 10–64 years (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent of population aged 10–64</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Elderly &gt; 64 years (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent of population over age 64</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Hispanic (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as Hispanic or Latino</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">White (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as non-Hispanic White</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">African American (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as non-Hispanic Black</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Native American (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as non-Hispanic Native American</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Asian American (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as non-Hispanic Asian</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Other/Multiple (%)</td>
+<td class="gt_row gt_left" headers="Description">Percent identifying as other or multiple races</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="distributions" class="level3">
+<h3 class="anchored" data-anchor-id="distributions">Distributions</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The histogram above illustrates the distribution of Pollution Burden Scores in California, which shows that pollution scores are fairly normally distributed among all census tracts. The pollution score with the highest frequency observed is 5.0. However, our project aims to determine if census tracts with greater pollution scores might be communities with higher racial/ethnic minority populations.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The boxplots above shows the distribution of the percentage of demographics in each census tract. We observed that census tracts with a higher percentages of individuals in the age range 10 to 64 years old were more common, and that so were census tracts with higher percentages of White individuals. However, the distribution seems to be widely dispersed with various outliers for each demographic catergory.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="itprezakdp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#itprezakdp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#itprezakdp thead, #itprezakdp tbody, #itprezakdp tfoot, #itprezakdp tr, #itprezakdp td, #itprezakdp th {
+  border-style: none;
+}
+
+#itprezakdp p {
+  margin: 0;
+  padding: 0;
+}
+
+#itprezakdp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#itprezakdp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#itprezakdp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#itprezakdp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#itprezakdp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#itprezakdp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#itprezakdp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#itprezakdp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#itprezakdp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#itprezakdp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#itprezakdp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#itprezakdp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#itprezakdp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#itprezakdp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#itprezakdp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#itprezakdp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#itprezakdp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#itprezakdp .gt_row {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#itprezakdp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itprezakdp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#itprezakdp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#itprezakdp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#itprezakdp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itprezakdp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#itprezakdp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#itprezakdp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#itprezakdp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itprezakdp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#itprezakdp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#itprezakdp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#itprezakdp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#itprezakdp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#itprezakdp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itprezakdp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#itprezakdp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#itprezakdp .gt_left {
+  text-align: left;
+}
+
+#itprezakdp .gt_center {
+  text-align: center;
+}
+
+#itprezakdp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#itprezakdp .gt_font_normal {
+  font-weight: normal;
+}
+
+#itprezakdp .gt_font_bold {
+  font-weight: bold;
+}
+
+#itprezakdp .gt_font_italic {
+  font-style: italic;
+}
+
+#itprezakdp .gt_super {
+  font-size: 65%;
+}
+
+#itprezakdp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#itprezakdp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#itprezakdp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#itprezakdp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#itprezakdp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#itprezakdp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#itprezakdp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#itprezakdp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#itprezakdp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal">Summary Statistics for Numerical Variables</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Includes mean, median, minimum, and maximum values</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Mean" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mean</th>
+<th id="Median" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median</th>
+<th id="Minimum" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Minimum</th>
+<th id="Maximum" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Maximum</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Census Tract</td>
+<td class="gt_row gt_right" headers="Mean">6,054,895,764.00</td>
+<td class="gt_row gt_right" headers="Median">6,059,052,505.00</td>
+<td class="gt_row gt_right" headers="Minimum">6,001,400,100.00</td>
+<td class="gt_row gt_right" headers="Maximum">6,115,041,100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Total Population</td>
+<td class="gt_row gt_right" headers="Mean">4,889.05</td>
+<td class="gt_row gt_right" headers="Median">4,615.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">38,754.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Longitude</td>
+<td class="gt_row gt_right" headers="Mean">−119.41</td>
+<td class="gt_row gt_right" headers="Median">−118.43</td>
+<td class="gt_row gt_right" headers="Minimum">−124.30</td>
+<td class="gt_row gt_right" headers="Maximum">−114.31</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Latitude</td>
+<td class="gt_row gt_right" headers="Mean">35.50</td>
+<td class="gt_row gt_right" headers="Median">34.21</td>
+<td class="gt_row gt_right" headers="Minimum">32.55</td>
+<td class="gt_row gt_right" headers="Maximum">41.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Score</td>
+<td class="gt_row gt_right" headers="Mean">28.32</td>
+<td class="gt_row gt_right" headers="Median">25.55</td>
+<td class="gt_row gt_right" headers="Minimum">1.03</td>
+<td class="gt_row gt_right" headers="Maximum">93.18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Ozone</td>
+<td class="gt_row gt_right" headers="Mean">0.05</td>
+<td class="gt_row gt_right" headers="Median">0.05</td>
+<td class="gt_row gt_right" headers="Minimum">0.03</td>
+<td class="gt_row gt_right" headers="Maximum">0.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Ozone Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.90</td>
+<td class="gt_row gt_right" headers="Median">50.54</td>
+<td class="gt_row gt_right" headers="Minimum">0.19</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">PM2.5</td>
+<td class="gt_row gt_right" headers="Mean">10.15</td>
+<td class="gt_row gt_right" headers="Median">10.12</td>
+<td class="gt_row gt_right" headers="Minimum">1.88</td>
+<td class="gt_row gt_right" headers="Maximum">16.39</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">PM2.5 Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.01</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Diesel PM</td>
+<td class="gt_row gt_right" headers="Mean">0.23</td>
+<td class="gt_row gt_right" headers="Median">0.14</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">14.61</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Diesel PM Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.01</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Tox. Release</td>
+<td class="gt_row gt_right" headers="Mean">1,623.95</td>
+<td class="gt_row gt_right" headers="Median">456.33</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">96,985.63</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Tox. Release Pctl</td>
+<td class="gt_row gt_right" headers="Mean">49.78</td>
+<td class="gt_row gt_right" headers="Median">49.77</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Traffic</td>
+<td class="gt_row gt_right" headers="Mean">1,117.45</td>
+<td class="gt_row gt_right" headers="Median">881.04</td>
+<td class="gt_row gt_right" headers="Minimum">20.75</td>
+<td class="gt_row gt_right" headers="Maximum">45,752.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Traffic Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Cleanup Sites</td>
+<td class="gt_row gt_right" headers="Mean">8.58</td>
+<td class="gt_row gt_right" headers="Median">2.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">300.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Cleanup Sites Pctl</td>
+<td class="gt_row gt_right" headers="Mean">33.72</td>
+<td class="gt_row gt_right" headers="Median">25.63</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Haz. Waste</td>
+<td class="gt_row gt_right" headers="Mean">0.67</td>
+<td class="gt_row gt_right" headers="Median">0.28</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">27.93</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Haz. Waste Pctl</td>
+<td class="gt_row gt_right" headers="Mean">47.51</td>
+<td class="gt_row gt_right" headers="Median">47.41</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Solid Waste</td>
+<td class="gt_row gt_right" headers="Mean">2.10</td>
+<td class="gt_row gt_right" headers="Median">0.20</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">64.25</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Solid Waste Pctl</td>
+<td class="gt_row gt_right" headers="Mean">28.08</td>
+<td class="gt_row gt_right" headers="Median">9.67</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden</td>
+<td class="gt_row gt_right" headers="Mean">42.69</td>
+<td class="gt_row gt_right" headers="Median">42.50</td>
+<td class="gt_row gt_right" headers="Minimum">4.58</td>
+<td class="gt_row gt_right" headers="Maximum">81.90</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden Score</td>
+<td class="gt_row gt_right" headers="Mean">5.21</td>
+<td class="gt_row gt_right" headers="Median">5.19</td>
+<td class="gt_row gt_right" headers="Minimum">0.56</td>
+<td class="gt_row gt_right" headers="Maximum">10.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pollution Burden Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.01</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Asthma</td>
+<td class="gt_row gt_right" headers="Mean">51.98</td>
+<td class="gt_row gt_right" headers="Median">45.71</td>
+<td class="gt_row gt_right" headers="Minimum">4.28</td>
+<td class="gt_row gt_right" headers="Maximum">243.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Asthma Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.02</td>
+<td class="gt_row gt_right" headers="Median">50.01</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Low Birth Weight</td>
+<td class="gt_row gt_right" headers="Mean">5.00</td>
+<td class="gt_row gt_right" headers="Median">4.92</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">13.71</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Low Birth Weight Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.05</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Cardiovascular Disease</td>
+<td class="gt_row gt_right" headers="Mean">13.41</td>
+<td class="gt_row gt_right" headers="Median">12.42</td>
+<td class="gt_row gt_right" headers="Minimum">2.86</td>
+<td class="gt_row gt_right" headers="Maximum">40.85</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Cardiovascular Disease Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.04</td>
+<td class="gt_row gt_right" headers="Median">50.02</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop. Char.</td>
+<td class="gt_row gt_right" headers="Mean">49.85</td>
+<td class="gt_row gt_right" headers="Median">49.81</td>
+<td class="gt_row gt_right" headers="Minimum">3.24</td>
+<td class="gt_row gt_right" headers="Maximum">96.40</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Pop. Char. Score</td>
+<td class="gt_row gt_right" headers="Mean">5.17</td>
+<td class="gt_row gt_right" headers="Median">5.17</td>
+<td class="gt_row gt_right" headers="Minimum">0.34</td>
+<td class="gt_row gt_right" headers="Maximum">10.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop. Char. Pctl</td>
+<td class="gt_row gt_right" headers="Mean">50.01</td>
+<td class="gt_row gt_right" headers="Median">50.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.01</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Children &lt; 10 years (%)</td>
+<td class="gt_row gt_right" headers="Mean">12.06</td>
+<td class="gt_row gt_right" headers="Median">11.96</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">51.47</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Pop 10-64 years (%)</td>
+<td class="gt_row gt_right" headers="Mean">73.13</td>
+<td class="gt_row gt_right" headers="Median">73.64</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Elderly &gt; 64 years (%)</td>
+<td class="gt_row gt_right" headers="Mean">14.80</td>
+<td class="gt_row gt_right" headers="Median">13.34</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Hispanic (%)</td>
+<td class="gt_row gt_right" headers="Mean">38.09</td>
+<td class="gt_row gt_right" headers="Median">30.94</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">White (%)</td>
+<td class="gt_row gt_right" headers="Mean">38.68</td>
+<td class="gt_row gt_right" headers="Median">37.26</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">African American (%)</td>
+<td class="gt_row gt_right" headers="Mean">5.57</td>
+<td class="gt_row gt_right" headers="Median">2.57</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">84.71</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Native American (%)</td>
+<td class="gt_row gt_right" headers="Mean">0.42</td>
+<td class="gt_row gt_right" headers="Median">0.00</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">100.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Asian American (%)</td>
+<td class="gt_row gt_right" headers="Mean">13.98</td>
+<td class="gt_row gt_right" headers="Median">8.43</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">94.55</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Other/Multiple (%)</td>
+<td class="gt_row gt_right" headers="Mean">3.27</td>
+<td class="gt_row gt_right" headers="Median">2.85</td>
+<td class="gt_row gt_right" headers="Minimum">0.00</td>
+<td class="gt_row gt_right" headers="Maximum">17.07</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="qtkyjulhia" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qtkyjulhia table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qtkyjulhia thead, #qtkyjulhia tbody, #qtkyjulhia tfoot, #qtkyjulhia tr, #qtkyjulhia td, #qtkyjulhia th {
+  border-style: none;
+}
+
+#qtkyjulhia p {
+  margin: 0;
+  padding: 0;
+}
+
+#qtkyjulhia .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qtkyjulhia .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qtkyjulhia .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qtkyjulhia .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qtkyjulhia .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qtkyjulhia .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qtkyjulhia .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qtkyjulhia .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qtkyjulhia .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qtkyjulhia .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qtkyjulhia .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qtkyjulhia .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qtkyjulhia .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qtkyjulhia .gt_row {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qtkyjulhia .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qtkyjulhia .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qtkyjulhia .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qtkyjulhia .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qtkyjulhia .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qtkyjulhia .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qtkyjulhia .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qtkyjulhia .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qtkyjulhia .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qtkyjulhia .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qtkyjulhia .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qtkyjulhia .gt_left {
+  text-align: left;
+}
+
+#qtkyjulhia .gt_center {
+  text-align: center;
+}
+
+#qtkyjulhia .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qtkyjulhia .gt_font_normal {
+  font-weight: normal;
+}
+
+#qtkyjulhia .gt_font_bold {
+  font-weight: bold;
+}
+
+#qtkyjulhia .gt_font_italic {
+  font-style: italic;
+}
+
+#qtkyjulhia .gt_super {
+  font-size: 65%;
+}
+
+#qtkyjulhia .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qtkyjulhia .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qtkyjulhia .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qtkyjulhia .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qtkyjulhia .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qtkyjulhia .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qtkyjulhia .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qtkyjulhia .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qtkyjulhia div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="3" class="gt_heading gt_title gt_font_normal">Top Categories by Frequency</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Most common values for each categorical variable</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Value</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Count</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_center" headers="Value">Los Angeles</td>
+<td class="gt_row gt_right" headers="n">996</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_center" headers="Value">San Diego</td>
+<td class="gt_row gt_right" headers="n">280</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_center" headers="Value">San Francisco</td>
+<td class="gt_row gt_right" headers="n">195</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_center" headers="Value">San Jose</td>
+<td class="gt_row gt_right" headers="n">188</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Approximate Location</td>
+<td class="gt_row gt_center" headers="Value">Oakland</td>
+<td class="gt_row gt_right" headers="n">113</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_center" headers="Value">15-20%</td>
+<td class="gt_row gt_right" headers="n">397</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_center" headers="Value">25-30%</td>
+<td class="gt_row gt_right" headers="n">397</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_center" headers="Value">30-35%</td>
+<td class="gt_row gt_right" headers="n">397</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_center" headers="Value">40-45%</td>
+<td class="gt_row gt_right" headers="n">397</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">CES 4.0 Percentile Range</td>
+<td class="gt_row gt_center" headers="Value">5-10%</td>
+<td class="gt_row gt_right" headers="n">397</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_center" headers="Value">Los Angeles</td>
+<td class="gt_row gt_right" headers="n">2343</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_center" headers="Value">San Diego</td>
+<td class="gt_row gt_right" headers="n">627</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_center" headers="Value">Orange</td>
+<td class="gt_row gt_right" headers="n">582</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_center" headers="Value">Riverside</td>
+<td class="gt_row gt_right" headers="n">453</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">California County</td>
+<td class="gt_row gt_center" headers="Value">Santa Clara</td>
+<td class="gt_row gt_right" headers="n">372</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="data-loading-and-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="data-loading-and-cleaning">Data Loading and Cleaning</h2>
-<p><em>Merging Pollution and Demographic Data</em></p>
-<p>For this project, we worked with two datasets: <code>pollution_data.csv</code> and <code>demographic_data.csv</code>. Both datasets were read into R using the <code>read_csv()</code> function from the tidyverse package, and saved as <code>.rds</code> files using <code>write_rds()</code> for easier access later. The two datasets share some columns, including <code>Total Population</code>, <code>California County</code>, <code>CES 4.0 Score</code>, <code>CES 4.0 Percentile</code>, and <code>CES 4.0 Percentile Range</code>. So these columns were dropped from the <code>pollution_data</code> dataset before being merged with the <code>demographic_data</code> dataset. This was done using the following code:</p>
+<p><em>Merging Pollution and Demographic Data</em> For this project, we worked with two datasets: <code>pollution_data.csv</code> and <code>demographic_data.csv</code>. Both datasets were read into R using the <code>read_csv()</code> function from the tidyverse package, and saved as <code>.rds</code> files using <code>write_rds()</code> for easier access later. The two datasets share some columns, including <code>Total Population</code>, <code>California County</code>, <code>CES 4.0 Score</code>, <code>CES 4.0 Percentile</code>, and <code>CES 4.0 Percentile Range</code>. So these columns were dropped from the <code>pollution_data</code> dataset before being merged with the <code>demographic_data</code> dataset. This was done using the following code:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pollution_data <span class="ot">&lt;-</span> pollution_data <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Total Population'</span>, <span class="st">'California County'</span>, <span class="st">'CES 4.0 Score'</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'CES 4.0 Percentile'</span>, <span class="st">'CES 4.0 Percentile Range'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Total Population'</span>, <span class="st">'California County'</span>, <span class="st">'CES 4.0 Score'</span>, <span class="st">'CES 4.0 Percentile'</span>, <span class="st">'CES 4.0 Percentile Range'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The two datasets were then joined using a left join on the shared column “Census Tract” to ensure that all pollution records remained, even if corresponding demographic data was missing. This was done with the following line of code:</p>
 <div class="cell">
@@ -240,22 +2238,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pattern <span class="cf">in</span> columns_to_remove_patterns) {</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">|&gt;</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(pattern))</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Removing Missing Values</em></p>
-<p>We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that the variable with the most missing data was related to low birth weight. Despite this, we chose to remove all rows containing any missing values in the dataset using the drop_na() function from the tidyr package:</p>
+<p><em>Imputing Missing Values</em></p>
+<p>We then checked for missing values using colSums(is.na(cleaned_dataset)) and found that several columns were missing data, particularly in Los Angeles. Despite this, we decided to impute any missing values using a k-nearest neighbors imputation method:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert character columns to factors </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned_dataset <span class="ot">&lt;-</span> cleaned_dataset <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute any null values using KNN approach </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>pollution_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="sc">~</span> ., <span class="at">data =</span> cleaned_dataset) <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_knn</span>(<span class="fu">all_predictors</span>(), , <span class="at">neighbors =</span> <span class="dv">3</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>prepared_recipe <span class="ot">&lt;-</span> <span class="fu">prep</span>(pollution_recipe)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>imputed_data <span class="ot">&lt;-</span> <span class="fu">bake</span>(prepared_recipe, cleaned_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Writing the Transformation to Clenaed Dataset</em></p>
-<p>Finally, the cleaned dataset was saved using:</p>
+<p><em>Writing the Transformation to Cleaned Dataset</em></p>
+<p>Finally, the cleaned dataset was saved to an .rds file using:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(cleaned_dataset, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset"</span>, <span class="st">"cleaned_dataset.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: <a href="./scripts/clean_data.R">clean_data.R</a>.</p>
+<p>All steps were carried out using packages from the tidyverse, including dplyr and tidyr for data manipulation, readr for reading in the datasets, and gt for creating summary tables. We used the additional recipes package to use imputation to handle missing values using a KNN methodology. A full record of these operations is provided in the script: <a href="./scripts/clean_data.R">clean_data.R</a>.</p>
+<p>Metrics on what data was missing in the original pollution dataset can be found in Blog Post 3.</p>
 
 
 </section>

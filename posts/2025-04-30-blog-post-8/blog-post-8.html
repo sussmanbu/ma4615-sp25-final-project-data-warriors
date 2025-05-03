@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Hannah, Rachel, Thao, Wenbo, Cuichen">
-<meta name="dcterms.date" content="2025-03-24">
+<meta name="dcterms.date" content="2025-04-30">
 
-<title>Blog Post 3 – Data Warriors MA [46]15 Final Project</title>
+<title>Blog Post 8 – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -151,8 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 3</h1>
-            <p class="subtitle lead">Updates and Next Steps</p>
+      <h1 class="title">Blog Post 8</h1>
                       </div>
   </div>
     
@@ -169,14 +134,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 24, 2025</p>
+        <p class="date">April 30, 2025</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 24, 2025</p>
+        <p class="date-modified">April 30, 2025</p>
       </div>
     </div>
       
@@ -194,119 +159,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="our-progress" class="level1">
-<h1>Our Progress</h1>
-<p>Over the past week, we made substantial progress in preparing our dataset for analysis. The original data came from the CalEnviroScreen 4.0 Excel file, which included multiple sheets—one containing pollution and environmental exposure data, and another with demographic indicators. We exported each sheet into separate CSV files, resulting in pollution_data.csv and demographic_data.csv. These were then read into R using read_csv() and merged using a left join on the “Census Tract” column to retain all pollution records while appending demographic information wherever available. After the merge, we removed several columns that were not directly relevant to our analysis, such as “Drinking Water”, “Groundwater Threats”, “Unemployment”, and “Housing Burden”, using a loop with select(-contains(…)). This approach allowed us to cleanly remove both the original and duplicated columns (e.g., .x, .y suffixes) introduced during merging.</p>
-<p>We also addressed missing values by running colSums(is.na(cleaned_dataset)) to identify which variables had the most missing data. After reviewing the results—where “Low Birth Weight” had the highest number of NA values—we chose to drop all rows with missing values using drop_na() to ensure a clean dataset moving forward.</p>
-<p>Looking ahead, we plan to begin our exploratory data analysis by visualizing how pollution exposure correlates with demographic indicators such as race, age, and income. We are also beginning to consider additional data sources that could enrich our analysis—such as housing data, health outcome statistics, or climate-related variables—to explore deeper patterns of environmental injustice and vulnerability across California communities.</p>
+<section id="thesis" class="level3">
+<h3 class="anchored" data-anchor-id="thesis">Thesis</h3>
+<p>Pollution burdens in California disproportionately impact communities of color—especially Hispanic, African American, and Asian American populations—across census tracts, as measured by CalEnviroScreen scores. These disparities reflect deep-rooted structural inequities and demand targeted environmental and public health interventions.</p>
 </section>
-<section id="data-for-equity" class="level1">
-<h1>Data for Equity</h1>
-<p>The beneficence principle applies where we have to be transparent about the limits of the data when processing and analyzing our data because we can only draw a limited number of conclusions using only the columns we have. Despite any wishes we may have to extend arguments to what causes the air pollution in some neighborhoods compared to others, our dataset only focuses on the pollution and health impacts without collecting data on how the neighborhoods may be developed infrastructurally to affect these outcomes. Regardless of what analytics we produce, we don’t have the data to make claims that the increased pollution is directly caused by any of the variables we have. In addition, we should also be clear about how any previous analysis done on the dataset informed our own analysis.</p>
-<p>Another principle that applies is justice. When conceiving the idea of the project, we should be clear on what the analysis would contribute to the communities it would affect. Although we may not be able to hold listening communities, we as analysts can take the responsibility to research more on the background of how air pollution can negatively impact vulnerable communities in California, and also understand the current state of what is being done to try and address the issue. For this dataset, there could be potential abuse or misuse if we try to conclude more about what causes the increased pollution, which would be not informed by the data we have available. Also, by understanding if communities are disproportionately impacted by air pollution, there is potential that the analysis could be used to support projects that push for developments in these neighborhoods that may not necessarily be wanted by the community.</p>
-<section id="looking-into-the-data-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="looking-into-the-data-cleaning">Looking into the Data + Cleaning</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/cleaned_dataset.rds"</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pollution_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/pollution_data.rds"</span>))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>demographic_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/demographic_data.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>There are 8035 unique census tracts, 58 California counties, and 785 approximate city/town/areas in the dataset.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(<span class="fu">unique</span>(pollution_data<span class="sc">$</span><span class="st">`</span><span class="at">Census Tract</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8035</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(<span class="fu">unique</span>(pollution_data<span class="sc">$</span><span class="st">`</span><span class="at">California County</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 58</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(<span class="fu">unique</span>(pollution_data<span class="sc">$</span><span class="st">`</span><span class="at">Approximate Location</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 785</code></pre>
-</div>
-</div>
-<p>There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>               Census Tract            Total Population 
-                          0                           0 
-          California County                         ZIP 
-                          0                           0 
-       Approximate Location                   Longitude 
-                          0                           0 
-                   Latitude               CES 4.0 Score 
-                          0                           0 
-         CES 4.0 Percentile    CES 4.0 Percentile Range 
-                          0                           0 
-                      Ozone                  Ozone Pctl 
-                          0                           0 
-                      PM2.5                  PM2.5 Pctl 
-                          0                           0 
-                  Diesel PM              Diesel PM Pctl 
-                          0                           0 
-               Tox. Release           Tox. Release Pctl 
-                          0                           0 
-                    Traffic                Traffic Pctl 
-                          0                           0 
-              Cleanup Sites          Cleanup Sites Pctl 
-                          0                           0 
-                 Haz. Waste             Haz. Waste Pctl 
-                          0                           0 
-                Solid Waste            Solid Waste Pctl 
-                          0                           0 
-           Pollution Burden      Pollution Burden Score 
-                          0                           0 
-      Pollution Burden Pctl                      Asthma 
-                          0                           0 
-                Asthma Pctl            Low Birth Weight 
-                          0                           0 
-      Low Birth Weight Pctl      Cardiovascular Disease 
-                          0                           0 
-Cardiovascular Disease Pctl                  Pop. Char. 
-                          0                           0 
-           Pop. Char. Score             Pop. Char. Pctl 
-                          0                           0 
-    Children &lt; 10 years (%)         Pop 10-64 years (%) 
-                          0                           0 
-     Elderly &gt; 64 years (%)                Hispanic (%) 
-                          0                           0 
-                  White (%)        African American (%) 
-                          0                           0 
-        Native American (%)          Asian American (%) 
-                          0                           0 
-         Other/Multiple (%) 
-                          0 </code></pre>
-</div>
-</div>
-<p>This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from <a href="https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2">Substack</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>missing_counts <span class="ot">&lt;-</span> pollution_data <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">California County</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">missing_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">CES 4.0 Score</span><span class="st">`</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(missing_count <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(missing_count)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(missing_counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">California County</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">missing_count</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">missing_count</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missing Data Count by County"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"California County"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Missing Values"</span>) <span class="sc">+</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="blog-post-3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Will implement some sort of imputation to deal with the missing data.</p>
+<section id="continuing-exploratory-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="continuing-exploratory-data-analysis">Continuing Exploratory Data Analysis</h3>
+<p>Over the past few weeks, we extended our exploratory data analysis by digging deeper into relationships between racial/ethnic composition and pollution burden across California’s census tracts. Initially, we focused on distribution plots, county-level comparisons, and visual trends. As we moved forward, we examined linear relationships through scatterplots and began incorporating more statistical rigor through correlation matrices and formal regression modeling.</p>
+<p>Our bar chart analysis of missing CES 4.0 Scores by county revealed data gaps in certain regions—especially Los Angeles—which may reflect underreporting or challenges in data collection in historically underserved communities. We plan to revisit these data gaps by exploring whether additional demographic variables (like poverty or linguistic isolation) correlate with missingness, potentially indicating areas where additional monitoring efforts are needed.</p>
+<p>We also added visualizations to explore relationships between pollution burden and asthma rates, age group distributions, and socioeconomic indicators. The correlation heatmap helped identify variables that strongly align with pollution scores, guiding our model design.</p>
+</section>
+<section id="modeling-and-inference" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h3>
+<p>We fit a linear regression model to quantify how racial and ethnic group percentages within a census tract predict the pollution burden score. The results are both statistically significant and substantively meaningful:</p>
+<ul>
+<li>Hispanic (%): For every 1% increase in Hispanic population share, the pollution burden score increases by approximately 0.029 units (p &lt; 2e-16).</li>
+<li>African American (%): Similarly, a 1% increase corresponds to a 0.018 unit increase in pollution burden.</li>
+<li>Asian American (%): A smaller but still significant increase of 0.012 per percentage point.</li>
+<li>Native American (%) and Other/Multiple (%) were negatively associated with pollution burden, though the estimates were smaller in magnitude.</li>
+</ul>
+<p>This suggests that communities of color, especially Hispanic populations, face higher pollution burdens on average. While correlation is not causation, these associations are consistent with prior research and public health reporting.</p>
+<p>We visualized these relationships with a coefficient plot, making the results interpretable even to non-technical audiences. The model’s R² value of 0.25 indicates that race alone explains a moderate portion of the variance in pollution burden, but other structural and geographic variables likely contribute as well.</p>
+</section>
+<section id="visualization-and-communication-polishing" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-and-communication-polishing">Visualization and Communication Polishing</h3>
+<p>We’ve taken several steps to polish our visualizations and make them more publication-ready:</p>
+<ul>
+<li>Clear Titles &amp; Captions: Each figure includes descriptive titles that summarize the insight (“Pollution vs.&nbsp;Hispanic (%)”, “Top 10 Polluted Counties”).</li>
+<li>Faceted Histograms: We used facet_wrap() to break down racial distribution histograms, improving clarity.</li>
+<li>Color Gradients: The use of viridis scales for bar charts improves accessibility and visual appeal.</li>
+<li>Coefficient Plots: These were added to supplement raw regression output and emphasize confidence intervals in a clean, annotated layout.</li>
+</ul>
+<p>As a next step, we’re exploring ggpubr to further standardize styling across plots, and looking into interactive visualizations using plotly or DT tables to support user exploration in the Shiny app.</p>
+</section>
+<section id="reflection-and-future-directions" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-and-future-directions">Reflection and Future Directions</h3>
+<p>Our project reinforces a troubling but crucial finding: environmental inequity remains tightly linked to race in California. Communities of color are often located in higher-pollution census tracts, which can have long-term health and quality-of-life consequences. That said, there’s more to explore. Future directions include:</p>
+<ul>
+<li>Incorporating interaction terms (e.g., race × poverty) to understand compounding effects.</li>
+<li>Including geographic features (like proximity to highways or industrial zones).</li>
+<li>Improving spatial visualizations to highlight regional hot spots.</li>
+<li>Collaborating with policy experts or community organizations to translate findings into action.</li>
+</ul>
+<p>Our final Shiny app will bring this work together into an interactive tool where users can select counties and demographic groups to explore local pollution impacts. We hope it serves as both a resource for informed advocacy and a starting point for deeper community-driven research.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
