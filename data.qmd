@@ -12,15 +12,12 @@ draft: false
 
 The CalEnviroScreen data, available for download at ["OEHHA’s website"](https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&sa=D&source=docs&ust=1742852733483866&usg=AOvVaw35FXwtWKeysE4tXW15G9nc), is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
 
-Since residents always complain that government air monitoring does not adequately measure air quality in their community, the data was collected to detect air pollution in small communities in California such as San Ysidro in San Diego. By collaborating with the San Ysidro community in San Diego, state and local government, and collecting data using low-cost technology, the San Ysidro Air Study group can give the rights to the general residents in San Ysidro for making decisions.
+This data has been used for research in the San Ysidro, California community because it's located near the world's busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities. 
 
-#### *Who put it together* 
-
-The San Ysidro Air Study put the data together. But during the  process of collecting data and selecting appropriate data, The San Ysidro Air Study group does corroborate with the local government, local groups(Casa Familiar), schools(University of Washington and San Diego State University), and The Community Steering Committee(including 12 volunteers from San Ysidro community)
 
 #### *Data Usage, Potential Similar Research, Analysis for Policy?*
 
-The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice,  guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border. 
+The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border. 
 
 Researchers have used CalEnviroScreen to examine racial and socioeconomic disparities in environmental health risks. Cushing et al. (2015) found that pollution burdens disproportionately impact communities of color, particularly Hispanic and African American populations. Other studies, Alexeeff & Mataka (2014) and Meehan August et al. (2012), have explored methodological improvements and policy applications of the tool. Some of the key questions include how pollution exposure varies with race, how effective is the CalEnviroScreen and how can we improve it through additional indicators. 
 
@@ -159,6 +156,7 @@ ggplot(data, aes(x = `Pollution Burden Score`)) +
        y = "Frequency") +
   theme_minimal()
 ```
+The histogram above illustrates the distribution of Pollution Burden Scores in California, which shows that pollution scores are fairly normally distributed among all census tracts. The pollution score with the highest frequency observed is 5.0. However, our project aims to determine if census tracts with greater pollution scores might be communities with higher racial/ethnic minority populations. 
 
 
 ```{r}
@@ -182,7 +180,7 @@ ggplot(demo_long, aes(x = Demographic, y = Percentage, fill = Demographic)) +
 
 ```
 
-
+The boxplots above shows the distribution of the percentage of demographics in each census tract. We observed that census tracts with a higher percentages of individuals in the age range 10 to 64 years old were more common, and that so were census tracts with higher percentages of White individuals. However, the distribution seems to be widely dispersed with various outliers for each demographic catergory. 
 
 ```{r}
 #| echo: false
