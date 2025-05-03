@@ -80,7 +80,7 @@ columns_to_remove_patterns <- c(
 )
 
 for (pattern in columns_to_remove_patterns) {
-  cleaned_dataset <- cleaned_dataset %>%
+  cleaned_dataset <- cleaned_dataset |>
     select(-contains(pattern))
 }
 ```
@@ -92,7 +92,7 @@ We then checked for missing values using colSums(is.na(cleaned_dataset)) and fou
 ```{r}
 #| eval: false
 #| code-overflow: wrap
-cleaned_dataset <- cleaned_dataset %>%
+cleaned_dataset <- cleaned_dataset |>
   drop_na()
 ```
 
