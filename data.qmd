@@ -46,6 +46,99 @@ To simplify the analysis, we focused on the most relevant environmental and demo
 **Other related statistics**: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels.
 Offical Data Dictonary
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+variable_table <- data.frame(
+  Variable = c(
+    "Census Tract", "Total Population", "California County", "ZIP", "Approximate Location",
+    "Longitude", "Latitude", "CES 4.0 Score", "CES 4.0 Percentile", "CES 4.0 Percentile Range",
+    "Ozone", "Ozone Pctl", "PM2.5", "PM2.5 Pctl", "Diesel PM", "Diesel PM Pctl",
+    "Tox. Release", "Tox. Release Pctl", "Traffic", "Traffic Pctl", "Cleanup Sites",
+    "Cleanup Sites Pctl", "Haz. Waste", "Haz. Waste Pctl", "Solid Waste", "Solid Waste Pctl",
+    "Pollution Burden", "Pollution Burden Score", "Pollution Burden Pctl", "Asthma",
+    "Asthma Pctl", "Low Birth Weight", "Low Birth Weight Pctl", "Cardiovascular Disease",
+    "Cardiovascular Disease Pctl", "Pop. Char.", "Pop. Char. Score", "Pop. Char. Pctl",
+    "Children < 10 years (%)", "Pop 10–64 years (%)", "Elderly > 64 years (%)",
+    "Hispanic (%)", "White (%)", "African American (%)", "Native American (%)",
+    "Asian American (%)", "Other/Multiple (%)"
+  ),
+  Description = c(
+    "Census Tract ID from the 2010 Census",
+    "Estimated population in each census tract (2019 ACS)",
+    "County in which each census tract is located",
+    "ZIP code for each census tract",
+    "Approximate city or area name based on boundary files",
+    "Longitude of the census tract centroid",
+    "Latitude of the census tract centroid",
+    "Final CalEnviroScreen score (Pollution Burden × Pop. Characteristics)",
+    "Statewide percentile of the CES score",
+    "Grouped CES percentile (e.g., 0–5%, 5–10%, etc.)",
+    "Daily max 8-hour ozone concentration",
+    "Ozone percentile",
+    "Annual average PM2.5 concentration",
+    "PM2.5 percentile",
+    "Diesel particulate emissions from transportation",
+    "Diesel PM percentile",
+    "Toxic air releases from facilities (modeled)",
+    "Toxic release percentile",
+    "Traffic density near census tract boundary",
+    "Traffic percentile",
+    "Count of cleanup sites weighted by proximity",
+    "Cleanup sites percentile",
+    "Hazardous waste sites/facilities",
+    "Hazardous waste percentile",
+    "Solid waste sites/facilities",
+    "Solid waste percentile",
+    "Average of pollution percentiles (weighted)",
+    "Scaled pollution burden score (0–10)",
+    "Pollution burden percentile",
+    "Emergency department visit rate for asthma",
+    "Asthma percentile",
+    "Percent of low birth weight infants",
+    "Low birth weight percentile",
+    "Emergency visit rate for heart attacks",
+    "Cardiovascular disease percentile",
+    "Average of population vulnerability percentiles",
+    "Scaled population characteristics score (0–10)",
+    "Population characteristics percentile",
+    "Percent of population under age 10",
+    "Percent of population aged 10–64",
+    "Percent of population over age 64",
+    "Percent identifying as Hispanic or Latino",
+    "Percent identifying as non-Hispanic White",
+    "Percent identifying as non-Hispanic Black",
+    "Percent identifying as non-Hispanic Native American",
+    "Percent identifying as non-Hispanic Asian",
+    "Percent identifying as other or multiple races"
+  )
+)
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(gt)
+
+variable_table %>%
+  gt() %>%
+  cols_width(
+    Variable ~ px(200),        # Widen the 'Variable' column
+    Description ~ px(500)      # Widen the 'Description' column
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),  # Add vertical padding between rows
+    table.width = pct(120)     # Make table span full content width
+  )
+
+```
+
+
 
 ## Data Loading and Cleaning
 *Merging Pollution and Demographic Data*
@@ -109,3 +202,5 @@ write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
 
 
 All steps were carried out using packages from the tidyverse, including dplyr for data manipulation, readr for reading in the datasets, tidyr for handling missing values, and here for managing file paths. No additional R packages beyond those covered in class were used. A full record of these operations is provided in the script: [clean_data.R](/scripts/clean_data.R).
+
+
