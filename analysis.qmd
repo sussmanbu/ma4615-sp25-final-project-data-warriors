@@ -78,7 +78,7 @@ n_distinct(unique(pollution_data$`Approximate Location`))
 There were 3390 missing values in the pollution dataset and 516 missing values in the demographic dataset. However, none of the pollution data is missing.
 
 ```{r}
-colSums(is.na(pollution_data))
+colSums(is.na(data))
 ```
 
 This bar chart plots the number of missing values for the column CES 4.0 Score by California County. The CalEnviroScreen Score is the Pollution Score multiplied by Population Characteristics Score. Los Angles is the county with the most missing values. We can examine through the demographic data to understand what potential communities were not captured by this lack of data. The code to angle the x labels was sourced from [Substack](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2)

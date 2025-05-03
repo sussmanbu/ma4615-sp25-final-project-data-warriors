@@ -3,6 +3,7 @@
 # to separate files in order to work on different aspects of your project
 
 library(tidyverse)
+library(tidymodels)
 
 
 demographic_data <- read_csv(here::here("dataset", "demographic_data.csv")) 
@@ -34,12 +35,19 @@ for (pattern in columns_to_remove_patterns) {
     select(-contains(pattern))
 }
 
-# Seeing how many Null values within dataset and dropping them
-colSums(is.na(cleaned_dataset)) # seems like Low birth has the largest amount of
-# missing values, should we still drop everything?
+# convert character columns to factors 
 cleaned_dataset <- cleaned_dataset |>
-  drop_na()
+  mutate(across(where(is.character), as.factor))
+
+# Impute any null values using KNN approach 
+pollution_recipe <- recipe(~ ., data = cleaned_dataset) |>
+  step_impute_knn(all_predictors(), , neighbors = 3)
+
+prepared_recipe <- prep(pollution_recipe)
+
+imputed_data <- bake(prepared_recipe, cleaned_dataset)
 
 # Writing RDS
-write_rds(cleaned_dataset, file = here::here("dataset", "cleaned_dataset.rds"))
+write_rds(imputed_data, file = here::here("dataset", "cleaned_dataset.rds"))
+
 
