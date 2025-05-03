@@ -1,6 +1,6 @@
 ---
 title: "Blog Post 4"
-author: ""
+author: "Hannah, Rachel, Thao, Wenbo, Cuichen"
 date: "2025-03-31"
 date-modified: "2025-03-31"
 draft: FALSE
