@@ -7,7 +7,7 @@ filters:
   - shinylive
 ---
 
-![](images/The_Big_Picture_2.jpeg)
+![](images/lungs.jpg)
 
 This comes from the file `big_picture.qmd`.
 
