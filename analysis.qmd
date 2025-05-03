@@ -80,6 +80,9 @@ demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 demo_long <- demographic_data |>
   pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`,`Asian American (%)`,`Other/Multiple (%)`),
                names_to = "Race",
@@ -96,6 +99,9 @@ ggplot(demo_long, aes(x = Percentage)) +
 Pollution vs. Race
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.3, color = "darkgreen") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
@@ -105,6 +111,9 @@ ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
 Top 10 Most Polluted Counties
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 data %>%
   group_by(`California County`) %>%
   summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
@@ -118,6 +127,9 @@ data %>%
 
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
   geom_point(alpha = 0.3, color = "orange") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
@@ -128,6 +140,9 @@ ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
 
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 library(corrplot)
 
 exclude_vars <- c("CES 4.0 Score", "CES 4.0 Percentile", "CES 4.0 Percentile Range", "Pollution                        Burden Pctl")
@@ -159,6 +174,9 @@ corrplot(top_corr_matrix,
 
 ### Modeling and Inference
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 coef_plot <- ggplot(data.frame(
   term = c("Hispanic", "African American", "Asian American", 
            "Native American", "Other/Multiple"),
@@ -199,10 +217,19 @@ model <- lm(`Pollution Burden Score` ~ ., data = data)
 #### Residual Diagnostics
 
 ```{r}
-# Residuals vs Fitted Plot
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 4
+
+# Show two plots side-by-side with better spacing
+par(mfrow = c(1, 2))
+
+# Residuals vs Fitted
 plot(model$fitted.values, model$residuals,
      xlab = "Fitted Values", ylab = "Residuals",
-     main = "Residuals vs Fitted (Original)")
+     main = "Residuals vs Fitted (Log y)")
 abline(h = 0, col = "red")
 
 # Q-Q Plot
@@ -219,12 +246,26 @@ These plots indicate non-normal residuals and possible heteroscedasticity, sugge
 To address non-constant variance and skewness in the response, we log-transform the Pollution Burden Score.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#
 model_log <- lm(log(`Pollution Burden Score`) ~ ., data = data)
 ```
 
 #### Residual Diagnostics
 
+
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 4
+
+# Show two plots side-by-side with better spacing
+par(mfrow = c(1, 2))
+
 # Residuals vs Fitted
 plot(model_log$fitted.values, model_log$residuals,
      xlab = "Fitted Values", ylab = "Residuals",
@@ -234,6 +275,9 @@ abline(h = 0, col = "red")
 # Q-Q Plot
 qqnorm(model_log$residuals)
 qqline(model_log$residuals, col = "red")
+
+# Reset plotting layout afterward
+par(mfrow = c(1, 1))
 ```
 
 Some improvement is seen, but the residual patterns still suggest potential nonlinearity in predictors.
@@ -245,46 +289,67 @@ Some improvement is seen, but the residual patterns still suggest potential nonl
 We apply a log transformation to both the response and log-safe numeric predictors.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 library(dplyr)
 
-# Copy dataset
 log_data <- data
-
-# Ensure all column names are clean (remove weird spaces)
 colnames(log_data) <- trimws(colnames(log_data))
 
-# Get numeric predictors, excluding the response
 numeric_vars <- names(log_data)[
   sapply(log_data, is.numeric) & names(log_data) != "Pollution Burden Score"
 ]
 
-# Remove variables with any non-positive or missing values
 log_friendly_vars <- numeric_vars[
   sapply(log_data[numeric_vars], function(x) all(is.finite(x) & x > 0))
 ]
 
-# Log-transform those safely
 log_data <- log_data %>%
   mutate(across(all_of(log_friendly_vars), log))
 
-# Log-transform the response
 log_data$log_score <- log(log_data$`Pollution Burden Score`)
 
 log_log_model <- lm(log_score ~ ., data = log_data %>% select(-`Pollution Burden Score`))
-summary(log_log_model)
 
+library(broom)
+library(gt)
+model_perf <- glance(log_log_model)  # again replace with your actual model
+
+model_perf %>%
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) %>%
+  gt() %>%
+  tab_header(
+    title = "Statistical Performance"
+  ) %>%
+  fmt_number(decimals = 4)
 ```
 
 #### Residual Diagnostics
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 4
+
+# Show two plots side-by-side with better spacing
+par(mfrow = c(1, 2))
+
+# Residuals vs Fitted
 plot(log_log_model$fitted.values, log_log_model$residuals,
      xlab = "Fitted Values", ylab = "Residuals",
-     main = "Residuals vs Fitted: Log-Log Model")
+     main = "Residuals vs Fitted (Log y)")
 abline(h = 0, col = "red")
 
+# Q-Q Plot
 qqnorm(log_log_model$residuals)
 qqline(log_log_model$residuals, col = "red")
+
+# Reset plotting layout afterward
+par(mfrow = c(1, 1))
 ```
 
 The log-log model displays better residual behavior and improved normality, supporting its use moving forward.
@@ -306,12 +371,39 @@ log_data_clean <- log_data %>% select(-`Approximate Location`)
 
 log_log_model_clean <- lm(log_score ~ ., data = log_data_clean)
 
-vif(log_log_model_clean)
+library(gt)
+library(tibble)
+
+
+# Compute VIF and convert to data frame
+vif_df <- car::vif(log_log_model_clean) %>%
+  as.data.frame() %>%
+  rownames_to_column("Variable") %>%
+  rename(GVIF = 2, Df = 3, `GVIF^(1/(2*Df))` = 4)
+
+# Filter for high GVIFs
+high_vif <- vif_df %>%
+  filter(`GVIF^(1/(2*Df))` > 5)
+
+# Create the gt table
+vif_table <- gt(high_vif) %>%
+  tab_header(title = "Variables with High Multicollinearity (GVIF > 5)") %>%
+  tab_options(table.width = pct(100))
+
+# Render the table inside a scrollable container
+htmltools::tags$div(
+  style = "max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 0.5em;",
+  gt::as_raw_html(vif_table)
+)
 ```
 
 Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. We consider transformation and selection to reduce redundancy.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 log_data <- data %>%
   mutate(across(
     c(`Pollution Burden Score`,
@@ -332,8 +424,17 @@ log_log_model <- lm(`Pollution Burden Score` ~
   `California County`,
   data = log_data)
 
-summary(log_log_model)
 
+
+model_perf <- glance(log_log_model)  # again replace with your actual model
+
+model_perf %>%
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) %>%
+  gt() %>%
+  tab_header(
+    title = "Statistical Performance"
+  ) %>%
+  fmt_number(decimals = 4)
 ```
 
 ### Variable Selection
@@ -341,17 +442,53 @@ summary(log_log_model)
 We compare backward selection and forward selection based on AIC.
 
 #### Backward Selection
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: hide
+
+quiet_step <- function(...) {
+  capture.output(result <- step(..., trace = 0))
+  return(result)
+}
+
+backward_model <- quiet_step(
+  step(log_log_model, direction = "backward")
+)
+```
 
 ```{r}
-backward_model <- step(log_log_model, direction = "backward")
-summary(backward_model)
+#| echo: false
+#| message: false
+#| warning: false
+
+library(broom)
+library(gt)
+
+
+glance(backward_model) |>
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
+  gt() |>
+  tab_header(title = "Statistical Performance: Backward Model") |>
+  fmt_number(columns = everything(), decimals = 4)
 ```
 
 #### Forward Selection
 
 ```{r}
-forward_model <- step(log_log_model, direction = "forward")
-summary(forward_model)
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
+
+forward_model <- quiet_step(step(log_log_model, direction = "forward"))
+
+glance(forward_model) |>
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
+  gt() |>
+  tab_header(title = "Statistical Performance: Forward Model") |>
+  fmt_number(columns = everything(), decimals = 4)
 ```
 
 Backward selection slightly outperformed forward selection:
@@ -371,7 +508,29 @@ We select the backward model as our final model.
 Our final model includes key environmental and demographic factors, along with county fixed effects:
 
 ```{r}
-summary(backward_model)
+#| echo: false
+#| message: false
+#| warning: false
+
+library(broom)
+library(gt)
+
+backward_model %>%
+  tidy(conf.int = TRUE) %>%
+  mutate(term = ifelse(term == "(Intercept)", "Intercept", term)) %>%
+  gt() %>%
+  tab_header(
+    title = "Backward Model Coefficients",
+    subtitle = "Estimates with 95% Confidence Intervals"
+  ) %>%
+  fmt_number(columns = where(is.numeric), decimals = 3)
+
 ```
 
 This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.
+
+### Limitations and Assumptions
+
+As with any linear regression analysis, our model relies on several assumptions: linearity between predictors and response, homoscedasticity (constant variance), independence of observations, and normality of residuals. While the log-log transformation improved residual behavior, some mild skewness and heteroscedasticity may remain. Furthermore, multicollinearity among demographic variables was mitigated but not eliminated entirely.
+
+Additionally, this analysis does not account for potential spatial correlation between neighboring tracts or time-varying pollution dynamics. Including temporal or spatial random effects, or using generalized additive models, could improve the robustness of our findings. Incorporating socioeconomic indicators such as income, education, and housing density would also enhance our understanding of environmental inequity.
