@@ -11,7 +11,7 @@ page-layout: full
 title-block-banner: true
 ---
 
-![](images/data-science.png)
+![](images/factory.jpg)
 
 # Final Project due May 5, 2024 at 11:59pm.
 
