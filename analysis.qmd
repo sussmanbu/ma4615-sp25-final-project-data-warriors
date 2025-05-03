@@ -5,6 +5,10 @@ toc: true
 draft: false
 ---
 
+
+![](images/air_quality.jpg)
+
+
 We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
 
 The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.
@@ -38,7 +42,6 @@ You will
     -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
 
-![](images/air_pollution.jpg)
 
 ## Introduction
 
@@ -155,18 +158,6 @@ corrplot(top_corr_matrix,
 ```
 
 ### Modeling and Inference
-
-```{r}
-model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + 
-            `African American (%)` + `Asian American (%)` + 
-            `Native American (%)` + `Other/Multiple (%)`,
-          data = data)
-
-# Get model summary with confidence intervals
-summary(model)
-confint(model)
-```
-
 ```{r}
 coef_plot <- ggplot(data.frame(
   term = c("Hispanic", "African American", "Asian American", 
@@ -187,3 +178,200 @@ coef_plot <- ggplot(data.frame(
 print(coef_plot)
 ```
 
+
+## Models
+### Full Model on Original Data
+
+We begin with a linear model that includes all predictors without transformation.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+library(broom)
+library(gt)
+library(modelsummary)
+model <- lm(`Pollution Burden Score` ~ ., data = data)
+```
+
+#### Residual Diagnostics
+
+```{r}
+# Residuals vs Fitted Plot
+plot(model$fitted.values, model$residuals,
+     xlab = "Fitted Values", ylab = "Residuals",
+     main = "Residuals vs Fitted (Original)")
+abline(h = 0, col = "red")
+
+# Q-Q Plot
+qqnorm(model$residuals)
+qqline(model$residuals, col = "red")
+```
+
+These plots indicate non-normal residuals and possible heteroscedasticity, suggesting that transformation may improve model fit.
+
+
+
+### Log Transformation of Response
+
+To address non-constant variance and skewness in the response, we log-transform the Pollution Burden Score.
+
+```{r}
+model_log <- lm(log(`Pollution Burden Score`) ~ ., data = data)
+```
+
+#### Residual Diagnostics
+
+```{r}
+# Residuals vs Fitted
+plot(model_log$fitted.values, model_log$residuals,
+     xlab = "Fitted Values", ylab = "Residuals",
+     main = "Residuals vs Fitted (Log y)")
+abline(h = 0, col = "red")
+
+# Q-Q Plot
+qqnorm(model_log$residuals)
+qqline(model_log$residuals, col = "red")
+```
+
+Some improvement is seen, but the residual patterns still suggest potential nonlinearity in predictors.
+
+
+
+### Log-Log Model
+
+We apply a log transformation to both the response and log-safe numeric predictors.
+
+```{r}
+library(dplyr)
+
+# Copy dataset
+log_data <- data
+
+# Ensure all column names are clean (remove weird spaces)
+colnames(log_data) <- trimws(colnames(log_data))
+
+# Get numeric predictors, excluding the response
+numeric_vars <- names(log_data)[
+  sapply(log_data, is.numeric) & names(log_data) != "Pollution Burden Score"
+]
+
+# Remove variables with any non-positive or missing values
+log_friendly_vars <- numeric_vars[
+  sapply(log_data[numeric_vars], function(x) all(is.finite(x) & x > 0))
+]
+
+# Log-transform those safely
+log_data <- log_data %>%
+  mutate(across(all_of(log_friendly_vars), log))
+
+# Log-transform the response
+log_data$log_score <- log(log_data$`Pollution Burden Score`)
+
+log_log_model <- lm(log_score ~ ., data = log_data %>% select(-`Pollution Burden Score`))
+summary(log_log_model)
+
+```
+
+#### Residual Diagnostics
+
+```{r}
+plot(log_log_model$fitted.values, log_log_model$residuals,
+     xlab = "Fitted Values", ylab = "Residuals",
+     main = "Residuals vs Fitted: Log-Log Model")
+abline(h = 0, col = "red")
+
+qqnorm(log_log_model$residuals)
+qqline(log_log_model$residuals, col = "red")
+```
+
+The log-log model displays better residual behavior and improved normality, supporting its use moving forward.
+
+
+### Multicollinearity Check
+
+We assess multicollinearity among predictors using Variance Inflation Factors (VIF).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(car)
+library(tidyverse)
+
+log_data_clean <- log_data %>% select(-`Approximate Location`)
+
+log_log_model_clean <- lm(log_score ~ ., data = log_data_clean)
+
+vif(log_log_model_clean)
+```
+
+Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. We consider transformation and selection to reduce redundancy.
+
+```{r}
+log_data <- data %>%
+  mutate(across(
+    c(`Pollution Burden Score`,
+      Ozone, `PM2.5`, `Diesel PM`, Traffic,
+      `Cleanup Sites`, `Haz. Waste`, `Solid Waste`,
+      Asthma, `Low Birth Weight`, `Cardiovascular Disease`,
+      `Children < 10 years (%)`, `Elderly > 64 years (%)`, `White (%)`,
+      `Hispanic (%)`, `African American (%)`, `Asian American (%)`),
+    ~ log(. + 1)
+  ))
+
+log_log_model <- lm(`Pollution Burden Score` ~ 
+  Ozone + `PM2.5` + `Diesel PM` + Traffic +
+  `Cleanup Sites` + `Haz. Waste` + `Solid Waste` +
+  Asthma + `Low Birth Weight` + `Cardiovascular Disease` +
+  `Children < 10 years (%)` + `Elderly > 64 years (%)` + 
+  `Hispanic (%)` + `African American (%)` + `Asian American (%)` + `White (%)`,
+  `California County`,
+  data = log_data)
+
+summary(log_log_model)
+
+```
+
+### Variable Selection
+
+We compare backward selection and forward selection based on AIC.
+
+#### Backward Selection
+
+```{r}
+backward_model <- step(log_log_model, direction = "backward")
+summary(backward_model)
+```
+
+#### Forward Selection
+
+```{r}
+forward_model <- step(log_log_model, direction = "forward")
+summary(forward_model)
+```
+
+Backward selection slightly outperformed forward selection:
+
+- AIC (Backward): -61859.36
+- AIC (Forward): -61856.87
+
+Both models had the same Adjusted R² (≈ 0.8597), but the backward model:
+- Used fewer predictors (14 vs. 16),
+- Removed two unhelpful variables (PM2.5, Low Birth Weight),
+- Is thus more parsimonious and interpretable.
+
+We select the backward model as our final model.
+
+## Final Model Summary
+
+Our final model includes key environmental and demographic factors, along with county fixed effects:
+
+```{r}
+summary(backward_model)
+```
+
+This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.
