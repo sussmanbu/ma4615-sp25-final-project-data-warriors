@@ -1,0 +1,92 @@
+---
+title: "Multicollinearity Analysis"
+format: html
+---
+
+Multicollinearity occurs when predictor variables in a regression model are highly correlated with each other. This can inflate the variance of coefficient estimates and undermine model stability. To assess this issue, we compute the Generalized Variance Inflation Factor (GVIF) for each predictor in our log-log model.
+
+Predictors with GVIF<sup>1/(2·Df)</sup> greater than 5 are generally considered to have problematic levels of multicollinearity and may warrant exclusion or further investigation.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(car)
+library(tidyverse)
+library(dplyr)
+
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+
+log_data <- data
+colnames(log_data) <- trimws(colnames(log_data))
+
+numeric_vars <- names(log_data)[
+  sapply(log_data, is.numeric) & names(log_data) != "Pollution Burden Score"
+]
+
+log_friendly_vars <- numeric_vars[
+  sapply(log_data[numeric_vars], function(x) all(is.finite(x) & x > 0))
+]
+
+log_data <- log_data %>%
+  mutate(across(all_of(log_friendly_vars), log))
+
+log_data$log_score <- log(log_data$`Pollution Burden Score`)
+
+log_log_model <- lm(log_score ~ ., data = log_data %>% select(-`Pollution Burden Score`))
+
+
+
+log_data_clean <- log_data %>% select(-`Approximate Location`)
+
+log_log_model_clean <- lm(log_score ~ ., data = log_data_clean)
+
+library(gt)
+library(tibble)
+
+
+# Compute VIF and convert to data frame
+vif_df <- car::vif(log_log_model_clean) %>%
+  as.data.frame() %>%
+  rownames_to_column("Variable") %>%
+  rename(GVIF = 2, Df = 3, `GVIF^(1/(2*Df))` = 4)
+
+# Filter for high GVIFs
+high_vif <- vif_df %>%
+  filter(`GVIF^(1/(2*Df))` > 5)
+
+# Create the gt table
+vif_table <- gt(high_vif) %>%
+  tab_header(title = "Variables with High Multicollinearity (GVIF > 5)") %>%
+  tab_options(table.width = pct(100))
+
+gt(high_vif) %>%
+  tab_header(title = "Variables with High Multicollinearity (GVIF > 5)") %>%
+  tab_options(table.width = pct(100))
+```
+
+### Interpretation
+
+The table above lists variables with **GVIF<sup>1/(2·Df)</sup> > 5**, indicating significant multicollinearity. These predictors may compromise the **stability** and **interpretability** of regression coefficients in our model.
+
+**Why This Matters:**
+
+* High multicollinearity makes it difficult to assess the individual contribution of each variable.
+* Redundant or overlapping predictors may distort estimates and p-values.
+* Variables flagged here are strong candidates for **removal**, **combination**, or **regularization** to improve model robustness.
+
+In our case, some of the highest GVIFs come from:
+
+* **Highly correlated demographic percentages** (e.g., race/ethnicity proportions).
+* **Derived or composite scores** (e.g., Pollution Burden, Population Characteristics).
+* **Geographic indicators** (like Census Tract and Coordinates).
+
+### Next Steps
+In the next modeling phase, we:
+
+* Remove or consolidate problematic predictors,
+* Reassess model diagnostics (e.g., residual plots),
+* Compare performance using R², AIC/BIC, and interpretability.
+
+[Back](analysis.html)

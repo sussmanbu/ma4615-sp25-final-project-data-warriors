@@ -1,0 +1,104 @@
+---
+title: "Variable Selection Process"
+format: html
+---
+
+We compare backward selection and forward model BIC based on AIC to end up with our full model. For detailed analysis on variable selection [click here](var_select.html)
+
+### Backward Selection
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: "hide"
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(broom)
+library(gt)
+
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+
+log_data <- data %>%
+  mutate(across(
+    c(`Pollution Burden Score`,
+      Ozone, `PM2.5`, `Diesel PM`, Traffic,
+      `Cleanup Sites`, `Haz. Waste`, `Solid Waste`,
+      Asthma, `Low Birth Weight`, `Cardiovascular Disease`,
+      `Children < 10 years (%)`, `Elderly > 64 years (%)`, `White (%)`,
+      `Hispanic (%)`, `African American (%)`, `Asian American (%)`),
+    ~ log(. + 1)
+  ))
+
+log_log_model <- lm(`Pollution Burden Score` ~ 
+  Ozone + `PM2.5` + `Diesel PM` + Traffic +
+  `Cleanup Sites` + `Haz. Waste` + `Solid Waste` +
+  Asthma + `Low Birth Weight` + `Cardiovascular Disease` +
+  `Children < 10 years (%)` + `Elderly > 64 years (%)` + 
+  `Hispanic (%)` + `African American (%)` + `Asian American (%)` + `White (%)`,
+  `California County`,
+  data = log_data)
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+library(broom)
+library(gt)
+
+quiet_step <- function(...) {
+  capture.output(result <- step(..., trace = 0))
+  return(result)
+}
+
+backward_model <- quiet_step(
+  step(log_log_model, direction = "backward")
+)
+
+glance(backward_model) |>
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
+  gt() |>
+  tab_header(title = "Statistical Performance: Backward Model") |>
+  fmt_number(columns = everything(), decimals = 4)
+```
+
+### Forward Model BIC Selection
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(stats)     # for step()
+
+n <- nrow(log_data)  # get sample size for BIC
+k_bic <- log(n)
+
+quiet_step_bic <- function(...) {
+  capture.output(result <- step(..., direction = "forward", trace = 0, k = k_bic))
+  return(result)
+}
+
+forward_model_bic <- quiet_step_bic(log_log_model)
+
+glance(forward_model_bic) |>
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
+  gt() |>
+  tab_header(title = "Statistical Performance: Forward Model (BIC)") |>
+  fmt_number(columns = everything(), decimals = 4)
+```
+
+Both the **Forward (BIC)** and **Backward** models yield nearly identical statistical performance, with the same R² (0.8600) and adjusted R² (0.8597), as well as nearly identical residual standard error (σ = 0.0213). However, the **Backward model** shows a **higher F-statistic** (3518 vs. 3078), indicating stronger overall explanatory power.
+
+More importantly, the **Backward model has a slightly lower BIC (-38,943.15 vs. -38,926.68)** and uses **fewer predictors (14 vs. 16)**, which makes it **more parsimonious** while maintaining the same predictive accuracy.
+
+## Conclusion
+
+We select the **Backward model** as the final model. It provides equivalent explanatory performance with fewer predictors and a better BIC, striking an optimal balance between model complexity and goodness of fit.
+
+[Back](analysis.html)

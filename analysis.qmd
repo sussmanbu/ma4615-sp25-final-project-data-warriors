@@ -104,7 +104,6 @@ ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
 ```
 
 
-### Modeling and Inference
 ```{r}
 #| echo: false
 #| message: false
@@ -128,12 +127,9 @@ coef_plot <- ggplot(data.frame(
 print(coef_plot)
 ```
 
-
-### Models
-#### Full Model on Original Data
-
+## Modeling and Inference
+### Full Model
 We begin with a linear model that includes all predictors without transformation.
-
 ```{r}
 #| echo: false
 #| message: false
@@ -175,51 +171,12 @@ These plots indicate non-normal residuals and possible heteroscedasticity, sugge
 
 ### Log Transformation of Response
 
-For full details of the modeling process, [click here](log_transformation.html).
+For full details of the modeling process of a log transformation on the Pollution Burden variable, [click here](log_transformation.html).
 
-To address non-constant variance and skewness in the response, we log-transform the Pollution Burden Score.
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#
-model_log <- lm(log(`Pollution Burden Score`) ~ ., data = data)
-```
-
-#### Residual Diagnostics
-
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-width: 10
-#| fig-height: 4
-
-# Show two plots side-by-side with better spacing
-par(mfrow = c(1, 2))
-
-# Residuals vs Fitted
-plot(model_log$fitted.values, model_log$residuals,
-     xlab = "Fitted Values", ylab = "Residuals",
-     main = "Residuals vs Fitted (Log y)")
-abline(h = 0, col = "red")
-
-# Q-Q Plot
-qqnorm(model_log$residuals)
-qqline(model_log$residuals, col = "red")
-
-# Reset plotting layout afterward
-par(mfrow = c(1, 1))
-```
-
-Some improvement is seen, but the residual patterns still suggest potential nonlinearity in predictors.
-
+Through this transformation, some improvement is seen, but the residual patterns still suggest potential nonlinearity in predictors.
 
 
 ### Log-Log Model
-
 We apply a log transformation to both the response and log-safe numeric predictors.
 
 ```{r}
@@ -291,47 +248,9 @@ The log-log model displays better residual behavior and improved normality, supp
 
 ### Multicollinearity Check
 
-We assess multicollinearity among predictors using Variance Inflation Factors (VIF).
+We assess multicollinearity among predictors using Variance Inflation Factors (VIF). For further details on our analysis, [click here](VIF.html)
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(car)
-library(tidyverse)
-
-log_data_clean <- log_data %>% select(-`Approximate Location`)
-
-log_log_model_clean <- lm(log_score ~ ., data = log_data_clean)
-
-library(gt)
-library(tibble)
-
-
-# Compute VIF and convert to data frame
-vif_df <- car::vif(log_log_model_clean) %>%
-  as.data.frame() %>%
-  rownames_to_column("Variable") %>%
-  rename(GVIF = 2, Df = 3, `GVIF^(1/(2*Df))` = 4)
-
-# Filter for high GVIFs
-high_vif <- vif_df %>%
-  filter(`GVIF^(1/(2*Df))` > 5)
-
-# Create the gt table
-vif_table <- gt(high_vif) %>%
-  tab_header(title = "Variables with High Multicollinearity (GVIF > 5)") %>%
-  tab_options(table.width = pct(100))
-
-# Render the table inside a scrollable container
-htmltools::tags$div(
-  style = "max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 0.5em;",
-  gt::as_raw_html(vif_table)
-)
-```
-
-Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. We consider transformation and selection to reduce redundancy.
+Through the analysis, we found Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. Variables with high VIFs were removed, and we reapplied the log-log transformation on the model. With this, our statistics of our model results with:
 
 ```{r}
 #| echo: false
@@ -373,14 +292,20 @@ model_perf %>%
 
 ### Variable Selection
 
-We compare backward selection and forward selection based on AIC.
+We compare backward selection and forward model BIC based on AIC to end up with our full model. For detailed analysis on variable selection [click here](var_select.html)
 
-#### Backward Selection
+*Conclusion*:
+
+We select the **Backward model** as the final model. It provides equivalent explanatory performance with fewer predictors and a better BIC, striking an optimal balance between model complexity and goodness of fit.
+
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-#| results: hide
+#| results: "hide"
+
+library(broom)
+library(gt)
 
 quiet_step <- function(...) {
   capture.output(result <- step(..., trace = 0))
@@ -390,16 +315,6 @@ quiet_step <- function(...) {
 backward_model <- quiet_step(
   step(log_log_model, direction = "backward")
 )
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(broom)
-library(gt)
-
 
 glance(backward_model) |>
   select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
@@ -407,35 +322,6 @@ glance(backward_model) |>
   tab_header(title = "Statistical Performance: Backward Model") |>
   fmt_number(columns = everything(), decimals = 4)
 ```
-
-#### Forward Selection
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| results: 'hide'
-
-forward_model <- quiet_step(step(log_log_model, direction = "forward"))
-
-glance(forward_model) |>
-  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) |>
-  gt() |>
-  tab_header(title = "Statistical Performance: Forward Model") |>
-  fmt_number(columns = everything(), decimals = 4)
-```
-
-Backward selection slightly outperformed forward selection:
-
-- AIC (Backward): -61859.36
-- AIC (Forward): -61856.87
-
-Both models had the same Adjusted R² (≈ 0.8597), but the backward model:
-- Used fewer predictors (14 vs. 16),
-- Removed two unhelpful variables (PM2.5, Low Birth Weight),
-- Is thus more parsimonious and interpretable.
-
-We select the backward model as our final model.
 
 ## Final Model Summary
 
@@ -462,6 +348,40 @@ backward_model %>%
 ```
 
 This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.
+
+
+## Interpretation of Final Model and Implications for Demographic Disparities
+
+Our final model, selected through backward elimination, reveals key insights into how demographic and environmental variables relate to pollution burden in California’s census tracts.
+
+### Key Demographic Findings
+
+Several racial and ethnic group percentages are statistically significant predictors of **Pollution Burden Score** (log-transformed). The interpretation below assumes **all predictors are also log-transformed** unless otherwise noted.
+
+* **Hispanic (%)**:
+  A 1% increase in the Hispanic population share is associated with an estimated **7.1% decrease in the Pollution Burden Score**, holding other factors constant (*β = -0.071, p < 0.001*). This negative association is statistically significant and substantial, suggesting that tracts with larger Hispanic populations tend to experience higher pollution burdens.
+
+* **African American (%)**:
+  A 1% increase in African American population share corresponds to a **1.8% decrease in the Pollution Burden Score** (*β = -0.018, p < 0.001*), indicating a consistent and significant relationship. This further supports the presence of racial disparities in pollution exposure.
+
+* **Asian American (%)**:
+  Interestingly, the percentage of Asian American residents shows a **positive association** (*β = 0.006, p < 0.001*), meaning that census tracts with higher Asian American populations tend to have **slightly lower** pollution burden scores.
+
+* **White (%)**:
+  The percentage of White residents has a strong **negative coefficient** (*β = -0.020, p < 0.001*), which suggests that higher White population share is linked to **lower pollution burdens**, consistent with patterns of environmental advantage.
+
+### ✳️ Addressing the Key Questions
+
+* **Do demographic groups correlate with pollution burden?**
+  Yes. The model identifies statistically significant associations between racial/ethnic composition and pollution burden, even after controlling for environmental and health-related predictors. The strongest associations appear for Hispanic and African American populations, both of which are negatively associated with the Pollution Burden Score—indicating **greater exposure to pollution** in these communities.
+
+* **Are some groups more likely to live in polluted areas?**
+  Based on the signs and magnitudes of the coefficients, **Hispanic and African American populations are more likely to reside in areas with higher pollution burden**, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.
+
+### Conclusion
+
+This model supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Our analysis provides statistical evidence that Hispanic and African American communities are disproportionately affected by pollution. These findings underscore the importance of including demographic equity considerations in environmental policy and urban planning decisions.
+
 
 ### Limitations and Assumptions
 
