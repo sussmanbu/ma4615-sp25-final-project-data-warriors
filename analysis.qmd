@@ -104,39 +104,6 @@ ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
 ```
 
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-library(corrplot)
-
-exclude_vars <- c("CES 4.0 Score", "CES 4.0 Percentile", "CES 4.0 Percentile Range", "Pollution                        Burden Pctl")
-
-numeric_data <- data |>
-  select_if(is.numeric) |>
-  select(-one_of(exclude_vars))
-
-correlation_matrix_filtered <- cor(numeric_data, use = "complete.obs")
-
-pollution_burden_corr <- correlation_matrix_filtered["Pollution Burden Score",]
-
-sorted_corr <- sort(abs(pollution_burden_corr), decreasing = TRUE)
-
-top_10_variables <- names(sorted_corr[2:11])
-
-top_corr_matrix <- correlation_matrix_filtered[top_10_variables, top_10_variables]
-
-corrplot(top_corr_matrix, 
-         method = "color", 
-         type = "upper", 
-         title = "Top 10 Variables Correlated with Pollution Burden Score (Excluding CES 4.0 Score)", 
-         tl.cex = 0.7, 
-         tl.srt = 45, # Rotate text labels for readability
-         mar = c(0, 0, 3, 0), # Increase space around the plot
-         number.cex = 0.7) # Adjust number size
-
-```
-
 ### Modeling and Inference
 ```{r}
 #| echo: false

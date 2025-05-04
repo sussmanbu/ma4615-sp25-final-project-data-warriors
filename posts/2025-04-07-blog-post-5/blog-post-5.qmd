@@ -1,5 +1,5 @@
 ---
-title: "blog post 5"
+title: "Blog Post 5"
 author: "Hannah, Rachel, Thao, Wenbo, Cuichen"
 date: "2025-04-07"
 date-modified: "2025-04-07"

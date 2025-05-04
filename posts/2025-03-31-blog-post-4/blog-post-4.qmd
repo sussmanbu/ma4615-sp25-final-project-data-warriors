@@ -46,6 +46,54 @@ Our model estimates indicate that higher percentages of Hispanic, African Americ
 Figure 3: Demographic Predictors of Pollution Burden
 ![](/images/blog4_c.png){fig-alt="Demographic Predictors of Pollution Burden"}
 
+The correlation matrix displays the pairwise Pearson correlations between numerical variables in the dataset, with darker shades indicating stronger relationships. Several notable patterns emerge:
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(corrplot)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+
+exclude_vars <- c("CES 4.0 Score", "CES 4.0 Percentile", "CES 4.0 Percentile Range", "Pollution                        Burden Pctl", "Longitude", "Latitude", "Ozone Pctl", "PM2.5 Pctl","Diesel PM Pctl", "Tox. Release Pctl", "Traffic Pctl", "Cleanup Sites Pctl",  "Haz. Waste Pctl", "Solid Waste Pctl", "Pollution Burden", "Asthma Pctl", "Low Birth Weight Pctl", "Cardiovascular Disease Pctl","Pop. Char. Pctl")
+
+numeric_data <- data |>
+  select_if(is.numeric) |>
+  select(-one_of(exclude_vars))
+
+correlation_matrix_filtered <- cor(numeric_data, use = "complete.obs")
+
+pollution_burden_corr <- correlation_matrix_filtered["Pollution Burden Score",]
+
+sorted_corr <- sort(abs(pollution_burden_corr), decreasing = TRUE)
+
+top_10_variables <- names(sorted_corr)
+
+top_corr_matrix <- correlation_matrix_filtered[top_10_variables, top_10_variables]
+
+corrplot(top_corr_matrix, 
+         method = "color", 
+         type = "upper", 
+         title = "Correlation Matrix", 
+         tl.cex = 0.45, 
+         tl.srt = 75, # Rotate text labels for readability
+         mar = c(0, 0, 2, 0), # Increase space around the plot
+         number.cex = 0.7) # Adjust number size
+
+```
+
+Several notable patterns emerge:
+- Pollution Burden Score is positively correlated with PM2.5, Diesel PM, Cleanup Sites, and Hispanic (%), suggesting that census tracts with higher pollution levels tend to have higher concentrations of these environmental burdens and a higher proportion of Hispanic residents.
+
+- Conversely, White (%) is negatively correlated with Pollution Burden Score and many pollution-related variables, indicating that predominantly white census tracts are less likely to be exposed to high pollution burdens.
+
+- Several demographic indicators are strongly correlated with each other. For example, Pop. Char. Score and Pop. Char. are nearly collinear, and Pollution Burden, Pollution Burden Pctl, and Pollution Burden Score are all highly correlated, which could introduce multicollinearity if included together in a model.
+
+- High correlations (e.g., > 0.7 or < -0.7) are visualized by dark red/blue tiles, which may indicate redundancy in predictors and motivate variable selection or transformation.
+
+- Some demographic variables like African American (%), Asian American (%), and Low Birth Weight show weak or moderate correlations with pollution burden, suggesting these relationships are less straightforward and may require modeling to unpack fully.
 
 ## Next Steps:
 Our analysis suggests that the pollution burden is not evenly distributed across demographic groups, with Hispanic and African American communities experiencing the highest pollution levels. Further analysis could include:
