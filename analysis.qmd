@@ -169,7 +169,7 @@ These plots indicate non-normal residuals and possible heteroscedasticity, sugge
 
 
 
-### Log Transformation of Response
+### Log Model
 
 For full details of the modeling process of a log transformation on the Pollution Burden variable, [click here](log_transformation.html).
 
@@ -323,7 +323,7 @@ glance(backward_model) |>
   fmt_number(columns = everything(), decimals = 4)
 ```
 
-## Final Model Summary
+### Final Model Summary
 
 Our final model includes key environmental and demographic factors, along with county fixed effects:
 
@@ -349,9 +349,6 @@ backward_model %>%
 
 This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.
 
-
-## Interpretation of Final Model and Implications for Demographic Disparities
-
 Our final model, selected through backward elimination, reveals key insights into how demographic and environmental variables relate to pollution burden in California’s census tracts.
 
 ### Key Demographic Findings
@@ -370,20 +367,22 @@ Several racial and ethnic group percentages are statistically significant predic
 * **White (%)**:
   The percentage of White residents has a strong **negative coefficient** (*β = -0.020, p < 0.001*), which suggests that higher White population share is linked to **lower pollution burdens**, consistent with patterns of environmental advantage.
 
-### ✳️ Addressing the Key Questions
+## Addressing the Key Questions
 
-* **Do demographic groups correlate with pollution burden?**
-  Yes. The model identifies statistically significant associations between racial/ethnic composition and pollution burden, even after controlling for environmental and health-related predictors. The strongest associations appear for Hispanic and African American populations, both of which are negatively associated with the Pollution Burden Score—indicating **greater exposure to pollution** in these communities.
+* Do demographic groups correlate with pollution burden?
 
-* **Are some groups more likely to live in polluted areas?**
-  Based on the signs and magnitudes of the coefficients, **Hispanic and African American populations are more likely to reside in areas with higher pollution burden**, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.
+    Yes. The model identifies statistically significant associations between racial/ethnic composition and pollution burden, even after controlling for environmental and health-related predictors. The strongest associations appear for Hispanic and African American populations, both of which are negatively associated with the Pollution Burden Score—indicating **greater exposure to pollution** in these communities.
 
-### Conclusion
+* Are some groups more likely to live in polluted areas?
+
+    Based on the signs and magnitudes of the coefficients, **Hispanic and African American populations are more likely to reside in areas with higher pollution burden**, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.
+
+## Conclusion
 
 This model supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Our analysis provides statistical evidence that Hispanic and African American communities are disproportionately affected by pollution. These findings underscore the importance of including demographic equity considerations in environmental policy and urban planning decisions.
 
 
-### Limitations and Assumptions
+## Limitations and Assumptions
 
 As with any linear regression analysis, our model relies on several assumptions: linearity between predictors and response, homoscedasticity (constant variance), independence of observations, and normality of residuals. While the log-log transformation improved residual behavior, some mild skewness and heteroscedasticity may remain. Furthermore, multicollinearity among demographic variables was mitigated but not eliminated entirely.
 
