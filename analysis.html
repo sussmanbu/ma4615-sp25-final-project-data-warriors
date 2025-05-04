@@ -126,10 +126,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#key-questions" id="toc-key-questions" class="nav-link" data-scroll-target="#key-questions">Key Questions</a></li>
   </ul></li>
-  <li><a href="#data-overview-and-inital-exploration" id="toc-data-overview-and-inital-exploration" class="nav-link" data-scroll-target="#data-overview-and-inital-exploration">Data Overview and Inital Exploration</a>
-  <ul class="collapse">
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
-  </ul></li>
+  <li><a href="#data-overview-and-inital-exploration" id="toc-data-overview-and-inital-exploration" class="nav-link" data-scroll-target="#data-overview-and-inital-exploration">Data Overview and Inital Exploration</a></li>
   <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a>
   <ul class="collapse">
   <li><a href="#full-model" id="toc-full-model" class="nav-link" data-scroll-target="#full-model">Full Model</a></li>
@@ -138,12 +135,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#multicollinearity-check" id="toc-multicollinearity-check" class="nav-link" data-scroll-target="#multicollinearity-check">Multicollinearity Check</a></li>
   <li><a href="#variable-selection" id="toc-variable-selection" class="nav-link" data-scroll-target="#variable-selection">Variable Selection</a></li>
   <li><a href="#final-model-summary" id="toc-final-model-summary" class="nav-link" data-scroll-target="#final-model-summary">Final Model Summary</a></li>
-  <li><a href="#interpretation-of-final-model-and-implications-for-demographic-disparities" id="toc-interpretation-of-final-model-and-implications-for-demographic-disparities" class="nav-link" data-scroll-target="#interpretation-of-final-model-and-implications-for-demographic-disparities">Interpretation of Final Model and Implications for Demographic Disparities</a></li>
-  </ul></li>
   <li><a href="#key-demographic-findings" id="toc-key-demographic-findings" class="nav-link" data-scroll-target="#key-demographic-findings">Key Demographic Findings</a></li>
-  <li><a href="#addressing-the-key-questions" id="toc-addressing-the-key-questions" class="nav-link" data-scroll-target="#addressing-the-key-questions">Addressing the Key Questions</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#limitations-and-assumptions" id="toc-limitations-and-assumptions" class="nav-link" data-scroll-target="#limitations-and-assumptions">Limitations and Assumptions</a></li>
+  </ul></li>
+  <li><a href="#addressing-the-key-questions" id="toc-addressing-the-key-questions" class="nav-link" data-scroll-target="#addressing-the-key-questions">Addressing the Key Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -193,8 +189,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="data-overview-and-inital-exploration" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview-and-inital-exploration">Data Overview and Inital Exploration</h2>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
 <p>For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -215,7 +209,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Top 10 Most Polluted Counties</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -225,25 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
+<p>For more exploratory analysis through visualization, check out Blog Post 4.</p>
 </section>
 <section id="modeling-and-inference" class="level2">
 <h2 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h2>
@@ -256,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -274,23 +249,23 @@ ul.task-list li input[type="checkbox"] {
 <p>We apply a log transformation to both the response and log-safe numeric predictors.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cdzgaazlkv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cdzgaazlkv table {
+<div id="lakzllcduc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lakzllcduc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cdzgaazlkv thead, #cdzgaazlkv tbody, #cdzgaazlkv tfoot, #cdzgaazlkv tr, #cdzgaazlkv td, #cdzgaazlkv th {
+#lakzllcduc thead, #lakzllcduc tbody, #lakzllcduc tfoot, #lakzllcduc tr, #lakzllcduc td, #lakzllcduc th {
   border-style: none;
 }
 
-#cdzgaazlkv p {
+#lakzllcduc p {
   margin: 0;
   padding: 0;
 }
 
-#cdzgaazlkv .gt_table {
+#lakzllcduc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -316,12 +291,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_caption {
+#lakzllcduc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cdzgaazlkv .gt_title {
+#lakzllcduc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -333,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#cdzgaazlkv .gt_subtitle {
+#lakzllcduc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -345,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#cdzgaazlkv .gt_heading {
+#lakzllcduc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -357,13 +332,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_bottom_border {
+#lakzllcduc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_col_headings {
+#lakzllcduc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_col_heading {
+#lakzllcduc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -398,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer {
+#lakzllcduc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -410,15 +385,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer:first-child {
+#lakzllcduc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer:last-child {
+#lakzllcduc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cdzgaazlkv .gt_column_spanner {
+#lakzllcduc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -430,11 +405,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#cdzgaazlkv .gt_spanner_row {
+#lakzllcduc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cdzgaazlkv .gt_group_heading {
+#lakzllcduc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -460,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#cdzgaazlkv .gt_empty_group_heading {
+#lakzllcduc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -475,15 +450,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#cdzgaazlkv .gt_from_md > :first-child {
+#lakzllcduc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cdzgaazlkv .gt_from_md > :last-child {
+#lakzllcduc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cdzgaazlkv .gt_row {
+#lakzllcduc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -502,7 +477,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cdzgaazlkv .gt_stub {
+#lakzllcduc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -515,7 +490,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_stub_row_group {
+#lakzllcduc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,15 +504,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#cdzgaazlkv .gt_row_group_first td {
+#lakzllcduc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_row_group_first th {
+#lakzllcduc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_summary_row {
+#lakzllcduc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -547,16 +522,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_first_summary_row {
+#lakzllcduc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_first_summary_row.thick {
+#lakzllcduc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_last_summary_row {
+#lakzllcduc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -566,7 +541,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_grand_summary_row {
+#lakzllcduc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -576,7 +551,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_first_grand_summary_row {
+#lakzllcduc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +561,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_last_grand_summary_row_top {
+#lakzllcduc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -596,11 +571,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_striped {
+#lakzllcduc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cdzgaazlkv .gt_table_body {
+#lakzllcduc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -609,7 +584,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_footnotes {
+#lakzllcduc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -623,7 +598,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_footnote {
+#lakzllcduc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -632,7 +607,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_sourcenotes {
+#lakzllcduc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -646,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_sourcenote {
+#lakzllcduc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -654,72 +629,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_left {
+#lakzllcduc .gt_left {
   text-align: left;
 }
 
-#cdzgaazlkv .gt_center {
+#lakzllcduc .gt_center {
   text-align: center;
 }
 
-#cdzgaazlkv .gt_right {
+#lakzllcduc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cdzgaazlkv .gt_font_normal {
+#lakzllcduc .gt_font_normal {
   font-weight: normal;
 }
 
-#cdzgaazlkv .gt_font_bold {
+#lakzllcduc .gt_font_bold {
   font-weight: bold;
 }
 
-#cdzgaazlkv .gt_font_italic {
+#lakzllcduc .gt_font_italic {
   font-style: italic;
 }
 
-#cdzgaazlkv .gt_super {
+#lakzllcduc .gt_super {
   font-size: 65%;
 }
 
-#cdzgaazlkv .gt_footnote_marks {
+#lakzllcduc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cdzgaazlkv .gt_asterisk {
+#lakzllcduc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cdzgaazlkv .gt_indent_1 {
+#lakzllcduc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cdzgaazlkv .gt_indent_2 {
+#lakzllcduc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cdzgaazlkv .gt_indent_3 {
+#lakzllcduc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cdzgaazlkv .gt_indent_4 {
+#lakzllcduc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cdzgaazlkv .gt_indent_5 {
+#lakzllcduc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cdzgaazlkv .katex-display {
+#lakzllcduc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cdzgaazlkv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lakzllcduc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -763,7 +738,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -777,23 +752,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Through the analysis, we found Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. Variables with high VIFs were removed, and we reapplied the log-log transformation on the model. With this, our statistics of our model results with:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="kqhprbqrmp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kqhprbqrmp table {
+<div id="qtmvepuiqi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qtmvepuiqi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kqhprbqrmp thead, #kqhprbqrmp tbody, #kqhprbqrmp tfoot, #kqhprbqrmp tr, #kqhprbqrmp td, #kqhprbqrmp th {
+#qtmvepuiqi thead, #qtmvepuiqi tbody, #qtmvepuiqi tfoot, #qtmvepuiqi tr, #qtmvepuiqi td, #qtmvepuiqi th {
   border-style: none;
 }
 
-#kqhprbqrmp p {
+#qtmvepuiqi p {
   margin: 0;
   padding: 0;
 }
 
-#kqhprbqrmp .gt_table {
+#qtmvepuiqi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -819,12 +794,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_caption {
+#qtmvepuiqi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kqhprbqrmp .gt_title {
+#qtmvepuiqi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -836,7 +811,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#kqhprbqrmp .gt_subtitle {
+#qtmvepuiqi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -848,7 +823,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#kqhprbqrmp .gt_heading {
+#qtmvepuiqi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -860,13 +835,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_bottom_border {
+#qtmvepuiqi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_col_headings {
+#qtmvepuiqi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +856,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_col_heading {
+#qtmvepuiqi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,7 +876,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer {
+#qtmvepuiqi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,15 +888,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer:first-child {
+#qtmvepuiqi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer:last-child {
+#qtmvepuiqi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kqhprbqrmp .gt_column_spanner {
+#qtmvepuiqi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -933,11 +908,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#kqhprbqrmp .gt_spanner_row {
+#qtmvepuiqi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kqhprbqrmp .gt_group_heading {
+#qtmvepuiqi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,7 +938,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#kqhprbqrmp .gt_empty_group_heading {
+#qtmvepuiqi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -978,15 +953,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#kqhprbqrmp .gt_from_md > :first-child {
+#qtmvepuiqi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kqhprbqrmp .gt_from_md > :last-child {
+#qtmvepuiqi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kqhprbqrmp .gt_row {
+#qtmvepuiqi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1005,7 +980,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kqhprbqrmp .gt_stub {
+#qtmvepuiqi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1018,7 +993,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_stub_row_group {
+#qtmvepuiqi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1032,15 +1007,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#kqhprbqrmp .gt_row_group_first td {
+#qtmvepuiqi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_row_group_first th {
+#qtmvepuiqi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_summary_row {
+#qtmvepuiqi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1050,16 +1025,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_first_summary_row {
+#qtmvepuiqi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_first_summary_row.thick {
+#qtmvepuiqi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_last_summary_row {
+#qtmvepuiqi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1069,7 +1044,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_grand_summary_row {
+#qtmvepuiqi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1079,7 +1054,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_first_grand_summary_row {
+#qtmvepuiqi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1089,7 +1064,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_last_grand_summary_row_top {
+#qtmvepuiqi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1099,11 +1074,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_striped {
+#qtmvepuiqi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kqhprbqrmp .gt_table_body {
+#qtmvepuiqi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1112,7 +1087,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_footnotes {
+#qtmvepuiqi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1126,7 +1101,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_footnote {
+#qtmvepuiqi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1135,7 +1110,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_sourcenotes {
+#qtmvepuiqi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1149,7 +1124,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_sourcenote {
+#qtmvepuiqi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1157,72 +1132,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_left {
+#qtmvepuiqi .gt_left {
   text-align: left;
 }
 
-#kqhprbqrmp .gt_center {
+#qtmvepuiqi .gt_center {
   text-align: center;
 }
 
-#kqhprbqrmp .gt_right {
+#qtmvepuiqi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kqhprbqrmp .gt_font_normal {
+#qtmvepuiqi .gt_font_normal {
   font-weight: normal;
 }
 
-#kqhprbqrmp .gt_font_bold {
+#qtmvepuiqi .gt_font_bold {
   font-weight: bold;
 }
 
-#kqhprbqrmp .gt_font_italic {
+#qtmvepuiqi .gt_font_italic {
   font-style: italic;
 }
 
-#kqhprbqrmp .gt_super {
+#qtmvepuiqi .gt_super {
   font-size: 65%;
 }
 
-#kqhprbqrmp .gt_footnote_marks {
+#qtmvepuiqi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kqhprbqrmp .gt_asterisk {
+#qtmvepuiqi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kqhprbqrmp .gt_indent_1 {
+#qtmvepuiqi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kqhprbqrmp .gt_indent_2 {
+#qtmvepuiqi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kqhprbqrmp .gt_indent_3 {
+#qtmvepuiqi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kqhprbqrmp .gt_indent_4 {
+#qtmvepuiqi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kqhprbqrmp .gt_indent_5 {
+#qtmvepuiqi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kqhprbqrmp .katex-display {
+#qtmvepuiqi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kqhprbqrmp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qtmvepuiqi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1272,23 +1247,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Our final model includes key environmental and demographic factors, along with county fixed effects:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="vvluyinkbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvluyinkbx table {
+<div id="xcgftyclis" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xcgftyclis table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vvluyinkbx thead, #vvluyinkbx tbody, #vvluyinkbx tfoot, #vvluyinkbx tr, #vvluyinkbx td, #vvluyinkbx th {
+#xcgftyclis thead, #xcgftyclis tbody, #xcgftyclis tfoot, #xcgftyclis tr, #xcgftyclis td, #xcgftyclis th {
   border-style: none;
 }
 
-#vvluyinkbx p {
+#xcgftyclis p {
   margin: 0;
   padding: 0;
 }
 
-#vvluyinkbx .gt_table {
+#xcgftyclis .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1314,12 +1289,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_caption {
+#xcgftyclis .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vvluyinkbx .gt_title {
+#xcgftyclis .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1331,7 +1306,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#vvluyinkbx .gt_subtitle {
+#xcgftyclis .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1343,7 +1318,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#vvluyinkbx .gt_heading {
+#xcgftyclis .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1355,13 +1330,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_bottom_border {
+#xcgftyclis .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_col_headings {
+#xcgftyclis .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1376,7 +1351,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_col_heading {
+#xcgftyclis .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1396,7 +1371,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#vvluyinkbx .gt_column_spanner_outer {
+#xcgftyclis .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1408,15 +1383,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#vvluyinkbx .gt_column_spanner_outer:first-child {
+#xcgftyclis .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vvluyinkbx .gt_column_spanner_outer:last-child {
+#xcgftyclis .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vvluyinkbx .gt_column_spanner {
+#xcgftyclis .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1428,11 +1403,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#vvluyinkbx .gt_spanner_row {
+#xcgftyclis .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vvluyinkbx .gt_group_heading {
+#xcgftyclis .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1458,7 +1433,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#vvluyinkbx .gt_empty_group_heading {
+#xcgftyclis .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1473,15 +1448,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#vvluyinkbx .gt_from_md > :first-child {
+#xcgftyclis .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vvluyinkbx .gt_from_md > :last-child {
+#xcgftyclis .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vvluyinkbx .gt_row {
+#xcgftyclis .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1500,7 +1475,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#vvluyinkbx .gt_stub {
+#xcgftyclis .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1513,7 +1488,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vvluyinkbx .gt_stub_row_group {
+#xcgftyclis .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1527,15 +1502,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#vvluyinkbx .gt_row_group_first td {
+#xcgftyclis .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vvluyinkbx .gt_row_group_first th {
+#xcgftyclis .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vvluyinkbx .gt_summary_row {
+#xcgftyclis .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1545,16 +1520,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vvluyinkbx .gt_first_summary_row {
+#xcgftyclis .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_first_summary_row.thick {
+#xcgftyclis .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vvluyinkbx .gt_last_summary_row {
+#xcgftyclis .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1564,7 +1539,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_grand_summary_row {
+#xcgftyclis .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1574,7 +1549,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vvluyinkbx .gt_first_grand_summary_row {
+#xcgftyclis .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1584,7 +1559,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_last_grand_summary_row_top {
+#xcgftyclis .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1594,11 +1569,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_striped {
+#xcgftyclis .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vvluyinkbx .gt_table_body {
+#xcgftyclis .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1607,7 +1582,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_footnotes {
+#xcgftyclis .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1621,7 +1596,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_footnote {
+#xcgftyclis .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1630,7 +1605,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vvluyinkbx .gt_sourcenotes {
+#xcgftyclis .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1644,7 +1619,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vvluyinkbx .gt_sourcenote {
+#xcgftyclis .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1652,72 +1627,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vvluyinkbx .gt_left {
+#xcgftyclis .gt_left {
   text-align: left;
 }
 
-#vvluyinkbx .gt_center {
+#xcgftyclis .gt_center {
   text-align: center;
 }
 
-#vvluyinkbx .gt_right {
+#xcgftyclis .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vvluyinkbx .gt_font_normal {
+#xcgftyclis .gt_font_normal {
   font-weight: normal;
 }
 
-#vvluyinkbx .gt_font_bold {
+#xcgftyclis .gt_font_bold {
   font-weight: bold;
 }
 
-#vvluyinkbx .gt_font_italic {
+#xcgftyclis .gt_font_italic {
   font-style: italic;
 }
 
-#vvluyinkbx .gt_super {
+#xcgftyclis .gt_super {
   font-size: 65%;
 }
 
-#vvluyinkbx .gt_footnote_marks {
+#xcgftyclis .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vvluyinkbx .gt_asterisk {
+#xcgftyclis .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vvluyinkbx .gt_indent_1 {
+#xcgftyclis .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vvluyinkbx .gt_indent_2 {
+#xcgftyclis .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vvluyinkbx .gt_indent_3 {
+#xcgftyclis .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vvluyinkbx .gt_indent_4 {
+#xcgftyclis .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vvluyinkbx .gt_indent_5 {
+#xcgftyclis .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vvluyinkbx .katex-display {
+#xcgftyclis .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vvluyinkbx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xcgftyclis div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1883,14 +1858,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.</p>
-</section>
-<section id="interpretation-of-final-model-and-implications-for-demographic-disparities" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation-of-final-model-and-implications-for-demographic-disparities">Interpretation of Final Model and Implications for Demographic Disparities</h3>
 <p>Our final model, selected through backward elimination, reveals key insights into how demographic and environmental variables relate to pollution burden in California’s census tracts.</p>
 </section>
-</section>
-<section id="key-demographic-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-demographic-findings">Key Demographic Findings</h2>
+<section id="key-demographic-findings" class="level3">
+<h3 class="anchored" data-anchor-id="key-demographic-findings">Key Demographic Findings</h3>
 <p>Several racial and ethnic group percentages are statistically significant predictors of <strong>Pollution Burden Score</strong> (log-transformed). The interpretation below assumes <strong>all predictors are also log-transformed</strong> unless otherwise noted.</p>
 <ul>
 <li><p><strong>Hispanic (%)</strong>: A 1% increase in the Hispanic population share is associated with an estimated <strong>7.1% decrease in the Pollution Burden Score</strong>, holding other factors constant (<em>β = -0.071, p &lt; 0.001</em>). This negative association is statistically significant and substantial, suggesting that tracts with larger Hispanic populations tend to experience higher pollution burdens.</p></li>
@@ -1898,6 +1869,22 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Asian American (%)</strong>: Interestingly, the percentage of Asian American residents shows a <strong>positive association</strong> (<em>β = 0.006, p &lt; 0.001</em>), meaning that census tracts with higher Asian American populations tend to have <strong>slightly lower</strong> pollution burden scores.</p></li>
 <li><p><strong>White (%)</strong>: The percentage of White residents has a strong <strong>negative coefficient</strong> (<em>β = -0.020, p &lt; 0.001</em>), which suggests that higher White population share is linked to <strong>lower pollution burdens</strong>, consistent with patterns of environmental advantage.</p></li>
 </ul>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>This analysis supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Hispanic and African American populations, in particular, are disproportionately affected by pollution, even after controlling for other factors. These findings reinforce the need to integrate equity-focused considerations into environmental planning and policy design.</p>
+</section>
+<section id="limitations-and-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h3>
+<p>Despite the strengths of our model, several limitations should be noted:</p>
+<ul>
+<li><p><strong>Assumptions of Linear Regression</strong>: Our model assumes a linear relationship between predictors and the log-transformed response, homoscedasticity (constant variance of residuals), independence of observations, and normally distributed errors. While the log-log transformation improved these conditions, diagnostic plots suggest that minor deviations from normality and homoscedasticity remain.</p></li>
+<li><p><strong>Multicollinearity</strong>: Although we addressed multicollinearity by removing or consolidating variables with high Generalized Variance Inflation Factors (GVIF), some degree of correlation among demographic predictors—such as race and age distributions—may still inflate standard errors and obscure individual effects.</p></li>
+<li><p><strong>Spatial and Temporal Effects</strong>: The model does not account for <strong>spatial autocorrelation</strong> (e.g., similarities between neighboring census tracts) or <strong>temporal dynamics</strong> in pollution exposure. Incorporating spatial models or longitudinal data could improve the robustness and generalizability of our conclusions.</p></li>
+<li><p><strong>Unmeasured Confounders</strong>: Key socioeconomic indicators—such as income, education, housing conditions, and access to healthcare—are not included in our model. These omitted variables could mediate or confound the observed relationships between race/ethnicity and pollution burden.</p></li>
+<li><p><strong>Data Limitations</strong>: The analysis relies on cross-sectional data from a single time period, which limits causal inference. Additionally, data quality issues such as missing values or measurement errors in environmental indicators may introduce bias.</p></li>
+</ul>
+</section>
 </section>
 <section id="addressing-the-key-questions" class="level2">
 <h2 class="anchored" data-anchor-id="addressing-the-key-questions">Addressing the Key Questions</h2>
@@ -1907,15 +1894,6 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Are some groups more likely to live in polluted areas?</p>
 <p>Based on the signs and magnitudes of the coefficients, <strong>Hispanic and African American populations are more likely to reside in areas with higher pollution burden</strong>, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.</p></li>
 </ul>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This model supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Our analysis provides statistical evidence that Hispanic and African American communities are disproportionately affected by pollution. These findings underscore the importance of including demographic equity considerations in environmental policy and urban planning decisions.</p>
-</section>
-<section id="limitations-and-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h2>
-<p>As with any linear regression analysis, our model relies on several assumptions: linearity between predictors and response, homoscedasticity (constant variance), independence of observations, and normality of residuals. While the log-log transformation improved residual behavior, some mild skewness and heteroscedasticity may remain. Furthermore, multicollinearity among demographic variables was mitigated but not eliminated entirely.</p>
-<p>Additionally, this analysis does not account for potential spatial correlation between neighboring tracts or time-varying pollution dynamics. Including temporal or spatial random effects, or using generalized additive models, could improve the robustness of our findings. Incorporating socioeconomic indicators such as income, education, and housing density would also enhance our understanding of environmental inequity.</p>
 
 
 </section>
