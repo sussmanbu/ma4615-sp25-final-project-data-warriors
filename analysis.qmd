@@ -175,6 +175,8 @@ These plots indicate non-normal residuals and possible heteroscedasticity, sugge
 
 ### Log Transformation of Response
 
+For full details of the modeling process, [click here](log_transformation.html).
+
 To address non-constant variance and skewness in the response, we log-transform the Pollution Burden Score.
 
 ```{r}

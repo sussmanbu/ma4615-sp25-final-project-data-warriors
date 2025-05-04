@@ -1,0 +1,69 @@
+---
+title: "Log Transformation Process"
+format: html
+---
+## Motivation
+
+To address issues of **non-constant variance** (heteroscedasticity) and **right-skewed distribution** in the response variable, we apply a **log transformation** to the *Pollution Burden Score*. This often stabilizes variance and makes the data more amenable to linear modeling.
+
+## Log-Transformed Model
+
+We fit a linear regression model using the log-transformed response variable:
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(broom)
+library(gt)
+
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+model_log <- lm(log(`Pollution Burden Score`) ~ ., data = data)
+
+
+model_perf <- glance(model_log)  # again replace with your actual model
+
+model_perf %>%
+  select(r.squared, adj.r.squared, sigma, statistic, p.value, df, AIC, BIC) %>%
+  gt() %>%
+  tab_header(
+    title = "Statistical Performance of Log Model"
+  ) %>%
+  fmt_number(decimals = 4)
+```
+
+### Statistical Performance of Log Model
+
+The log-transformed model yielded an R-squared of 0.9823, indicating that over 98% of the variance in Pollution Burden Score is explained by the model. The adjusted R-squared of 0.9802 confirms that this strong performance persists even after accounting for the number of predictors. The F-statistic is large (466.39) with a p-value near zero, confirming the model is statistically significant overall.
+
+### Residual Diagnostics
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 4
+
+# Show two plots side-by-side with better spacing
+par(mfrow = c(1, 2))
+
+# Residuals vs Fitted
+plot(model_log$fitted.values, model_log$residuals,
+     xlab = "Fitted Values", ylab = "Residuals",
+     main = "Residuals vs Fitted (Log y)")
+abline(h = 0, col = "red")
+
+# Q-Q Plot
+qqnorm(model_log$residuals)
+qqline(model_log$residuals, col = "red")
+
+# Reset plotting layout afterward
+par(mfrow = c(1, 1))
+```
+
+Despite this strong performance, residual diagnostics revealed patterns suggesting nonlinearity among predictors, and some predictors exhibited skewness or non-constant variance of their own. This prompted us to apply log transformations to both the response and predictors, resulting in a log-log model. The goal was to further improve linearity, stabilize variance across all variables, and enhance model interpretability in terms of percentage change relationships.
+
+[Back](analysis.html)
