@@ -6,42 +6,7 @@ draft: false
 ---
 
 
-![](images/air_quality.jpg)
-
-
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
-
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.
-
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.
-
-The style of this paper should aim to be that of an academic paper. I don't expect this to be of publication quality but you should keep that aim in mind. Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
-
-## Rubric: On this page
-
-You will
-
--   Introduce what motivates your Data Analysis (DA)
-    -   Which variables and relationships are you most interested in?
-    -   What questions are you interested in answering?
-    -   Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.
--   Modeling and Inference
-    -   The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.
-    -   Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)
-    -   Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.
--   Explain the flaws and limitations of your analysis
-    -   Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?
--   Clarity Figures
-    -   Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?
-    -   Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)
-    -   Default `lm` output and plots are typically not acceptable.
--   Clarity of Explanations
-    -   How well do you explain each figure/result?
-    -   Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?
--   Organization and cleanliness.
-    -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
-    -   This page should be self-contained, i.e. provide a description of the relevant data.
-
+![](images/image2.jpg)
 
 ## Introduction
 
@@ -62,7 +27,7 @@ To explore these questions, we present visualizations and statistical models tha
 
 ## Data Overview and Inital Exploration
 
-## Data Visualization
+### Data Visualization
 
 ```{r}
 #| echo: false
@@ -197,8 +162,8 @@ print(coef_plot)
 ```
 
 
-## Models
-### Full Model on Original Data
+### Models
+#### Full Model on Original Data
 
 We begin with a linear model that includes all predictors without transformation.
 
