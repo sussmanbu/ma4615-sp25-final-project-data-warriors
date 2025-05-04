@@ -27,8 +27,6 @@ To explore these questions, we present visualizations and statistical models tha
 
 ## Data Overview and Inital Exploration
 
-### Data Visualization
-
 ```{r}
 #| echo: false
 #| message: false
@@ -73,35 +71,6 @@ ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
   labs(title = "Pollution Burden vs. Hispanic")
 ```
 
-Top 10 Most Polluted Counties
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-data %>%
-  group_by(`California County`) %>%
-  summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
-  top_n(10, mean_pollution) %>%
-  ggplot(aes(x = reorder(`California County`, mean_pollution), y = mean_pollution)) +
-  geom_col(fill = "steelblue") +
-  coord_flip() +
-  labs(title = "Top 10 Most Polluted Counties", x = NULL, y = "Avg. Pollution Score")
-```
-
-
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
-  geom_point(alpha = 0.3, color = "orange") +
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Pollution Burden vs. Asthma Rate",
-       x = "Pollution Burden Score",
-       y = "Asthma Rate")
-```
 
 
 ```{r}
@@ -126,6 +95,8 @@ coef_plot <- ggplot(data.frame(
 
 print(coef_plot)
 ```
+For more exploratory analysis through visualization, check out Blog Post 4
+
 
 ## Modeling and Inference
 ### Full Model
@@ -367,6 +338,30 @@ Several racial and ethnic group percentages are statistically significant predic
 * **White (%)**:
   The percentage of White residents has a strong **negative coefficient** (*β = -0.020, p < 0.001*), which suggests that higher White population share is linked to **lower pollution burdens**, consistent with patterns of environmental advantage.
 
+### Conclusion
+
+This analysis supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Hispanic and African American populations, in particular, are disproportionately affected by pollution, even after controlling for other factors. These findings reinforce the need to integrate equity-focused considerations into environmental planning and policy design.
+
+### Limitations and Assumptions
+
+Despite the strengths of our model, several limitations should be noted:
+
+* **Assumptions of Linear Regression**:
+  Our model assumes a linear relationship between predictors and the log-transformed response, homoscedasticity (constant variance of residuals), independence of observations, and normally distributed errors. While the log-log transformation improved these conditions, diagnostic plots suggest that minor deviations from normality and homoscedasticity remain.
+
+* **Multicollinearity**:
+  Although we addressed multicollinearity by removing or consolidating variables with high Generalized Variance Inflation Factors (GVIF), some degree of correlation among demographic predictors—such as race and age distributions—may still inflate standard errors and obscure individual effects.
+
+* **Spatial and Temporal Effects**:
+  The model does not account for **spatial autocorrelation** (e.g., similarities between neighboring census tracts) or **temporal dynamics** in pollution exposure. Incorporating spatial models or longitudinal data could improve the robustness and generalizability of our conclusions.
+
+* **Unmeasured Confounders**:
+  Key socioeconomic indicators—such as income, education, housing conditions, and access to healthcare—are not included in our model. These omitted variables could mediate or confound the observed relationships between race/ethnicity and pollution burden.
+
+* **Data Limitations**:
+  The analysis relies on cross-sectional data from a single time period, which limits causal inference. Additionally, data quality issues such as missing values or measurement errors in environmental indicators may introduce bias.
+
+
 ## Addressing the Key Questions
 
 * Do demographic groups correlate with pollution burden?
@@ -376,14 +371,3 @@ Several racial and ethnic group percentages are statistically significant predic
 * Are some groups more likely to live in polluted areas?
 
     Based on the signs and magnitudes of the coefficients, **Hispanic and African American populations are more likely to reside in areas with higher pollution burden**, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.
-
-## Conclusion
-
-This model supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Our analysis provides statistical evidence that Hispanic and African American communities are disproportionately affected by pollution. These findings underscore the importance of including demographic equity considerations in environmental policy and urban planning decisions.
-
-
-## Limitations and Assumptions
-
-As with any linear regression analysis, our model relies on several assumptions: linearity between predictors and response, homoscedasticity (constant variance), independence of observations, and normality of residuals. While the log-log transformation improved residual behavior, some mild skewness and heteroscedasticity may remain. Furthermore, multicollinearity among demographic variables was mitigated but not eliminated entirely.
-
-Additionally, this analysis does not account for potential spatial correlation between neighboring tracts or time-varying pollution dynamics. Including temporal or spatial random effects, or using generalized additive models, could improve the robustness of our findings. Incorporating socioeconomic indicators such as income, education, and housing density would also enhance our understanding of environmental inequity.

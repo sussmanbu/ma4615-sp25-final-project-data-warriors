@@ -4,9 +4,13 @@ author: "Hannah, Rachel, Thao, Wenbo, Cuichen"
 date: "2025-03-31"
 date-modified: "2025-03-31"
 draft: FALSE
+format: html
 ---
 
 In this analysis, we extend our exploratory data analysis (EDA) by investigating the relationships between pollution burden and demographic variables across California census tracts. Our goal is to determine whether the pollution burden disproportionately affects certain racial groups and to model this relationship statistically. By considering both breadth and depth in our analysis, we aim to uncover key trends that inform environmental justice discussions.
+
+
+## Exploratory Analysis
 
 ### Demographic Distributions and Pollution Exposure
 We decided to do a scatter plot comparing Pollution Burden and ethnic groups. We began by looking at the Hispanic population and plotted pollution burden scores against the percentage of Hispanic populations, showing a positive relationship. It will be interesting to see what the other population’s relationship is with pollution burden. 
@@ -19,7 +23,41 @@ Figure 1: Pollution Burden plotted against Hispanic Population Proportion
 A summary of pollution burden by county reveals the ten most polluted counties in California. This ranking highlights the regions with the greatest environmental challenges. The most polluted county resulted in Los Angeles which confirmed our assumptions before EDA. This is reasonable as Los Angeles is a very densely populated county. 
 
 Figure 2: Top 10 Most Polluted Counties 
-![](/images/blog4_b.png){fig-alt="Top 10 Most Polluted Counties"}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: "hide"
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+
+data %>%
+  group_by(`California County`) %>%
+  summarise(mean_pollution = mean(`Pollution Burden Score`, na.rm = TRUE)) %>%
+  top_n(10, mean_pollution) %>%
+  ggplot(aes(x = reorder(`California County`, mean_pollution), y = mean_pollution)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs( x = NULL, y = "Avg. Pollution Score")
+```
+
+## Pollution Burden Score vs Asthma
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
+  geom_point(alpha = 0.3, color = "orange") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Pollution Burden vs. Asthma Rate",
+       x = "Pollution Burden Score",
+       y = "Asthma Rate")
+```
 
 ## Statistical Modeling
 
@@ -45,6 +83,8 @@ Our model estimates indicate that higher percentages of Hispanic, African Americ
 
 Figure 3: Demographic Predictors of Pollution Burden
 ![](/images/blog4_c.png){fig-alt="Demographic Predictors of Pollution Burden"}
+
+## Correlation Matrix
 
 The correlation matrix displays the pairwise Pearson correlations between numerical variables in the dataset, with darker shades indicating stronger relationships. Several notable patterns emerge:
 ```{r}
