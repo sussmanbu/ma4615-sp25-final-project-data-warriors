@@ -10,16 +10,11 @@ draft: false
 
 ## Data Description
 
-The CalEnviroScreen data, available for download at ["OEHHA’s website"](https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&sa=D&source=docs&ust=1742852733483866&usg=AOvVaw35FXwtWKeysE4tXW15G9nc), is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
+The CalEnviroScreen data, available for download at ["OEHHA’s website"](https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&sa=D&source=docs&ust=1742852733483866&usg=AOvVaw35FXwtWKeysE4tXW15G9nc), is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities, specifically at the census tract level. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.
 
-This data has been used for research in the San Ysidro, California community because it's located near the world's busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities. 
+The data has been used for research in the San Ysidro, California community because it's located near the world's busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities. 
 
-
-#### *Data Usage, Potential Similar Research, Analysis for Policy?*
-
-The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border. 
-
-Researchers have used CalEnviroScreen to examine racial and socioeconomic disparities in environmental health risks. Cushing et al. (2015) found that pollution burdens disproportionately impact communities of color, particularly Hispanic and African American populations. Other studies, Alexeeff & Mataka (2014) and Meehan August et al. (2012), have explored methodological improvements and policy applications of the tool. Some of the key questions include how pollution exposure varies with race, how effective is the CalEnviroScreen and how can we improve it through additional indicators. 
+The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements.
 
 ## Data Files and Description
 The original data was downloaded from CalEnviroScreen 4.0, which provides statewide data on environmental and demographic indicators at the census tract level. The data came in a single [Excel file](https://oehha.ca.gov/media/downloads/calenviroscreen/document/calenviroscreen40resultsdatadictionaryf2021.zip) with multiple sheets. One sheet contained pollution and environmental exposure indicators, while another contained population and demographic characteristics. To prepare the data for analysis, we extracted each of these sheets and saved them as separate CSV files: `pollution_data.csv` and `demographic_data.csv`.
@@ -32,17 +27,17 @@ To simplify the analysis, we focused on the most relevant environmental and demo
 
 #### *Variable description:*
 
-**Environmental Related statistics**: like `CES4.0 Score` and `PM 2.5 value`, representing pollution score and levels.
+Key variables include:
 
-**Age**: Age of sample, ranging from children under 10 to elderly above 64
+**Environmental Related statistics**: like `Pollution Burden Score`, which is a score scaled from 1 -10 and weighs both environmental effects and pollution indictors. It  is the outcome variable we're attempting to measure the effect size with.
 
 **Location**: California county that the census tract falls within
 
-**Race**: including races of samples in the research 
+**Race**: The percentage of each racial group in each census tract.
 
 **Other related statistics**: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels.
-Offical Data Dictonary
 
+#### **Official Data Dictionary:**
 ```{r}
 #| echo: false
 #| message: false
@@ -143,7 +138,7 @@ variable_table %>%
 
 ```
 
-### Distributions
+### Dataset Distribution
 ```{r}
 #| echo: false
 #| message: false
