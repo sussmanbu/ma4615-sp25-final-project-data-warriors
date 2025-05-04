@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
+<meta name="author" content="Hannah, Rachel, Thao, Wenbo, Cuichen">
 <meta name="dcterms.date" content="2025-03-31">
 
 <title>Blog Post 4 – Data Warriors MA [46]15 Final Project</title>
@@ -124,6 +124,12 @@ ul.task-list li input[type="checkbox"] {
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hannah, Rachel, Thao, Wenbo, Cuichen </p>
+            </div>
+    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -178,6 +184,23 @@ ul.task-list li input[type="checkbox"] {
 <p>x5 = Other/Multiple (%)</p>
 <p>Our model estimates indicate that higher percentages of Hispanic, African American, and Asian American populations are associated with increased pollution burden, while Native American and Other/Multiple groups show weaker associations.</p>
 <p>Figure 3: Demographic Predictors of Pollution Burden <img src="../../images/blog4_c.png" class="img-fluid" alt="Demographic Predictors of Pollution Burden"></p>
+<p>The correlation matrix displays the pairwise Pearson correlations between numerical variables in the dataset, with darker shades indicating stronger relationships. Several notable patterns emerge:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="blog-post-4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Several notable patterns emerge: - Pollution Burden Score is positively correlated with PM2.5, Diesel PM, Cleanup Sites, and Hispanic (%), suggesting that census tracts with higher pollution levels tend to have higher concentrations of these environmental burdens and a higher proportion of Hispanic residents.</p>
+<ul>
+<li><p>Conversely, White (%) is negatively correlated with Pollution Burden Score and many pollution-related variables, indicating that predominantly white census tracts are less likely to be exposed to high pollution burdens.</p></li>
+<li><p>Several demographic indicators are strongly correlated with each other. For example, Pop. Char. Score and Pop. Char. are nearly collinear, and Pollution Burden, Pollution Burden Pctl, and Pollution Burden Score are all highly correlated, which could introduce multicollinearity if included together in a model.</p></li>
+<li><p>High correlations (e.g., &gt; 0.7 or &lt; -0.7) are visualized by dark red/blue tiles, which may indicate redundancy in predictors and motivate variable selection or transformation.</p></li>
+<li><p>Some demographic variables like African American (%), Asian American (%), and Low Birth Weight show weak or moderate correlations with pollution burden, suggesting these relationships are less straightforward and may require modeling to unpack fully.</p></li>
+</ul>
 </section>
 <section id="next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="next-steps">Next Steps:</h2>

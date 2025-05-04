@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-description" id="toc-data-description" class="nav-link active" data-scroll-target="#data-description">Data Description</a></li>
   <li><a href="#data-files-and-description" id="toc-data-files-and-description" class="nav-link" data-scroll-target="#data-files-and-description">Data Files and Description</a>
   <ul class="collapse">
-  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
+  <li><a href="#dataset-distribution" id="toc-dataset-distribution" class="nav-link" data-scroll-target="#dataset-distribution">Dataset Distribution</a></li>
   </ul></li>
   <li><a href="#data-loading-and-cleaning" id="toc-data-loading-and-cleaning" class="nav-link" data-scroll-target="#data-loading-and-cleaning">Data Loading and Cleaning</a></li>
   </ul>
@@ -194,13 +194,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/logo.png" class="img-fluid"></p>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
-<p>The CalEnviroScreen data, available for download at <a href="https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&amp;sa=D&amp;source=docs&amp;ust=1742852733483866&amp;usg=AOvVaw35FXwtWKeysE4tXW15G9nc">“OEHHA’s website”</a>, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.</p>
-<p>This data has been used for research in the San Ysidro, California community because it’s located near the world’s busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities.</p>
-<section id="data-usage-potential-similar-research-analysis-for-policy" class="level4">
-<h4 class="anchored" data-anchor-id="data-usage-potential-similar-research-analysis-for-policy"><em>Data Usage, Potential Similar Research, Analysis for Policy?</em></h4>
-<p>The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements. The tool has also been applied to border regions under Assembly Bill 1059, which ensures pollution burdens within the context of environmental policies near the California-Mexico border.</p>
-<p>Researchers have used CalEnviroScreen to examine racial and socioeconomic disparities in environmental health risks. Cushing et al.&nbsp;(2015) found that pollution burdens disproportionately impact communities of color, particularly Hispanic and African American populations. Other studies, Alexeeff &amp; Mataka (2014) and Meehan August et al.&nbsp;(2012), have explored methodological improvements and policy applications of the tool. Some of the key questions include how pollution exposure varies with race, how effective is the CalEnviroScreen and how can we improve it through additional indicators.</p>
-</section>
+<p>The CalEnviroScreen data, available for download at <a href="https://www.google.com/url?q=https://oehha.ca.gov/calenviroscreen/download-data&amp;sa=D&amp;source=docs&amp;ust=1742852733483866&amp;usg=AOvVaw35FXwtWKeysE4tXW15G9nc">“OEHHA’s website”</a>, is compiled by the Office of Environmental Health Hazard Assessment (OEHHA) under the California Environmental Protection Agency (CalEPA). This dataset is designed to assess cumulative environmental burdens and population vulnerabilities across California’s communities, specifically at the census tract level. It includes indicators on pollution exposure, environmental effects, sensitive populations, and socioeconomic factors, allowing policymakers, researchers, and the public to identify areas most impacted by environmental hazards. The data was collected to support state efforts in environmental justice and resource allocation, particularly to assist in directing funding and policy initiatives to disadvantaged communities. By integrating environmental and demographic data, CalEnviroScreen provides a comprehensive tool for understanding disparities in environmental health risks across the state.</p>
+<p>The data has been used for research in the San Ysidro, California community because it’s located near the world’s busiest border crossing. Residents were predominately from marginalized communities and had complained that government air monitoring did not adequately measure air quality in their community. By collaborating with the San Ysidro community in San Diego, the OEHHA was able to collect data using low-cost technology to prioritize funding for identifying California communities with higher pollution burden scores and demographic vulnerabilities.</p>
+<p>The CalEnviroScreen data has been used effectively in identifying the affected communities hence calling for policy action to direct cap-and-trade revenues to highly impacted areas, and also has been updated over the years to include more indicators and greater geographic specificity. This information is used by policymakers to allocate funds for environmental justice, guide regulatory enforcement, and support programs that target pollution control and public health improvements.</p>
 </section>
 <section id="data-files-and-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-files-and-description">Data Files and Description</h2>
@@ -210,30 +206,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To simplify the analysis, we focused on the most relevant environmental and demographic variables and removed columns related to less directly useful metrics like groundwater threats, education, and unemployment. Together, the cleaned and merged dataset allows us to explore the relationship between environmental burdens and community demographics in California.</p>
 <section id="variable-description" class="level4">
 <h4 class="anchored" data-anchor-id="variable-description"><em>Variable description:</em></h4>
-<p><strong>Environmental Related statistics</strong>: like <code>CES4.0 Score</code> and <code>PM 2.5 value</code>, representing pollution score and levels.</p>
-<p><strong>Age</strong>: Age of sample, ranging from children under 10 to elderly above 64</p>
+<p>Key variables include:</p>
+<p><strong>Environmental Related statistics</strong>: like <code>Pollution Burden Score</code>, which is a score scaled from 1 -10 and weighs both environmental effects and pollution indictors. It is the outcome variable we’re attempting to measure the effect size with.</p>
 <p><strong>Location</strong>: California county that the census tract falls within</p>
-<p><strong>Race</strong>: including races of samples in the research</p>
-<p><strong>Other related statistics</strong>: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels. Offical Data Dictonary</p>
+<p><strong>Race</strong>: The percentage of each racial group in each census tract.</p>
+<p><strong>Other related statistics</strong>: Like poverty, education level, unemployment rate, Housing burden, Birth weight, potentially revealing relationships between those statistics and environmental levels.</p>
+</section>
+<section id="official-data-dictionary" class="level4">
+<h4 class="anchored" data-anchor-id="official-data-dictionary"><strong>Official Data Dictionary:</strong></h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ywqbosgldr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ywqbosgldr table {
+<div id="jrhqonmcop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jrhqonmcop table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ywqbosgldr thead, #ywqbosgldr tbody, #ywqbosgldr tfoot, #ywqbosgldr tr, #ywqbosgldr td, #ywqbosgldr th {
+#jrhqonmcop thead, #jrhqonmcop tbody, #jrhqonmcop tfoot, #jrhqonmcop tr, #jrhqonmcop td, #jrhqonmcop th {
   border-style: none;
 }
 
-#ywqbosgldr p {
+#jrhqonmcop p {
   margin: 0;
   padding: 0;
 }
 
-#ywqbosgldr .gt_table {
+#jrhqonmcop .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -259,12 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_caption {
+#jrhqonmcop .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ywqbosgldr .gt_title {
+#jrhqonmcop .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -276,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#ywqbosgldr .gt_subtitle {
+#jrhqonmcop .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -288,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#ywqbosgldr .gt_heading {
+#jrhqonmcop .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -300,13 +299,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_bottom_border {
+#jrhqonmcop .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_col_headings {
+#jrhqonmcop .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -321,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_col_heading {
+#jrhqonmcop .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -341,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ywqbosgldr .gt_column_spanner_outer {
+#jrhqonmcop .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -353,15 +352,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#ywqbosgldr .gt_column_spanner_outer:first-child {
+#jrhqonmcop .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ywqbosgldr .gt_column_spanner_outer:last-child {
+#jrhqonmcop .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ywqbosgldr .gt_column_spanner {
+#jrhqonmcop .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -373,11 +372,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#ywqbosgldr .gt_spanner_row {
+#jrhqonmcop .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ywqbosgldr .gt_group_heading {
+#jrhqonmcop .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -403,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#ywqbosgldr .gt_empty_group_heading {
+#jrhqonmcop .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -418,15 +417,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#ywqbosgldr .gt_from_md > :first-child {
+#jrhqonmcop .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ywqbosgldr .gt_from_md > :last-child {
+#jrhqonmcop .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ywqbosgldr .gt_row {
+#jrhqonmcop .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -445,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ywqbosgldr .gt_stub {
+#jrhqonmcop .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -458,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ywqbosgldr .gt_stub_row_group {
+#jrhqonmcop .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -472,15 +471,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#ywqbosgldr .gt_row_group_first td {
+#jrhqonmcop .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ywqbosgldr .gt_row_group_first th {
+#jrhqonmcop .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ywqbosgldr .gt_summary_row {
+#jrhqonmcop .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -490,16 +489,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ywqbosgldr .gt_first_summary_row {
+#jrhqonmcop .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_first_summary_row.thick {
+#jrhqonmcop .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ywqbosgldr .gt_last_summary_row {
+#jrhqonmcop .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -509,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_grand_summary_row {
+#jrhqonmcop .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -519,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ywqbosgldr .gt_first_grand_summary_row {
+#jrhqonmcop .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -529,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_last_grand_summary_row_top {
+#jrhqonmcop .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -539,11 +538,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_striped {
+#jrhqonmcop .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ywqbosgldr .gt_table_body {
+#jrhqonmcop .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -552,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_footnotes {
+#jrhqonmcop .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -566,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_footnote {
+#jrhqonmcop .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -575,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ywqbosgldr .gt_sourcenotes {
+#jrhqonmcop .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -589,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ywqbosgldr .gt_sourcenote {
+#jrhqonmcop .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -597,72 +596,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ywqbosgldr .gt_left {
+#jrhqonmcop .gt_left {
   text-align: left;
 }
 
-#ywqbosgldr .gt_center {
+#jrhqonmcop .gt_center {
   text-align: center;
 }
 
-#ywqbosgldr .gt_right {
+#jrhqonmcop .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ywqbosgldr .gt_font_normal {
+#jrhqonmcop .gt_font_normal {
   font-weight: normal;
 }
 
-#ywqbosgldr .gt_font_bold {
+#jrhqonmcop .gt_font_bold {
   font-weight: bold;
 }
 
-#ywqbosgldr .gt_font_italic {
+#jrhqonmcop .gt_font_italic {
   font-style: italic;
 }
 
-#ywqbosgldr .gt_super {
+#jrhqonmcop .gt_super {
   font-size: 65%;
 }
 
-#ywqbosgldr .gt_footnote_marks {
+#jrhqonmcop .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ywqbosgldr .gt_asterisk {
+#jrhqonmcop .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ywqbosgldr .gt_indent_1 {
+#jrhqonmcop .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ywqbosgldr .gt_indent_2 {
+#jrhqonmcop .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ywqbosgldr .gt_indent_3 {
+#jrhqonmcop .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ywqbosgldr .gt_indent_4 {
+#jrhqonmcop .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ywqbosgldr .gt_indent_5 {
+#jrhqonmcop .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ywqbosgldr .katex-display {
+#jrhqonmcop .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ywqbosgldr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jrhqonmcop div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -870,8 +869,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="distributions" class="level3">
-<h3 class="anchored" data-anchor-id="distributions">Distributions</h3>
+<section id="dataset-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-distribution">Dataset Distribution</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -894,23 +893,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The boxplots above shows the distribution of the percentage of demographics in each census tract. We observed that census tracts with a higher percentages of individuals in the age range 10 to 64 years old were more common, and that so were census tracts with higher percentages of White individuals. However, the distribution seems to be widely dispersed with various outliers for each demographic catergory.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="itprezakdp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#itprezakdp table {
+<div id="fcardmqdph" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fcardmqdph table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#itprezakdp thead, #itprezakdp tbody, #itprezakdp tfoot, #itprezakdp tr, #itprezakdp td, #itprezakdp th {
+#fcardmqdph thead, #fcardmqdph tbody, #fcardmqdph tfoot, #fcardmqdph tr, #fcardmqdph td, #fcardmqdph th {
   border-style: none;
 }
 
-#itprezakdp p {
+#fcardmqdph p {
   margin: 0;
   padding: 0;
 }
 
-#itprezakdp .gt_table {
+#fcardmqdph .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -936,12 +935,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#itprezakdp .gt_caption {
+#fcardmqdph .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#itprezakdp .gt_title {
+#fcardmqdph .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -953,7 +952,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#itprezakdp .gt_subtitle {
+#fcardmqdph .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -965,7 +964,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#itprezakdp .gt_heading {
+#fcardmqdph .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -977,13 +976,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#itprezakdp .gt_bottom_border {
+#fcardmqdph .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#itprezakdp .gt_col_headings {
+#fcardmqdph .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -998,7 +997,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#itprezakdp .gt_col_heading {
+#fcardmqdph .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1018,7 +1017,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#itprezakdp .gt_column_spanner_outer {
+#fcardmqdph .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1030,15 +1029,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#itprezakdp .gt_column_spanner_outer:first-child {
+#fcardmqdph .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#itprezakdp .gt_column_spanner_outer:last-child {
+#fcardmqdph .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#itprezakdp .gt_column_spanner {
+#fcardmqdph .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1050,11 +1049,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#itprezakdp .gt_spanner_row {
+#fcardmqdph .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#itprezakdp .gt_group_heading {
+#fcardmqdph .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1080,7 +1079,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#itprezakdp .gt_empty_group_heading {
+#fcardmqdph .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1095,15 +1094,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#itprezakdp .gt_from_md > :first-child {
+#fcardmqdph .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#itprezakdp .gt_from_md > :last-child {
+#fcardmqdph .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#itprezakdp .gt_row {
+#fcardmqdph .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1122,7 +1121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#itprezakdp .gt_stub {
+#fcardmqdph .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1135,7 +1134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#itprezakdp .gt_stub_row_group {
+#fcardmqdph .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1149,15 +1148,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#itprezakdp .gt_row_group_first td {
+#fcardmqdph .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#itprezakdp .gt_row_group_first th {
+#fcardmqdph .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#itprezakdp .gt_summary_row {
+#fcardmqdph .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1167,16 +1166,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#itprezakdp .gt_first_summary_row {
+#fcardmqdph .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#itprezakdp .gt_first_summary_row.thick {
+#fcardmqdph .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#itprezakdp .gt_last_summary_row {
+#fcardmqdph .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1186,7 +1185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#itprezakdp .gt_grand_summary_row {
+#fcardmqdph .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1196,7 +1195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#itprezakdp .gt_first_grand_summary_row {
+#fcardmqdph .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1206,7 +1205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#itprezakdp .gt_last_grand_summary_row_top {
+#fcardmqdph .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1216,11 +1215,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#itprezakdp .gt_striped {
+#fcardmqdph .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#itprezakdp .gt_table_body {
+#fcardmqdph .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1229,7 +1228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#itprezakdp .gt_footnotes {
+#fcardmqdph .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1243,7 +1242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#itprezakdp .gt_footnote {
+#fcardmqdph .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1252,7 +1251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#itprezakdp .gt_sourcenotes {
+#fcardmqdph .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1266,7 +1265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#itprezakdp .gt_sourcenote {
+#fcardmqdph .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1274,72 +1273,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#itprezakdp .gt_left {
+#fcardmqdph .gt_left {
   text-align: left;
 }
 
-#itprezakdp .gt_center {
+#fcardmqdph .gt_center {
   text-align: center;
 }
 
-#itprezakdp .gt_right {
+#fcardmqdph .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#itprezakdp .gt_font_normal {
+#fcardmqdph .gt_font_normal {
   font-weight: normal;
 }
 
-#itprezakdp .gt_font_bold {
+#fcardmqdph .gt_font_bold {
   font-weight: bold;
 }
 
-#itprezakdp .gt_font_italic {
+#fcardmqdph .gt_font_italic {
   font-style: italic;
 }
 
-#itprezakdp .gt_super {
+#fcardmqdph .gt_super {
   font-size: 65%;
 }
 
-#itprezakdp .gt_footnote_marks {
+#fcardmqdph .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#itprezakdp .gt_asterisk {
+#fcardmqdph .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#itprezakdp .gt_indent_1 {
+#fcardmqdph .gt_indent_1 {
   text-indent: 5px;
 }
 
-#itprezakdp .gt_indent_2 {
+#fcardmqdph .gt_indent_2 {
   text-indent: 10px;
 }
 
-#itprezakdp .gt_indent_3 {
+#fcardmqdph .gt_indent_3 {
   text-indent: 15px;
 }
 
-#itprezakdp .gt_indent_4 {
+#fcardmqdph .gt_indent_4 {
   text-indent: 20px;
 }
 
-#itprezakdp .gt_indent_5 {
+#fcardmqdph .gt_indent_5 {
   text-indent: 25px;
 }
 
-#itprezakdp .katex-display {
+#fcardmqdph .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#itprezakdp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fcardmqdph div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1670,23 +1669,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qtkyjulhia" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qtkyjulhia table {
+<div id="vlrggkmzpu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vlrggkmzpu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qtkyjulhia thead, #qtkyjulhia tbody, #qtkyjulhia tfoot, #qtkyjulhia tr, #qtkyjulhia td, #qtkyjulhia th {
+#vlrggkmzpu thead, #vlrggkmzpu tbody, #vlrggkmzpu tfoot, #vlrggkmzpu tr, #vlrggkmzpu td, #vlrggkmzpu th {
   border-style: none;
 }
 
-#qtkyjulhia p {
+#vlrggkmzpu p {
   margin: 0;
   padding: 0;
 }
 
-#qtkyjulhia .gt_table {
+#vlrggkmzpu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1712,12 +1711,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_caption {
+#vlrggkmzpu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qtkyjulhia .gt_title {
+#vlrggkmzpu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1729,7 +1728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#qtkyjulhia .gt_subtitle {
+#vlrggkmzpu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1741,7 +1740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#qtkyjulhia .gt_heading {
+#vlrggkmzpu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1753,13 +1752,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_bottom_border {
+#vlrggkmzpu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_col_headings {
+#vlrggkmzpu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1774,7 +1773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_col_heading {
+#vlrggkmzpu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1794,7 +1793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#qtkyjulhia .gt_column_spanner_outer {
+#vlrggkmzpu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1806,15 +1805,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#qtkyjulhia .gt_column_spanner_outer:first-child {
+#vlrggkmzpu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qtkyjulhia .gt_column_spanner_outer:last-child {
+#vlrggkmzpu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qtkyjulhia .gt_column_spanner {
+#vlrggkmzpu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1826,11 +1825,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#qtkyjulhia .gt_spanner_row {
+#vlrggkmzpu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qtkyjulhia .gt_group_heading {
+#vlrggkmzpu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1856,7 +1855,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#qtkyjulhia .gt_empty_group_heading {
+#vlrggkmzpu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1871,15 +1870,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#qtkyjulhia .gt_from_md > :first-child {
+#vlrggkmzpu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qtkyjulhia .gt_from_md > :last-child {
+#vlrggkmzpu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qtkyjulhia .gt_row {
+#vlrggkmzpu .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1898,7 +1897,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#qtkyjulhia .gt_stub {
+#vlrggkmzpu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1911,7 +1910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qtkyjulhia .gt_stub_row_group {
+#vlrggkmzpu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1925,15 +1924,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#qtkyjulhia .gt_row_group_first td {
+#vlrggkmzpu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qtkyjulhia .gt_row_group_first th {
+#vlrggkmzpu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qtkyjulhia .gt_summary_row {
+#vlrggkmzpu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1943,16 +1942,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qtkyjulhia .gt_first_summary_row {
+#vlrggkmzpu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_first_summary_row.thick {
+#vlrggkmzpu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qtkyjulhia .gt_last_summary_row {
+#vlrggkmzpu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1962,7 +1961,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_grand_summary_row {
+#vlrggkmzpu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1972,7 +1971,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qtkyjulhia .gt_first_grand_summary_row {
+#vlrggkmzpu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1982,7 +1981,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_last_grand_summary_row_top {
+#vlrggkmzpu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1992,11 +1991,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_striped {
+#vlrggkmzpu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qtkyjulhia .gt_table_body {
+#vlrggkmzpu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2005,7 +2004,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_footnotes {
+#vlrggkmzpu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2019,7 +2018,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_footnote {
+#vlrggkmzpu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2028,7 +2027,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qtkyjulhia .gt_sourcenotes {
+#vlrggkmzpu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2042,7 +2041,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qtkyjulhia .gt_sourcenote {
+#vlrggkmzpu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2050,72 +2049,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qtkyjulhia .gt_left {
+#vlrggkmzpu .gt_left {
   text-align: left;
 }
 
-#qtkyjulhia .gt_center {
+#vlrggkmzpu .gt_center {
   text-align: center;
 }
 
-#qtkyjulhia .gt_right {
+#vlrggkmzpu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qtkyjulhia .gt_font_normal {
+#vlrggkmzpu .gt_font_normal {
   font-weight: normal;
 }
 
-#qtkyjulhia .gt_font_bold {
+#vlrggkmzpu .gt_font_bold {
   font-weight: bold;
 }
 
-#qtkyjulhia .gt_font_italic {
+#vlrggkmzpu .gt_font_italic {
   font-style: italic;
 }
 
-#qtkyjulhia .gt_super {
+#vlrggkmzpu .gt_super {
   font-size: 65%;
 }
 
-#qtkyjulhia .gt_footnote_marks {
+#vlrggkmzpu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qtkyjulhia .gt_asterisk {
+#vlrggkmzpu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qtkyjulhia .gt_indent_1 {
+#vlrggkmzpu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qtkyjulhia .gt_indent_2 {
+#vlrggkmzpu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qtkyjulhia .gt_indent_3 {
+#vlrggkmzpu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qtkyjulhia .gt_indent_4 {
+#vlrggkmzpu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qtkyjulhia .gt_indent_5 {
+#vlrggkmzpu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qtkyjulhia .katex-display {
+#vlrggkmzpu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qtkyjulhia div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vlrggkmzpu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

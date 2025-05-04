@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Here we provide a detailed analysis using more sophisticated statistics techniques.">
 
-<title>Analysis – Data Warriors MA [46]15 Final Project</title>
+<title>Variable Selection Process – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -98,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Toxic Truths: What the Data Says About What We Breathe</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
+    <a class="nav-link" href="./analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
@@ -116,50 +115,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#key-questions" id="toc-key-questions" class="nav-link" data-scroll-target="#key-questions">Key Questions</a></li>
-  </ul></li>
-  <li><a href="#data-overview-and-inital-exploration" id="toc-data-overview-and-inital-exploration" class="nav-link" data-scroll-target="#data-overview-and-inital-exploration">Data Overview and Inital Exploration</a>
-  <ul class="collapse">
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
-  </ul></li>
-  <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a>
-  <ul class="collapse">
-  <li><a href="#full-model" id="toc-full-model" class="nav-link" data-scroll-target="#full-model">Full Model</a></li>
-  <li><a href="#log-model" id="toc-log-model" class="nav-link" data-scroll-target="#log-model">Log Model</a></li>
-  <li><a href="#log-log-model" id="toc-log-log-model" class="nav-link" data-scroll-target="#log-log-model">Log-Log Model</a></li>
-  <li><a href="#multicollinearity-check" id="toc-multicollinearity-check" class="nav-link" data-scroll-target="#multicollinearity-check">Multicollinearity Check</a></li>
-  <li><a href="#variable-selection" id="toc-variable-selection" class="nav-link" data-scroll-target="#variable-selection">Variable Selection</a></li>
-  <li><a href="#final-model-summary" id="toc-final-model-summary" class="nav-link" data-scroll-target="#final-model-summary">Final Model Summary</a></li>
-  <li><a href="#interpretation-of-final-model-and-implications-for-demographic-disparities" id="toc-interpretation-of-final-model-and-implications-for-demographic-disparities" class="nav-link" data-scroll-target="#interpretation-of-final-model-and-implications-for-demographic-disparities">Interpretation of Final Model and Implications for Demographic Disparities</a></li>
-  </ul></li>
-  <li><a href="#key-demographic-findings" id="toc-key-demographic-findings" class="nav-link" data-scroll-target="#key-demographic-findings">Key Demographic Findings</a></li>
-  <li><a href="#addressing-the-key-questions" id="toc-addressing-the-key-questions" class="nav-link" data-scroll-target="#addressing-the-key-questions">Addressing the Key Questions</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#limitations-and-assumptions" id="toc-limitations-and-assumptions" class="nav-link" data-scroll-target="#limitations-and-assumptions">Limitations and Assumptions</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis</h1>
+<h1 class="title">Variable Selection Process</h1>
 </div>
 
-<div>
-  <div class="description">
-    Here we provide a detailed analysis using more sophisticated statistics techniques.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -174,123 +138,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/image2.jpg" class="img-fluid"></p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="motivation" class="level3">
-<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
-<p>The analysis aims to investigate the relationship between demographic factors (e.g., race, ethnicity) and pollution burden in California’s census tracts. Understanding these relationships is essential for targeting environmental policies that mitigate pollution’s impact on vulnerable communities. By examining how demographic characteristics influence the pollution burden, we can highlight areas that may need focused intervention to reduce environmental inequities.</p>
-</section>
-<section id="key-questions" class="level3">
-<h3 class="anchored" data-anchor-id="key-questions">Key Questions</h3>
-<p>We are particularly interested in understanding how the proportion of Hispanic, African American, and Asian American populations within census tracts correlates with the pollution burden score. Specifically, we seek to answer the following questions:</p>
-<ul>
-<li><p>How does the percentage of each racial/ethnic group (Hispanic, African American, Asian American, etc.) correlate with the pollution burden score in California census tracts?</p></li>
-<li><p>Are certain demographic groups more likely to live in high-pollution areas?</p></li>
-</ul>
-<p>To explore these questions, we present visualizations and statistical models that analyze these relationships. The following figures and tables will provide insights into the distribution of demographic groups, the extent of pollution in different counties, and the impact of racial composition on pollution levels.</p>
-</section>
-</section>
-<section id="data-overview-and-inital-exploration" class="level2">
-<h2 class="anchored" data-anchor-id="data-overview-and-inital-exploration">Data Overview and Inital Exploration</h2>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
-<p>For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.</p>
+<p>We compare backward selection and forward model BIC based on AIC to end up with our full model. For detailed analysis on variable selection <a href="var_select.html">click here</a></p>
+<section id="backward-selection" class="level3">
+<h3 class="anchored" data-anchor-id="backward-selection">Backward Selection</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Pollution vs.&nbsp;Race</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Top 10 Most Polluted Counties</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="modeling-and-inference" class="level2">
-<h2 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h2>
-<section id="full-model" class="level3">
-<h3 class="anchored" data-anchor-id="full-model">Full Model</h3>
-<p>We begin with a linear model that includes all predictors without transformation.</p>
-<section id="residual-diagnostics" class="level4">
-<h4 class="anchored" data-anchor-id="residual-diagnostics">Residual Diagnostics</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>These plots indicate non-normal residuals and possible heteroscedasticity, suggesting that transformation may improve model fit.</p>
-</section>
-</section>
-<section id="log-model" class="level3">
-<h3 class="anchored" data-anchor-id="log-model">Log Model</h3>
-<p>For full details of the modeling process of a log transformation on the Pollution Burden variable, <a href="log_transformation.html">click here</a>.</p>
-<p>Through this transformation, some improvement is seen, but the residual patterns still suggest potential nonlinearity in predictors.</p>
-</section>
-<section id="log-log-model" class="level3">
-<h3 class="anchored" data-anchor-id="log-log-model">Log-Log Model</h3>
-<p>We apply a log transformation to both the response and log-safe numeric predictors.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="cdzgaazlkv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cdzgaazlkv table {
+<div id="zjgoiifywa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zjgoiifywa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cdzgaazlkv thead, #cdzgaazlkv tbody, #cdzgaazlkv tfoot, #cdzgaazlkv tr, #cdzgaazlkv td, #cdzgaazlkv th {
+#zjgoiifywa thead, #zjgoiifywa tbody, #zjgoiifywa tfoot, #zjgoiifywa tr, #zjgoiifywa td, #zjgoiifywa th {
   border-style: none;
 }
 
-#cdzgaazlkv p {
+#zjgoiifywa p {
   margin: 0;
   padding: 0;
 }
 
-#cdzgaazlkv .gt_table {
+#zjgoiifywa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -316,12 +185,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_caption {
+#zjgoiifywa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cdzgaazlkv .gt_title {
+#zjgoiifywa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -333,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#cdzgaazlkv .gt_subtitle {
+#zjgoiifywa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -345,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#cdzgaazlkv .gt_heading {
+#zjgoiifywa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -357,13 +226,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_bottom_border {
+#zjgoiifywa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_col_headings {
+#zjgoiifywa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_col_heading {
+#zjgoiifywa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -398,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer {
+#zjgoiifywa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -410,15 +279,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer:first-child {
+#zjgoiifywa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cdzgaazlkv .gt_column_spanner_outer:last-child {
+#zjgoiifywa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cdzgaazlkv .gt_column_spanner {
+#zjgoiifywa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -430,11 +299,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#cdzgaazlkv .gt_spanner_row {
+#zjgoiifywa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cdzgaazlkv .gt_group_heading {
+#zjgoiifywa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -460,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#cdzgaazlkv .gt_empty_group_heading {
+#zjgoiifywa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -475,15 +344,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#cdzgaazlkv .gt_from_md > :first-child {
+#zjgoiifywa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cdzgaazlkv .gt_from_md > :last-child {
+#zjgoiifywa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cdzgaazlkv .gt_row {
+#zjgoiifywa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -502,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cdzgaazlkv .gt_stub {
+#zjgoiifywa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -515,7 +384,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_stub_row_group {
+#zjgoiifywa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,15 +398,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#cdzgaazlkv .gt_row_group_first td {
+#zjgoiifywa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_row_group_first th {
+#zjgoiifywa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_summary_row {
+#zjgoiifywa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -547,16 +416,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_first_summary_row {
+#zjgoiifywa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_first_summary_row.thick {
+#zjgoiifywa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cdzgaazlkv .gt_last_summary_row {
+#zjgoiifywa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -566,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_grand_summary_row {
+#zjgoiifywa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -576,7 +445,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_first_grand_summary_row {
+#zjgoiifywa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +455,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_last_grand_summary_row_top {
+#zjgoiifywa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -596,11 +465,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_striped {
+#zjgoiifywa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cdzgaazlkv .gt_table_body {
+#zjgoiifywa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -609,7 +478,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_footnotes {
+#zjgoiifywa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -623,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_footnote {
+#zjgoiifywa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -632,7 +501,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_sourcenotes {
+#zjgoiifywa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -646,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cdzgaazlkv .gt_sourcenote {
+#zjgoiifywa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -654,72 +523,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cdzgaazlkv .gt_left {
+#zjgoiifywa .gt_left {
   text-align: left;
 }
 
-#cdzgaazlkv .gt_center {
+#zjgoiifywa .gt_center {
   text-align: center;
 }
 
-#cdzgaazlkv .gt_right {
+#zjgoiifywa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cdzgaazlkv .gt_font_normal {
+#zjgoiifywa .gt_font_normal {
   font-weight: normal;
 }
 
-#cdzgaazlkv .gt_font_bold {
+#zjgoiifywa .gt_font_bold {
   font-weight: bold;
 }
 
-#cdzgaazlkv .gt_font_italic {
+#zjgoiifywa .gt_font_italic {
   font-style: italic;
 }
 
-#cdzgaazlkv .gt_super {
+#zjgoiifywa .gt_super {
   font-size: 65%;
 }
 
-#cdzgaazlkv .gt_footnote_marks {
+#zjgoiifywa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cdzgaazlkv .gt_asterisk {
+#zjgoiifywa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cdzgaazlkv .gt_indent_1 {
+#zjgoiifywa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cdzgaazlkv .gt_indent_2 {
+#zjgoiifywa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cdzgaazlkv .gt_indent_3 {
+#zjgoiifywa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cdzgaazlkv .gt_indent_4 {
+#zjgoiifywa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cdzgaazlkv .gt_indent_5 {
+#zjgoiifywa .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cdzgaazlkv .katex-display {
+#zjgoiifywa .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cdzgaazlkv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zjgoiifywa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -727,7 +596,7 @@ ul.task-list li input[type="checkbox"] {
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_heading">
-<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Statistical Performance</th>
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Statistical Performance: Backward Model</th>
 </tr>
 <tr class="odd gt_col_headings">
 <th id="r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r.squared</th>
@@ -742,14 +611,14 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="r.squared">1.0000</td>
-<td class="gt_row gt_right" headers="adj.r.squared">1.0000</td>
-<td class="gt_row gt_right" headers="sigma">0.0006</td>
-<td class="gt_row gt_right" headers="statistic">2,323,930.4996</td>
+<td class="gt_row gt_right" headers="r.squared">0.8600</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.8597</td>
+<td class="gt_row gt_right" headers="sigma">0.0213</td>
+<td class="gt_row gt_right" headers="statistic">3,518.1434</td>
 <td class="gt_row gt_right" headers="p.value">0.0000</td>
-<td class="gt_row gt_right" headers="df">826.0000</td>
-<td class="gt_row gt_right" headers="AIC">−91,476.0497</td>
-<td class="gt_row gt_right" headers="BIC">−85,713.2077</td>
+<td class="gt_row gt_right" headers="df">14.0000</td>
+<td class="gt_row gt_right" headers="AIC">−39,055.0175</td>
+<td class="gt_row gt_right" headers="BIC">−38,943.1525</td>
 </tr>
 </tbody>
 </table>
@@ -757,43 +626,28 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="residual-diagnostics-1" class="level4">
-<h4 class="anchored" data-anchor-id="residual-diagnostics-1">Residual Diagnostics</h4>
+</section>
+<section id="forward-model-bic-selection" class="level3">
+<h3 class="anchored" data-anchor-id="forward-model-bic-selection">Forward Model BIC Selection</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The log-log model displays better residual behavior and improved normality, supporting its use moving forward.</p>
-</section>
-</section>
-<section id="multicollinearity-check" class="level3">
-<h3 class="anchored" data-anchor-id="multicollinearity-check">Multicollinearity Check</h3>
-<p>We assess multicollinearity among predictors using Variance Inflation Factors (VIF). For further details on our analysis, <a href="VIF.html">click here</a></p>
-<p>Through the analysis, we found Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. Variables with high VIFs were removed, and we reapplied the log-log transformation on the model. With this, our statistics of our model results with:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="kqhprbqrmp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kqhprbqrmp table {
+<div id="csfobjvwac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#csfobjvwac table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kqhprbqrmp thead, #kqhprbqrmp tbody, #kqhprbqrmp tfoot, #kqhprbqrmp tr, #kqhprbqrmp td, #kqhprbqrmp th {
+#csfobjvwac thead, #csfobjvwac tbody, #csfobjvwac tfoot, #csfobjvwac tr, #csfobjvwac td, #csfobjvwac th {
   border-style: none;
 }
 
-#kqhprbqrmp p {
+#csfobjvwac p {
   margin: 0;
   padding: 0;
 }
 
-#kqhprbqrmp .gt_table {
+#csfobjvwac .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -819,12 +673,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_caption {
+#csfobjvwac .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kqhprbqrmp .gt_title {
+#csfobjvwac .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -836,7 +690,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#kqhprbqrmp .gt_subtitle {
+#csfobjvwac .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -848,7 +702,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#kqhprbqrmp .gt_heading {
+#csfobjvwac .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -860,13 +714,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_bottom_border {
+#csfobjvwac .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_col_headings {
+#csfobjvwac .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +735,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_col_heading {
+#csfobjvwac .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,7 +755,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer {
+#csfobjvwac .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,15 +767,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer:first-child {
+#csfobjvwac .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kqhprbqrmp .gt_column_spanner_outer:last-child {
+#csfobjvwac .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kqhprbqrmp .gt_column_spanner {
+#csfobjvwac .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -933,11 +787,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#kqhprbqrmp .gt_spanner_row {
+#csfobjvwac .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kqhprbqrmp .gt_group_heading {
+#csfobjvwac .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,7 +817,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#kqhprbqrmp .gt_empty_group_heading {
+#csfobjvwac .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -978,15 +832,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#kqhprbqrmp .gt_from_md > :first-child {
+#csfobjvwac .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kqhprbqrmp .gt_from_md > :last-child {
+#csfobjvwac .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kqhprbqrmp .gt_row {
+#csfobjvwac .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1005,7 +859,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kqhprbqrmp .gt_stub {
+#csfobjvwac .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1018,7 +872,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_stub_row_group {
+#csfobjvwac .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1032,15 +886,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#kqhprbqrmp .gt_row_group_first td {
+#csfobjvwac .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_row_group_first th {
+#csfobjvwac .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_summary_row {
+#csfobjvwac .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1050,16 +904,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_first_summary_row {
+#csfobjvwac .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_first_summary_row.thick {
+#csfobjvwac .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kqhprbqrmp .gt_last_summary_row {
+#csfobjvwac .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1069,7 +923,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_grand_summary_row {
+#csfobjvwac .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1079,7 +933,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_first_grand_summary_row {
+#csfobjvwac .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1089,7 +943,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_last_grand_summary_row_top {
+#csfobjvwac .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1099,11 +953,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_striped {
+#csfobjvwac .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kqhprbqrmp .gt_table_body {
+#csfobjvwac .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1112,7 +966,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_footnotes {
+#csfobjvwac .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1126,7 +980,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_footnote {
+#csfobjvwac .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1135,7 +989,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_sourcenotes {
+#csfobjvwac .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1149,7 +1003,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kqhprbqrmp .gt_sourcenote {
+#csfobjvwac .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1157,72 +1011,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kqhprbqrmp .gt_left {
+#csfobjvwac .gt_left {
   text-align: left;
 }
 
-#kqhprbqrmp .gt_center {
+#csfobjvwac .gt_center {
   text-align: center;
 }
 
-#kqhprbqrmp .gt_right {
+#csfobjvwac .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kqhprbqrmp .gt_font_normal {
+#csfobjvwac .gt_font_normal {
   font-weight: normal;
 }
 
-#kqhprbqrmp .gt_font_bold {
+#csfobjvwac .gt_font_bold {
   font-weight: bold;
 }
 
-#kqhprbqrmp .gt_font_italic {
+#csfobjvwac .gt_font_italic {
   font-style: italic;
 }
 
-#kqhprbqrmp .gt_super {
+#csfobjvwac .gt_super {
   font-size: 65%;
 }
 
-#kqhprbqrmp .gt_footnote_marks {
+#csfobjvwac .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kqhprbqrmp .gt_asterisk {
+#csfobjvwac .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kqhprbqrmp .gt_indent_1 {
+#csfobjvwac .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kqhprbqrmp .gt_indent_2 {
+#csfobjvwac .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kqhprbqrmp .gt_indent_3 {
+#csfobjvwac .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kqhprbqrmp .gt_indent_4 {
+#csfobjvwac .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kqhprbqrmp .gt_indent_5 {
+#csfobjvwac .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kqhprbqrmp .katex-display {
+#csfobjvwac .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kqhprbqrmp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#csfobjvwac div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1230,7 +1084,7 @@ ul.task-list li input[type="checkbox"] {
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_heading">
-<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Statistical Performance</th>
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Statistical Performance: Forward Model (BIC)</th>
 </tr>
 <tr class="odd gt_col_headings">
 <th id="r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r.squared</th>
@@ -1260,662 +1114,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-<section id="variable-selection" class="level3">
-<h3 class="anchored" data-anchor-id="variable-selection">Variable Selection</h3>
-<p>We compare backward selection and forward model BIC based on AIC to end up with our full model. For detailed analysis on variable selection <a href="var_select.html">click here</a></p>
-<p><em>Conclusion</em>:</p>
-<p>We select the <strong>Backward model</strong> as the final model. It provides equivalent explanatory performance with fewer predictors and a better BIC, striking an optimal balance between model complexity and goodness of fit.</p>
-</section>
-<section id="final-model-summary" class="level3">
-<h3 class="anchored" data-anchor-id="final-model-summary">Final Model Summary</h3>
-<p>Our final model includes key environmental and demographic factors, along with county fixed effects:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="vvluyinkbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvluyinkbx table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#vvluyinkbx thead, #vvluyinkbx tbody, #vvluyinkbx tfoot, #vvluyinkbx tr, #vvluyinkbx td, #vvluyinkbx th {
-  border-style: none;
-}
-
-#vvluyinkbx p {
-  margin: 0;
-  padding: 0;
-}
-
-#vvluyinkbx .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#vvluyinkbx .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#vvluyinkbx .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#vvluyinkbx .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#vvluyinkbx .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#vvluyinkbx .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#vvluyinkbx .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#vvluyinkbx .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#vvluyinkbx .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#vvluyinkbx .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#vvluyinkbx .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#vvluyinkbx .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#vvluyinkbx .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#vvluyinkbx .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#vvluyinkbx .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#vvluyinkbx .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#vvluyinkbx .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#vvluyinkbx .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#vvluyinkbx .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#vvluyinkbx .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#vvluyinkbx .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#vvluyinkbx .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#vvluyinkbx .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#vvluyinkbx .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#vvluyinkbx .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#vvluyinkbx .gt_left {
-  text-align: left;
-}
-
-#vvluyinkbx .gt_center {
-  text-align: center;
-}
-
-#vvluyinkbx .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#vvluyinkbx .gt_font_normal {
-  font-weight: normal;
-}
-
-#vvluyinkbx .gt_font_bold {
-  font-weight: bold;
-}
-
-#vvluyinkbx .gt_font_italic {
-  font-style: italic;
-}
-
-#vvluyinkbx .gt_super {
-  font-size: 65%;
-}
-
-#vvluyinkbx .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#vvluyinkbx .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#vvluyinkbx .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#vvluyinkbx .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#vvluyinkbx .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#vvluyinkbx .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#vvluyinkbx .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#vvluyinkbx .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#vvluyinkbx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_heading">
-<th colspan="7" class="gt_heading gt_title gt_font_normal">Backward Model Coefficients</th>
-</tr>
-<tr class="odd gt_heading">
-<th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Estimates with 95% Confidence Intervals</th>
-</tr>
-<tr class="header gt_col_headings">
-<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
-<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
-<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
-<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
-<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
-<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.low</th>
-<th id="conf.high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.high</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">Intercept</td>
-<td class="gt_row gt_right" headers="estimate">2.675</td>
-<td class="gt_row gt_right" headers="std.error">0.036</td>
-<td class="gt_row gt_right" headers="statistic">74.803</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">2.605</td>
-<td class="gt_row gt_right" headers="conf.high">2.745</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">Ozone</td>
-<td class="gt_row gt_right" headers="estimate">2.319</td>
-<td class="gt_row gt_right" headers="std.error">0.061</td>
-<td class="gt_row gt_right" headers="statistic">38.165</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">2.199</td>
-<td class="gt_row gt_right" headers="conf.high">2.438</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`Diesel PM`</td>
-<td class="gt_row gt_right" headers="estimate">0.159</td>
-<td class="gt_row gt_right" headers="std.error">0.002</td>
-<td class="gt_row gt_right" headers="statistic">64.709</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">0.154</td>
-<td class="gt_row gt_right" headers="conf.high">0.164</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">Traffic</td>
-<td class="gt_row gt_right" headers="estimate">−0.001</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">−1.427</td>
-<td class="gt_row gt_right" headers="p.value">0.154</td>
-<td class="gt_row gt_right" headers="conf.low">−0.003</td>
-<td class="gt_row gt_right" headers="conf.high">0.000</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`Cleanup Sites`</td>
-<td class="gt_row gt_right" headers="estimate">0.011</td>
-<td class="gt_row gt_right" headers="std.error">0.000</td>
-<td class="gt_row gt_right" headers="statistic">37.369</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">0.010</td>
-<td class="gt_row gt_right" headers="conf.high">0.011</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">`Haz. Waste`</td>
-<td class="gt_row gt_right" headers="estimate">0.030</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">39.598</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">0.029</td>
-<td class="gt_row gt_right" headers="conf.high">0.032</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`Solid Waste`</td>
-<td class="gt_row gt_right" headers="estimate">0.019</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">32.375</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">0.018</td>
-<td class="gt_row gt_right" headers="conf.high">0.020</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">Asthma</td>
-<td class="gt_row gt_right" headers="estimate">−0.032</td>
-<td class="gt_row gt_right" headers="std.error">0.002</td>
-<td class="gt_row gt_right" headers="statistic">−14.390</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.036</td>
-<td class="gt_row gt_right" headers="conf.high">−0.027</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`Cardiovascular Disease`</td>
-<td class="gt_row gt_right" headers="estimate">−0.027</td>
-<td class="gt_row gt_right" headers="std.error">0.003</td>
-<td class="gt_row gt_right" headers="statistic">−8.795</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.032</td>
-<td class="gt_row gt_right" headers="conf.high">−0.021</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">`Children &lt; 10 years (%)`</td>
-<td class="gt_row gt_right" headers="estimate">−0.031</td>
-<td class="gt_row gt_right" headers="std.error">0.002</td>
-<td class="gt_row gt_right" headers="statistic">−16.300</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.034</td>
-<td class="gt_row gt_right" headers="conf.high">−0.027</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`Elderly &gt; 64 years (%)`</td>
-<td class="gt_row gt_right" headers="estimate">−0.007</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">−6.333</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.010</td>
-<td class="gt_row gt_right" headers="conf.high">−0.005</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">`Hispanic (%)`</td>
-<td class="gt_row gt_right" headers="estimate">−0.071</td>
-<td class="gt_row gt_right" headers="std.error">0.005</td>
-<td class="gt_row gt_right" headers="statistic">−13.261</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.081</td>
-<td class="gt_row gt_right" headers="conf.high">−0.060</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`African American (%)`</td>
-<td class="gt_row gt_right" headers="estimate">−0.018</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">−33.186</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.019</td>
-<td class="gt_row gt_right" headers="conf.high">−0.017</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">`Asian American (%)`</td>
-<td class="gt_row gt_right" headers="estimate">0.006</td>
-<td class="gt_row gt_right" headers="std.error">0.000</td>
-<td class="gt_row gt_right" headers="statistic">12.477</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">0.005</td>
-<td class="gt_row gt_right" headers="conf.high">0.007</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">`White (%)`</td>
-<td class="gt_row gt_right" headers="estimate">−0.020</td>
-<td class="gt_row gt_right" headers="std.error">0.001</td>
-<td class="gt_row gt_right" headers="statistic">−36.724</td>
-<td class="gt_row gt_right" headers="p.value">0.000</td>
-<td class="gt_row gt_right" headers="conf.low">−0.021</td>
-<td class="gt_row gt_right" headers="conf.high">−0.019</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>This model strikes a balance between interpretability and predictive power, with improved residual diagnostics and lower AIC compared to the full model.</p>
-</section>
-<section id="interpretation-of-final-model-and-implications-for-demographic-disparities" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation-of-final-model-and-implications-for-demographic-disparities">Interpretation of Final Model and Implications for Demographic Disparities</h3>
-<p>Our final model, selected through backward elimination, reveals key insights into how demographic and environmental variables relate to pollution burden in California’s census tracts.</p>
-</section>
-</section>
-<section id="key-demographic-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-demographic-findings">Key Demographic Findings</h2>
-<p>Several racial and ethnic group percentages are statistically significant predictors of <strong>Pollution Burden Score</strong> (log-transformed). The interpretation below assumes <strong>all predictors are also log-transformed</strong> unless otherwise noted.</p>
-<ul>
-<li><p><strong>Hispanic (%)</strong>: A 1% increase in the Hispanic population share is associated with an estimated <strong>7.1% decrease in the Pollution Burden Score</strong>, holding other factors constant (<em>β = -0.071, p &lt; 0.001</em>). This negative association is statistically significant and substantial, suggesting that tracts with larger Hispanic populations tend to experience higher pollution burdens.</p></li>
-<li><p><strong>African American (%)</strong>: A 1% increase in African American population share corresponds to a <strong>1.8% decrease in the Pollution Burden Score</strong> (<em>β = -0.018, p &lt; 0.001</em>), indicating a consistent and significant relationship. This further supports the presence of racial disparities in pollution exposure.</p></li>
-<li><p><strong>Asian American (%)</strong>: Interestingly, the percentage of Asian American residents shows a <strong>positive association</strong> (<em>β = 0.006, p &lt; 0.001</em>), meaning that census tracts with higher Asian American populations tend to have <strong>slightly lower</strong> pollution burden scores.</p></li>
-<li><p><strong>White (%)</strong>: The percentage of White residents has a strong <strong>negative coefficient</strong> (<em>β = -0.020, p &lt; 0.001</em>), which suggests that higher White population share is linked to <strong>lower pollution burdens</strong>, consistent with patterns of environmental advantage.</p></li>
-</ul>
-</section>
-<section id="addressing-the-key-questions" class="level2">
-<h2 class="anchored" data-anchor-id="addressing-the-key-questions">Addressing the Key Questions</h2>
-<ul>
-<li><p>Do demographic groups correlate with pollution burden?</p>
-<p>Yes. The model identifies statistically significant associations between racial/ethnic composition and pollution burden, even after controlling for environmental and health-related predictors. The strongest associations appear for Hispanic and African American populations, both of which are negatively associated with the Pollution Burden Score—indicating <strong>greater exposure to pollution</strong> in these communities.</p></li>
-<li><p>Are some groups more likely to live in polluted areas?</p>
-<p>Based on the signs and magnitudes of the coefficients, <strong>Hispanic and African American populations are more likely to reside in areas with higher pollution burden</strong>, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.</p></li>
-</ul>
+<p>Both the <strong>Forward (BIC)</strong> and <strong>Backward</strong> models yield nearly identical statistical performance, with the same R² (0.8600) and adjusted R² (0.8597), as well as nearly identical residual standard error (σ = 0.0213). However, the <strong>Backward model</strong> shows a <strong>higher F-statistic</strong> (3518 vs.&nbsp;3078), indicating stronger overall explanatory power.</p>
+<p>More importantly, the <strong>Backward model has a slightly lower BIC (-38,943.15 vs.&nbsp;-38,926.68)</strong> and uses <strong>fewer predictors (14 vs.&nbsp;16)</strong>, which makes it <strong>more parsimonious</strong> while maintaining the same predictive accuracy.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This model supports the hypothesis that environmental burdens are unevenly distributed across racial and ethnic lines in California. Our analysis provides statistical evidence that Hispanic and African American communities are disproportionately affected by pollution. These findings underscore the importance of including demographic equity considerations in environmental policy and urban planning decisions.</p>
-</section>
-<section id="limitations-and-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h2>
-<p>As with any linear regression analysis, our model relies on several assumptions: linearity between predictors and response, homoscedasticity (constant variance), independence of observations, and normality of residuals. While the log-log transformation improved residual behavior, some mild skewness and heteroscedasticity may remain. Furthermore, multicollinearity among demographic variables was mitigated but not eliminated entirely.</p>
-<p>Additionally, this analysis does not account for potential spatial correlation between neighboring tracts or time-varying pollution dynamics. Including temporal or spatial random effects, or using generalized additive models, could improve the robustness of our findings. Incorporating socioeconomic indicators such as income, education, and housing density would also enhance our understanding of environmental inequity.</p>
+<p>We select the <strong>Backward model</strong> as the final model. It provides equivalent explanatory performance with fewer predictors and a better BIC, striking an optimal balance between model complexity and goodness of fit.</p>
+<p><a href="analysis.html">Back</a></p>
 
 
 </section>

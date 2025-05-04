@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hannah, Rachel, Thao, Wenbo, Cuichen">
-<meta name="dcterms.date" content="2025-03-02">
-<meta name="description" content="blog post 1">
 
-<title>Blog Post 1 – Data Warriors MA [46]15 Final Project</title>
+<title>Log Transformation Process – Data Warriors MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,17 +68,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Data Warriors MA [46]15 Final Project</span>
     </a>
   </div>
@@ -92,19 +89,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../big_picture.html"> 
+    <a class="nav-link" href="./big_picture.html"> 
 <span class="menu-text">Toxic Truths: What the Data Says About What We Breathe</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../analysis.html"> 
+    <a class="nav-link" href="./analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../data.html"> 
+    <a class="nav-link" href="./data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
 </ul>
@@ -115,72 +112,544 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 1</h1>
-                  <div>
-        <div class="description">
-          <p>blog post 1</p>
-        </div>
-      </div>
-                </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Hannah, Rachel, Thao, Wenbo, Cuichen </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">March 2, 2025</p>
-      </div>
-    </div>
-    
-      <div>
-      <div class="quarto-title-meta-heading">Modified</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 2, 2025</p>
-      </div>
-    </div>
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Log Transformation Process</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="dataset-1" class="level1">
-<h1>Dataset 1</h1>
-<p>Link to Data Description: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4/about_data</p>
-<p>The New York City Department of Investigation updates a dataset daily on pending, scheduled and executed evictions within the five boroughs from the year 2017 to the present. The data is compiled from the majority of New York City Marshals, who are independent public officials. The dataset has 104,860 rows that each represent a pending, scheduled, or executed eviction. It also has 20 columns, which iIncludes attributes, such as Court Index Number, Docket Number, Eviction Address, Apartment Number, Executed Date, Marshal First Name, Marshal Last Name, Residential or Commercial (property type), Borough, Zip Code and Scheduled Status (Pending/Scheduled). We will be able to download the data as a csv file from the NYC Open Data website and potentially explore questions, such as the relationship between NYC housing eviction rate and neighborhood, what neighborhoods are more often subject to evictions, and if there any patterns between the ethnic makeup of the neighborhood with the number of evictions. It may be a challenge to make connections to racial disparities because the dataset itself does not have racial demographic data and this would have to be sourced based on the zip codes of where the evictions are taking place.</p>
+</header>
+
+
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>To address issues of <strong>non-constant variance</strong> (heteroscedasticity) and <strong>right-skewed distribution</strong> in the response variable, we apply a <strong>log transformation</strong> to the <em>Pollution Burden Score</em>. This often stabilizes variance and makes the data more amenable to linear modeling.</p>
 </section>
-<section id="dataset-2" class="level1">
-<h1>Dataset 2</h1>
-<p>Link to Data Description: https://drive.google.com/file/d/1QRubjBCrkqe61iDkxFg7P_Lc1SkR2PhL/view?usp=sharing</p>
-<p>The California Office of Environmental Health Hazard Assessment (OEHHA) developed a dataset with 8,035 census tracts and 58 columns to identify communities most burdened by pollution and vulnerable populations. It integrates environmental indicators (e.g., air pollution, drinking water contamination) and population characteristics (e.g., poverty, asthma rates, linguistic isolation) to guide environmental justice policies. Key research questions include whether communities with higher racial/ethnic minority populations face greater air pollution exposure and if specific racial/ethnic groups experience multiple pollution burdens disproportionately. A potential challenge is that the dataset only covers California, limiting generalizability to the U.S. Additionally, the racial/ethnic data is in a separate sheet, requiring a join on the Census Tract column for analysis. The data has been successfully loaded and is ready for cleaning.</p>
+<section id="log-transformed-model" class="level2">
+<h2 class="anchored" data-anchor-id="log-transformed-model">Log-Transformed Model</h2>
+<p>We fit a linear regression model using the log-transformed response variable:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="wjqyupfaxr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wjqyupfaxr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wjqyupfaxr thead, #wjqyupfaxr tbody, #wjqyupfaxr tfoot, #wjqyupfaxr tr, #wjqyupfaxr td, #wjqyupfaxr th {
+  border-style: none;
+}
+
+#wjqyupfaxr p {
+  margin: 0;
+  padding: 0;
+}
+
+#wjqyupfaxr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wjqyupfaxr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wjqyupfaxr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wjqyupfaxr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wjqyupfaxr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wjqyupfaxr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wjqyupfaxr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wjqyupfaxr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wjqyupfaxr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wjqyupfaxr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wjqyupfaxr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wjqyupfaxr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wjqyupfaxr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wjqyupfaxr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wjqyupfaxr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wjqyupfaxr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wjqyupfaxr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wjqyupfaxr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wjqyupfaxr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wjqyupfaxr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wjqyupfaxr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wjqyupfaxr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wjqyupfaxr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wjqyupfaxr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wjqyupfaxr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wjqyupfaxr .gt_left {
+  text-align: left;
+}
+
+#wjqyupfaxr .gt_center {
+  text-align: center;
+}
+
+#wjqyupfaxr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wjqyupfaxr .gt_font_normal {
+  font-weight: normal;
+}
+
+#wjqyupfaxr .gt_font_bold {
+  font-weight: bold;
+}
+
+#wjqyupfaxr .gt_font_italic {
+  font-style: italic;
+}
+
+#wjqyupfaxr .gt_super {
+  font-size: 65%;
+}
+
+#wjqyupfaxr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wjqyupfaxr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wjqyupfaxr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wjqyupfaxr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wjqyupfaxr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wjqyupfaxr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wjqyupfaxr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wjqyupfaxr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wjqyupfaxr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Statistical Performance of Log Model</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r.squared</th>
+<th id="adj.r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">adj.r.squared</th>
+<th id="sigma" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sigma</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+<th id="df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">df</th>
+<th id="AIC" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">AIC</th>
+<th id="BIC" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">BIC</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="r.squared">0.9823</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.9802</td>
+<td class="gt_row gt_right" headers="sigma">0.0452</td>
+<td class="gt_row gt_right" headers="statistic">466.3935</td>
+<td class="gt_row gt_right" headers="p.value">0.0000</td>
+<td class="gt_row gt_right" headers="df">826.0000</td>
+<td class="gt_row gt_right" headers="AIC">−25,335.9035</td>
+<td class="gt_row gt_right" headers="BIC">−19,573.0615</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="statistical-performance-of-log-model" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-performance-of-log-model">Statistical Performance of Log Model</h3>
+<p>The log-transformed model yielded an R-squared of 0.9823, indicating that over 98% of the variance in Pollution Burden Score is explained by the model. The adjusted R-squared of 0.9802 confirms that this strong performance persists even after accounting for the number of predictors. The F-statistic is large (466.39) with a p-value near zero, confirming the model is statistically significant overall.</p>
 </section>
-<section id="dataset-3" class="level1">
-<h1>Dataset 3</h1>
-<p>Link to Data Description: https://catalog.data.gov/dataset/rates-and-trends-in-hypertension-related-cardiovascular-disease-mortality-among-us-ad-2000-2fdf2</p>
-<p>This dataset documents rates and trends in local hypertension-related cardiovascular disease (CVD) death rates. The dataset contains 1103872 rows and 24 columns, including information on county (or county equivalent) estimates of hypertension-related CVD death rates in 2000-2019 and trends during two intervals (2000-2010, 2010-2019) by age group (ages 35–64 years, ages 65 years and older), race/ethnicity (non-Hispanic American Indian/Alaska Native, non-Hispanic Asian/Pacific Islander, non-Hispanic Black, Hispanic, non-Hispanic White), and sex (female, male). The rates and trends were estimated using a Bayesian spatiotemporal model and a smoothed over space, time, and demographic group. Rates are age-standardized in 10-year age groups using the 2010 US population.</p>
+<section id="residual-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="residual-diagnostics">Residual Diagnostics</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="log_transformation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Despite this strong performance, residual diagnostics revealed patterns suggesting nonlinearity among predictors, and some predictors exhibited skewness or non-constant variance of their own. This prompted us to apply log transformations to both the response and predictors, resulting in a log-log model. The goal was to further improve linearity, stabilize variance across all variables, and enhance model interpretability in terms of percentage change relationships.</p>
+<p><a href="analysis.html">Back</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
