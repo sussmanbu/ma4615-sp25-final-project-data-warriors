@@ -58,6 +58,7 @@ ggplot(data, aes(x = `Pollution Burden Score`, y = `Asthma`)) +
        x = "Pollution Burden Score",
        y = "Asthma Rate")
 ```
+This scatterplot shows a slight upward trend between Pollution Burden Score and asthma rates across California census tracts. While there is substantial variability in asthma rates, particularly at higher pollution levels, the fitted regression line suggests a positive association—tracts with higher pollution burdens tend to report higher asthma rates on average. This supports the hypothesis that environmental pollution may contribute to adverse health outcomes, such as respiratory conditions.
 
 ## Statistical Modeling
 

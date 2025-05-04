@@ -95,7 +95,7 @@ coef_plot <- ggplot(data.frame(
 
 print(coef_plot)
 ```
-For more exploratory analysis through visualization, check out Blog Post 4
+For more exploratory analysis through visualization, check out Blog Post 4.
 
 
 ## Modeling and Inference
