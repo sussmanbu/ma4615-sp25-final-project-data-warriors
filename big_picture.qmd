@@ -1,6 +1,6 @@
 ---
 title: "Toxic Truths: What the Data Says About What We Breathe"
-description: "A 538/Upshot style article about the data."
+description: "An interactive look at pollution and racial disparities in California."
 toc: true
 draft: FALSE
 filters:
@@ -9,129 +9,80 @@ filters:
 
 ![](images/lungs.jpg)
 
-This comes from the file `big_picture.qmd`.
+# Toxic Truths: What the Data Says About What We Breathe
 
-Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
+Air pollution isn’t just about hazy skies or highway smog—it’s about **who bears the health burden**. In California, a state often praised for its environmental standards, our analysis reveals a deeper, more troubling reality: **pollution isn’t distributed equally**, and race plays a powerful role in who’s exposed.
 
+## Pollution Has a Pattern
 
+We analyzed data across thousands of California census tracts, looking not only at environmental hazards—like diesel emissions, hazardous waste sites, and fine particulate matter (PM2.5)—but also at the people who live in those communities.
 
----
+The trend is unmistakable: **neighborhoods with larger Hispanic and African American populations tend to face significantly higher pollution burden scores**. These aren't just statistical quirks—they’re reflections of decades of zoning, housing policy, and infrastructure development that placed marginalized communities closer to environmental harm.
 
+Even after controlling for other factors, the disparities hold. It’s a pattern many environmental justice advocates have long warned about. Now the data confirms it.
 
-### Interactive
+## Explore It Yourself
 
-Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
+Curious how your county compares? Use the interactive tool below to explore the relationship between pollution burden and demographic makeup. Pick a county and a group—Hispanic, White, African American, and more—to see how pollution tracks with population.
 
-
-
-
-```{r}
-#| eval: false
+```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 640 # You will have to adjust this to fit everything
-
+#| viewerHeight: 500
 
 library(shiny)
 library(tidyverse)
-options("readr.edition" = 1) # keep this to ensure you can download the data
 
+data <- read_rds("https://raw.githubusercontent.com/sussmanbu/ma4615-sp25-final-project-data-warriors/main/dataset_for_shiny/county_demographic.rds")
 
-# Define UI for app that draws a histogram ----
 ui <- fluidPage(
-
-  # App title ----
-  titlePanel("Hello Shiny!"),
-
-  # Sidebar layout with input and output definitions ----
-  verticalLayout(
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
-
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
-
+  titlePanel("Explore Pollution Burden by County and Demographics"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("county", "Select a County:",
+                  choices = sort(unique(data$`California County`))),
+      selectInput("demographic", "Select Demographic Group:",
+                  choices = c("Hispanic (%)", "White (%)", "African American(%)", "Asian American (%)", "Native American (%)", "Other/Multiple (%)"))
+    ),
+    mainPanel(
+      plotOutput("demoPlot")
+    )
   )
 )
 
-# Define server logic required to draw a histogram ----
 server <- function(input, output) {
-  # The URL below has to point to a dataset on your github pages website
-  # I recommend creating a small-ish rds file that has only the data relevant to 
-  # the interactive.
-  data <- read_rds("https://sussmanbu.github.io/ma4615-final-project-quarto/dataset_for_shiny/combined_regional_data.rds")
-  
-  output$distPlot <- renderPlot({
-    ggplot(data, aes(x = refusal_rate)) +
-      geom_histogram(bins = input$bins + 1)
+  output$demoPlot <- renderPlot({
+    plot_data <- data %>% filter(`California County` == input$county)
 
+    ggplot(
+      plot_data,
+      aes_string(
+        x = paste0("`", input$demographic, "`"),
+        y = "`Pollution Burden Score`"
+      )
+    ) +
+      geom_point(alpha = 0.5, color = "darkblue") +
+      geom_smooth(method = "lm", se = FALSE, color = "red") +
+      labs(
+        title = paste("Pollution vs.", input$demographic, "in", input$county),
+        x = input$demographic,
+        y = "Pollution Burden Score"
+      ) +
+      theme_minimal()
   })
-
 }
 
-# Create Shiny app ----
 shinyApp(ui = ui, server = server)
 ```
 
-To get the shinylive-r working.
- 
-1. Make sure your shiny app works as a regular r chunk.
-2. Make sure that the chunk is completely self-contained. Meaning all packages and data are loaded inside that chunk. It can't rely on any other chunks.
-3. For the data that you are using for shiny, copy the rds file or any other files into the scripts folder, and then publish your website.
-4. Where you load in your data, change it to use a URL to the data set which will now be on your website. Something like read_rds("https://sussmanbu.github.io/ma-4615-fa24-final-project-group-a/scripts/dataset_for_shiny.rds")
-5. Check that the chunk still works as a regular r chunk.
-6. Change it to a shinylive-r chunk.
-7. Commit and publish your work.
+## Why It Matters
 
-I recommend keeping the data used for the shiny interactive relatively small, though this isn't completely necessary.
+Clean air is a public good—but it hasn’t been equally shared. Communities of color, particularly Hispanic and African American residents, are more likely to live in areas with higher pollution, even after accounting for health and environmental factors.
 
----
+This isn’t just about fairness—it’s about health equity. Pollution burden is linked to higher rates of asthma, cardiovascular disease, and low birth weight. If we want a future where everyone breathes easy, we need policy that **prioritizes the communities that have been left to bear the brunt of environmental harm**.
+
+## The Bottom Line
+
+**Environmental justice isn’t just an idea—it’s measurable.** And our data shows the need for targeted solutions: stronger regulations, better urban planning, and a commitment to equity in public health. California’s air may be cleaner than most—but it’s not clean for everyone.
 
 
 
-
-## Rubric: On this page
-
-
-* Title
-  * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
-* Clarity of Explanation
-  * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
-  * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
-* Creativity
-  * Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.
-* Interactive component
-  * Quality and ease of use of the interactive components.
-Is it clear what can be explored using your interactive components?
-Does it enhance and reinforce your conclusions?
-* This page should be self-contained.
-  
-**Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
-
-
-
-
-## Rubric: Other components
-
-### Video Recording
-
-Make a video recording (probably using Zoom) demonstrating your interactive components.
-You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
-This video should be no longer than 4 minutes.
-Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
-This can be presented by any subset of the team members.
-
-
-### Rest of the Site
-
-Finally, here are important things to keep in mind for the rest of the site. 
-
-The main title of your page is informative.
-Each post has an author/description/informative title.
-All lab required posts are present.
-Each page (including the home page) has a nice featured image associated with it.
-Your about page is up to date and clean.
-You have removed the generic posts from the initial site template.

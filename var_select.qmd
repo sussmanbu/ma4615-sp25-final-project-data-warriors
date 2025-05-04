@@ -3,8 +3,6 @@ title: "Variable Selection Process"
 format: html
 ---
 
-We compare backward selection and forward model BIC based on AIC to end up with our full model. For detailed analysis on variable selection [click here](var_select.html)
-
 ### Backward Selection
 ```{r}
 #| echo: false
