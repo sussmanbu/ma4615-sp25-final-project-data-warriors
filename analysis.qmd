@@ -36,8 +36,6 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
-pollution_data <- read_rds(here::here("dataset/pollution_data.rds"))
-demographic_data <- read_rds(here::here("dataset/demographic_data.rds"))
 ```
 
 For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.
@@ -46,18 +44,82 @@ For each census tract, races that are non-white tend to have smaller population 
 #| echo: false
 #| message: false
 #| warning: false
-demo_long <- demographic_data |>
-  pivot_longer(cols = c(`Hispanic (%)`, `White (%)`, `African American (%)`, `Native American (%)`,`Asian American (%)`,`Other/Multiple (%)`),
-               names_to = "Race",
-               values_to = "Percentage")
 
-ggplot(demo_long, aes(x = Percentage)) +
-  geom_histogram(binwidth = 5) + 
-  facet_wrap(~Race, scales = "free_y") + 
-  labs(title = "Distribution of Race Percentages",
-       x = "Percentage",
-       y = "Frequency")
+# Create a new dataframe with a calculated column for percent People of Color (PoC)
+poc_column <- data |> 
+  mutate(people_of_color = `Hispanic (%)` +
+                      `African American (%)` +
+                      `Asian American (%)` +
+                      `Native American (%)` +
+                      `Other/Multiple (%)`
+  )
 ```
+As communities i
+```{r}
+ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
+  geom_point(alpha = 0.4, color = "darkred") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  labs(
+    title = "Communities with More People of Color Face More Pollution",
+    x = "Percent People of Color",
+    y = "Pollution Burden Score"
+  ) +
+  theme_minimal()
+```
+```{r}
+ggplot(poc_column, aes(x = people_of_color)) +
+  geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
+  labs(
+    title = "Most California Census Tracts Are Majority People of Color",
+    x = "Percent People of Color",
+    y = "Number of Census Tracts"
+  ) +
+  theme_minimal()
+```
+```{r}
+# Run the linear regression
+model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + `African American (%)` + 
+              `Asian American (%)` + `Native American (%)` + `Other/Multiple (%)`, `White (%)`, 
+            data = poc_column)
+```
+
+```{r}
+library(dplyr)
+library(broom)
+
+tidy_model <- tidy(model, conf.int = TRUE)|>
+  filter(term != "(Intercept)")
+```
+
+```{r}
+library(ggplot2)
+coef_plot <- ggplot(tidy_model, aes(x = estimate, y = `term`)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.2) +
+  labs(
+    title = "Demographic Predictors of Pollution Burden",
+    subtitle = "Coefficient estimates with 95% confidence intervals",
+    x = "Effect Size (Change in Pollution Score per 1% Increase)",
+    y = "Demographic Group"
+  ) +
+  theme_minimal()
+
+print(coef_plot)
+```
+
+```{r}
+ggplot(poc_column, aes(x = `African American (%)`, y = `Pollution Burden Score`)) +
+  geom_point(alpha = 0.4, color = "darkred") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  labs(
+    title = "Communities with More People of Color Face More Pollution",
+    x = "Percent of African American Population",
+    y = "Pollution Burden Score"
+  ) +
+  theme_minimal()
+```
+
 
 Pollution vs. Race
 
@@ -71,30 +133,6 @@ ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
   labs(title = "Pollution Burden vs. Hispanic")
 ```
 
-
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-coef_plot <- ggplot(data.frame(
-  term = c("Hispanic", "African American", "Asian American", 
-           "Native American", "Other/Multiple"),
-  estimate = c(0.030, 0.018, 0.013, 0.006, -0.016),
-  ci_lower = c(0.029, 0.015, 0.011, -0.007, -0.030),
-  ci_upper = c(0.031, 0.022, 0.015, 0.020, -0.002)
-), aes(x = estimate, y = term)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
-  geom_point(size = 2) +
-  geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper), height = 0.2) +
-  labs(title = "Demographic Predictors of Pollution Burden",
-       subtitle = "Coefficient estimates with 95% confidence intervals",
-       x = "Effect Size (Change in Pollution Score per 1% Increase)",
-       y = "Demographic Group") +
-  theme_minimal()
-
-print(coef_plot)
-```
 For more exploratory analysis through visualization, check out Blog Post 4.
 
 
