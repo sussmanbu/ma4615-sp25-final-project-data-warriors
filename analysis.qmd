@@ -38,7 +38,6 @@ library(ggplot2)
 data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
 ```
 
-For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.
 
 ```{r}
 #| echo: false
@@ -54,19 +53,26 @@ poc_column <- data |>
                       `Other/Multiple (%)`
   )
 ```
-As communities i
+In California, pollution burdens are not distributed equally. This chart shows that as the percentage of people of color in a census tract increases, including Hispanic, African American, Asian American, Native American, and multiracial residents, so does the pollution burden score. This pattern underscores a persistent environmental justice issue that we aim to explore further in our analysis.
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.4, color = "darkred") +
   geom_smooth(method = "lm", color = "black", se = FALSE) +
   labs(
-    title = "Communities with More People of Color Face More Pollution",
+    title = "Pollution Burden vs. Percent People of Color by Census Tract",
     x = "Percent People of Color",
     y = "Pollution Burden Score"
   ) +
   theme_minimal()
 ```
+This relationship comes as particularly concerning as the graph below shows that 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(poc_column, aes(x = people_of_color)) +
   geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
   labs(
