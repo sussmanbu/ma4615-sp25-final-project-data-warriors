@@ -54,8 +54,12 @@ poc_column <- data |>
                       `Other/Multiple (%)`
   )
 ```
+
 As communities i
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.4, color = "darkred") +
   geom_smooth(method = "lm", color = "black", se = FALSE) +
@@ -66,7 +70,11 @@ ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
   ) +
   theme_minimal()
 ```
+
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 ggplot(poc_column, aes(x = people_of_color)) +
   geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
   labs(
@@ -76,7 +84,11 @@ ggplot(poc_column, aes(x = people_of_color)) +
   ) +
   theme_minimal()
 ```
+
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
 # Run the linear regression
 model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + `African American (%)` + 
               `Asian American (%)` + `Native American (%)` + `Other/Multiple (%)`, `White (%)`, 
@@ -84,6 +96,10 @@ model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + `African American (%)` +
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
 library(dplyr)
 library(broom)
 
@@ -92,6 +108,10 @@ tidy_model <- tidy(model, conf.int = TRUE)|>
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 library(ggplot2)
 coef_plot <- ggplot(tidy_model, aes(x = estimate, y = `term`)) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
@@ -109,6 +129,10 @@ print(coef_plot)
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 ggplot(poc_column, aes(x = `African American (%)`, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.4, color = "darkred") +
   geom_smooth(method = "lm", color = "black", se = FALSE) +
