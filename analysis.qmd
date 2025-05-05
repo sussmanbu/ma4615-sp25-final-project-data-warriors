@@ -38,7 +38,6 @@ library(ggplot2)
 data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
 ```
 
-
 ```{r}
 #| echo: false
 #| message: false
@@ -53,52 +52,25 @@ poc_column <- data |>
                       `Other/Multiple (%)`
   )
 ```
-In California, pollution burdens are not distributed equally. This chart shows that as the percentage of people of color in a census tract increases, including Hispanic, African American, Asian American, Native American, and multiracial residents, so does the pollution burden score. This pattern underscores a persistent environmental justice issue that we aim to explore further in our analysis.
+
+Using a simple linear regression model, we estimated how the percentage of each racial or ethnic group within a census tract changes with the pollution burden scores. The effect sizes below represent the expected change in a tract’s Pollution Burden Score for every 1 percentage point increase in the population of each group, controlling for the others.
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
-  geom_point(alpha = 0.4, color = "darkred") +
-  geom_smooth(method = "lm", color = "black", se = FALSE) +
-  labs(
-    title = "Pollution Burden vs. Percent People of Color by Census Tract",
-    x = "Percent People of Color",
-    y = "Pollution Burden Score"
-  ) +
-  theme_minimal()
-```
-This relationship comes as particularly concerning as the graph below shows that 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-ggplot(poc_column, aes(x = people_of_color)) +
-  geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
-  labs(
-    title = "Most California Census Tracts Are Majority People of Color",
-    x = "Percent People of Color",
-    y = "Number of Census Tracts"
-  ) +
-  theme_minimal()
-```
-```{r}
+
+library(ggplot2)
+library(dplyr)
+library(broom)
+
 # Run the linear regression
 model <- lm(`Pollution Burden Score` ~ `Hispanic (%)` + `African American (%)` + 
               `Asian American (%)` + `Native American (%)` + `Other/Multiple (%)`, `White (%)`, 
             data = poc_column)
-```
-
-```{r}
-library(dplyr)
-library(broom)
 
 tidy_model <- tidy(model, conf.int = TRUE)|>
   filter(term != "(Intercept)")
-```
 
-```{r}
-library(ggplot2)
 coef_plot <- ggplot(tidy_model, aes(x = estimate, y = `term`)) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
   geom_point(size = 2) +
@@ -113,30 +85,47 @@ coef_plot <- ggplot(tidy_model, aes(x = estimate, y = `term`)) +
 
 print(coef_plot)
 ```
-
 ```{r}
-ggplot(poc_column, aes(x = `African American (%)`, y = `Pollution Burden Score`)) +
-  geom_point(alpha = 0.4, color = "darkred") +
-  geom_smooth(method = "lm", color = "black", se = FALSE) +
-  labs(
-    title = "Communities with More People of Color Face More Pollution",
-    x = "Percent of African American Population",
-    y = "Pollution Burden Score"
-  ) +
-  theme_minimal()
+tidy_model
 ```
-
-
-Pollution vs. Race
 
 ```{r}
 #| echo: false
 #| message: false
-#| warning: false
-ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
+#| warning: false 
+
+library(patchwork)
+
+african_american <- ggplot(poc_column, aes(x = `African American (%)`, y = `Pollution Burden Score`)) +
+  geom_point(alpha = 0.4, color = "darkred") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  labs(
+    title = "Pollution Burden Score by Percent African American",
+    x = "Percent of African American Population",
+    y = "Pollution Burden Score"
+  ) +
+  theme_minimal()
+
+hispanic <- ggplot(data, aes(x = `Hispanic (%)`, y = `Pollution Burden Score`)) +
   geom_point(alpha = 0.3, color = "darkgreen") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Pollution Burden vs. Hispanic")
+  labs(title = "Pollution Burden by Percent Hispanic",
+       x = "Percent of Hispanic Population",
+       y = "Pollution Burden Score")
+
+```
+While the effect size plot above suggests that a 1% increase in the African American population share is associated with a 1.9-point decrease in the Pollution Burden Score **(β = −0.019, p < 0.001)**, this finding should be interpreted with caution. The underlying distribution is highly skewed because African Americans represent a small share of the population in most California census tracts, limiting the generalizability of this result.
+
+In contrast, the model finds that changes in the Hispanic population share are not significantly associated with Pollution Burden Score. However, the scatter plot tells a different story: it suggests a clear positive relationship between the percent of Hispanic residents and pollution burden. This mismatch between the regression output and the raw data trend hints at the presence of other confounding variables or multicollinearity in the model. It also suggests that a simple linear model may not fully capture the complex ways race and pollution exposure intersect in California communities.
+```{r, fig.width=12, fig.height=5}
+#| echo: false
+#| message: false
+#| warning: false 
+library(patchwork)
+
+# Combine the plots side by side
+african_american + hispanic + 
+  plot_layout(ncol = 2, widths = c(1, 1))
 ```
 
 For more exploratory analysis through visualization, check out Blog Post 4.

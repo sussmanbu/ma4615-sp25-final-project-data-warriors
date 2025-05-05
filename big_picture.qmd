@@ -13,6 +13,71 @@ filters:
 
 Air pollution isn’t just about hazy skies or highway smog—it’s about **who bears the health burden**. In California, a state often praised for its environmental standards, our analysis reveals a deeper, more troubling reality: **pollution isn’t distributed equally**, and race plays a powerful role in who’s exposed.
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+data <- read_rds(here::here("dataset/cleaned_dataset.rds"))
+```
+
+## The Issue at a Glance
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create a new dataframe with a calculated column for percent People of Color (PoC)
+poc_column <- data |> 
+  mutate(people_of_color = `Hispanic (%)` +
+                      `African American (%)` +
+                      `Asian American (%)` +
+                      `Native American (%)` +
+                      `Other/Multiple (%)`
+  )
+```
+In California, pollution burdens are not shared equally across communities. The chart below reveals a noticeable trend: as the percentage of people of color in a census tract rises — including Hispanic, African American, Asian American, Native American, and multiracial residents — so does the pollution burden score. This pattern raises important concerns about the systemic exposure of communities of color to pollution and the associated health risks they face as a result.
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+ggplot(poc_column, aes(x = people_of_color, y = `Pollution Burden Score`)) +
+  geom_point(alpha = 0.4, color = "darkred") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  labs(
+    title = "Pollution Burden vs. Percent People of Color by Census Tract",
+    x = "Percent People of Color",
+    y = "Pollution Burden Score"
+  ) +
+  theme_minimal()
+```
+The link between higher pollution burden scores and census tracts with a larger percentage of people of color is deeply concerning. In fact, half of California’s census tracts have populations where at least 62.7% are people of color. Given California’s racial diversity, this pattern may highlight a systemic environmental injustice issue that disproportionately impacts these communities.
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Calculate the 50th percentile of Census Tracts
+p50 <- poc_column |> 
+  summarise(p50 = quantile(people_of_color, 0.50, na.rm = TRUE)) |> 
+  pull(p50)
+
+# Plot with the 50th percentile line
+poc_column |> 
+  ggplot(aes(x = people_of_color)) +
+  geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
+  geom_vline(xintercept = p50, linetype = "dashed", color = "red", linewidth = 1) +
+  labs(
+    title = "Distribution of Percent People of Color by Census Tract",
+    subtitle = paste0("Red line marks the 50th percentile: ", round(p50, 1), "%"),
+    x = "Percent People of Color",
+    y = "Number of Census Tracts"
+  ) +
+  theme_minimal()
+```
+
 ## Pollution Has a Pattern
 
 We analyzed data across thousands of California census tracts, looking not only at environmental hazards—like diesel emissions, hazardous waste sites, and fine particulate matter (PM2.5)—but also at the people who live in those communities.
