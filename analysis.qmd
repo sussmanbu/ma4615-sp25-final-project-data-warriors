@@ -371,10 +371,10 @@ Our final model, selected through backward elimination, reveals key insights int
 Several racial and ethnic group percentages are statistically significant predictors of **Pollution Burden Score** (log-transformed). The interpretation below assumes **all predictors are also log-transformed** unless otherwise noted.
 
 * **Hispanic (%)**:
-  A 1% increase in the Hispanic population share is associated with an estimated **7.1% decrease in the Pollution Burden Score**, holding other factors constant (*β = -0.071, p < 0.001*). This negative association is statistically significant and substantial, suggesting that tracts with larger Hispanic populations tend to experience higher pollution burdens.
+  A 1% increase in the Hispanic population share is associated with an estimated **7.1% decrease in the Pollution Burden Score** (*β = −0.071, p < 0.001*), holding other factors constant. This suggests that census tracts with more Hispanic residents are, on average, associated with **lower** pollution burdens—not higher. This may challenge assumptions in some environmental justice literature and warrants further investigation.
 
 * **African American (%)**:
-  A 1% increase in African American population share corresponds to a **1.8% decrease in the Pollution Burden Score** (*β = -0.018, p < 0.001*), indicating a consistent and significant relationship. This further supports the presence of racial disparities in pollution exposure.
+  A 1% increase in the African American population share is associated with a **1.8% decrease in Pollution Burden Score** (*β = −0.018, p < 0.001*), similarly suggesting **lower pollution burden** in areas with more African American residents. This contrasts with commonly reported disparities and should be interpreted with caution, as it may reflect geographic patterns, model structure, or omitted variables.
 
 * **Asian American (%)**:
   Interestingly, the percentage of Asian American residents shows a **positive association** (*β = 0.006, p < 0.001*), meaning that census tracts with higher Asian American populations tend to have **slightly lower** pollution burden scores.
@@ -415,3 +415,5 @@ Despite the strengths of our model, several limitations should be noted:
 * Are some groups more likely to live in polluted areas?
 
     Based on the signs and magnitudes of the coefficients, **Hispanic and African American populations are more likely to reside in areas with higher pollution burden**, even after adjusting for confounding factors. These results align with broader findings in environmental justice research and highlight a need for targeted policy interventions.
+    
+  
