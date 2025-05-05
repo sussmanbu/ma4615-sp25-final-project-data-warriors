@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -189,17 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="data-overview-and-inital-exploration" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview-and-inital-exploration">Data Overview and Inital Exploration</h2>
-<p>For each census tract, races that are non-white tend to have smaller population percentages that are less than 25% of the census tract.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Pollution vs.&nbsp;Race</p>
+<p>Using a simple linear regression model, we estimated how the percentage of each racial or ethnic group within a census tract changes with the pollution burden scores. The effect sizes below represent the expected change in a tract’s Pollution Burden Score for every 1 percentage point increase in the population of each group, controlling for the others.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -210,10 +234,25 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tidy_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+  term                  estimate std.error statistic  p.value conf.low conf.high
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 `Hispanic (%)`        -3.44e-4   0.00121    -0.284 7.76e- 1 -0.00272   0.00203
+2 `African American (%… -1.94e-2   0.00129   -15.0   5.91e-50 -0.0219   -0.0168 
+3 `Asian American (%)`   9.40e-3   0.00160     5.87  4.53e- 9  0.00626   0.0125 
+4 `Native American (%)`  9.40e-2   0.0167      5.62  1.98e- 8  0.0612    0.127  
+5 `Other/Multiple (%)`   6.78e-2   0.00740     9.16  6.50e-20  0.0533    0.0823 </code></pre>
+</div>
+</div>
+<p>While the effect size plot above suggests that a 1% increase in the African American population share is associated with a 1.9-point decrease in the Pollution Burden Score <strong>(β = −0.019, p &lt; 0.001)</strong>, this finding should be interpreted with caution. The underlying distribution is highly skewed because African Americans represent a small share of the population in most California census tracts, limiting the generalizability of this result.</p>
+<p>In contrast, the model finds that changes in the Hispanic population share are not significantly associated with Pollution Burden Score. However, the scatter plot tells a different story: it suggests a clear positive relationship between the percent of Hispanic residents and pollution burden. This mismatch between the regression output and the raw data trend hints at the presence of other confounding variables or multicollinearity in the model. It also suggests that a simple linear model may not fully capture the complex ways race and pollution exposure intersect in California communities.</p>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -231,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -249,23 +288,23 @@ ul.task-list li input[type="checkbox"] {
 <p>We apply a log transformation to both the response and log-safe numeric predictors.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="lakzllcduc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lakzllcduc table {
+<div id="lkxhzdvjoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lkxhzdvjoy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lakzllcduc thead, #lakzllcduc tbody, #lakzllcduc tfoot, #lakzllcduc tr, #lakzllcduc td, #lakzllcduc th {
+#lkxhzdvjoy thead, #lkxhzdvjoy tbody, #lkxhzdvjoy tfoot, #lkxhzdvjoy tr, #lkxhzdvjoy td, #lkxhzdvjoy th {
   border-style: none;
 }
 
-#lakzllcduc p {
+#lkxhzdvjoy p {
   margin: 0;
   padding: 0;
 }
 
-#lakzllcduc .gt_table {
+#lkxhzdvjoy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -291,12 +330,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_caption {
+#lkxhzdvjoy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lakzllcduc .gt_title {
+#lkxhzdvjoy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -308,7 +347,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#lakzllcduc .gt_subtitle {
+#lkxhzdvjoy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -320,7 +359,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#lakzllcduc .gt_heading {
+#lkxhzdvjoy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -332,13 +371,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_bottom_border {
+#lkxhzdvjoy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_col_headings {
+#lkxhzdvjoy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -353,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_col_heading {
+#lkxhzdvjoy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -373,7 +412,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#lakzllcduc .gt_column_spanner_outer {
+#lkxhzdvjoy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -385,15 +424,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#lakzllcduc .gt_column_spanner_outer:first-child {
+#lkxhzdvjoy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lakzllcduc .gt_column_spanner_outer:last-child {
+#lkxhzdvjoy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lakzllcduc .gt_column_spanner {
+#lkxhzdvjoy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -405,11 +444,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#lakzllcduc .gt_spanner_row {
+#lkxhzdvjoy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lakzllcduc .gt_group_heading {
+#lkxhzdvjoy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -435,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#lakzllcduc .gt_empty_group_heading {
+#lkxhzdvjoy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -450,15 +489,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#lakzllcduc .gt_from_md > :first-child {
+#lkxhzdvjoy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lakzllcduc .gt_from_md > :last-child {
+#lkxhzdvjoy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lakzllcduc .gt_row {
+#lkxhzdvjoy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -477,7 +516,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#lakzllcduc .gt_stub {
+#lkxhzdvjoy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -490,7 +529,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lakzllcduc .gt_stub_row_group {
+#lkxhzdvjoy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -504,15 +543,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#lakzllcduc .gt_row_group_first td {
+#lkxhzdvjoy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lakzllcduc .gt_row_group_first th {
+#lkxhzdvjoy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lakzllcduc .gt_summary_row {
+#lkxhzdvjoy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -522,16 +561,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lakzllcduc .gt_first_summary_row {
+#lkxhzdvjoy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_first_summary_row.thick {
+#lkxhzdvjoy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lakzllcduc .gt_last_summary_row {
+#lkxhzdvjoy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -541,7 +580,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_grand_summary_row {
+#lkxhzdvjoy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -551,7 +590,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lakzllcduc .gt_first_grand_summary_row {
+#lkxhzdvjoy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -561,7 +600,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_last_grand_summary_row_top {
+#lkxhzdvjoy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,11 +610,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_striped {
+#lkxhzdvjoy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lakzllcduc .gt_table_body {
+#lkxhzdvjoy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -584,7 +623,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_footnotes {
+#lkxhzdvjoy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -598,7 +637,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_footnote {
+#lkxhzdvjoy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -607,7 +646,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lakzllcduc .gt_sourcenotes {
+#lkxhzdvjoy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -621,7 +660,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lakzllcduc .gt_sourcenote {
+#lkxhzdvjoy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -629,72 +668,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lakzllcduc .gt_left {
+#lkxhzdvjoy .gt_left {
   text-align: left;
 }
 
-#lakzllcduc .gt_center {
+#lkxhzdvjoy .gt_center {
   text-align: center;
 }
 
-#lakzllcduc .gt_right {
+#lkxhzdvjoy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lakzllcduc .gt_font_normal {
+#lkxhzdvjoy .gt_font_normal {
   font-weight: normal;
 }
 
-#lakzllcduc .gt_font_bold {
+#lkxhzdvjoy .gt_font_bold {
   font-weight: bold;
 }
 
-#lakzllcduc .gt_font_italic {
+#lkxhzdvjoy .gt_font_italic {
   font-style: italic;
 }
 
-#lakzllcduc .gt_super {
+#lkxhzdvjoy .gt_super {
   font-size: 65%;
 }
 
-#lakzllcduc .gt_footnote_marks {
+#lkxhzdvjoy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lakzllcduc .gt_asterisk {
+#lkxhzdvjoy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lakzllcduc .gt_indent_1 {
+#lkxhzdvjoy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lakzllcduc .gt_indent_2 {
+#lkxhzdvjoy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lakzllcduc .gt_indent_3 {
+#lkxhzdvjoy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lakzllcduc .gt_indent_4 {
+#lkxhzdvjoy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lakzllcduc .gt_indent_5 {
+#lkxhzdvjoy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lakzllcduc .katex-display {
+#lkxhzdvjoy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lakzllcduc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lkxhzdvjoy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -738,7 +777,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -752,23 +791,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Through the analysis, we found Predictors such as demographic percentages and county indicators show high VIFs, indicating multicollinearity. Variables with high VIFs were removed, and we reapplied the log-log transformation on the model. With this, our statistics of our model results with:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qtmvepuiqi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qtmvepuiqi table {
+<div id="gobmlkxrjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gobmlkxrjo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qtmvepuiqi thead, #qtmvepuiqi tbody, #qtmvepuiqi tfoot, #qtmvepuiqi tr, #qtmvepuiqi td, #qtmvepuiqi th {
+#gobmlkxrjo thead, #gobmlkxrjo tbody, #gobmlkxrjo tfoot, #gobmlkxrjo tr, #gobmlkxrjo td, #gobmlkxrjo th {
   border-style: none;
 }
 
-#qtmvepuiqi p {
+#gobmlkxrjo p {
   margin: 0;
   padding: 0;
 }
 
-#qtmvepuiqi .gt_table {
+#gobmlkxrjo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -794,12 +833,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_caption {
+#gobmlkxrjo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qtmvepuiqi .gt_title {
+#gobmlkxrjo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -811,7 +850,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#qtmvepuiqi .gt_subtitle {
+#gobmlkxrjo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -823,7 +862,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#qtmvepuiqi .gt_heading {
+#gobmlkxrjo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -835,13 +874,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_bottom_border {
+#gobmlkxrjo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_col_headings {
+#gobmlkxrjo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -856,7 +895,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_col_heading {
+#gobmlkxrjo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -876,7 +915,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qtmvepuiqi .gt_column_spanner_outer {
+#gobmlkxrjo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -888,15 +927,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#qtmvepuiqi .gt_column_spanner_outer:first-child {
+#gobmlkxrjo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qtmvepuiqi .gt_column_spanner_outer:last-child {
+#gobmlkxrjo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qtmvepuiqi .gt_column_spanner {
+#gobmlkxrjo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -908,11 +947,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#qtmvepuiqi .gt_spanner_row {
+#gobmlkxrjo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qtmvepuiqi .gt_group_heading {
+#gobmlkxrjo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -938,7 +977,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#qtmvepuiqi .gt_empty_group_heading {
+#gobmlkxrjo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -953,15 +992,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#qtmvepuiqi .gt_from_md > :first-child {
+#gobmlkxrjo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qtmvepuiqi .gt_from_md > :last-child {
+#gobmlkxrjo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qtmvepuiqi .gt_row {
+#gobmlkxrjo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -980,7 +1019,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qtmvepuiqi .gt_stub {
+#gobmlkxrjo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -993,7 +1032,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtmvepuiqi .gt_stub_row_group {
+#gobmlkxrjo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1007,15 +1046,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#qtmvepuiqi .gt_row_group_first td {
+#gobmlkxrjo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qtmvepuiqi .gt_row_group_first th {
+#gobmlkxrjo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qtmvepuiqi .gt_summary_row {
+#gobmlkxrjo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1025,16 +1064,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtmvepuiqi .gt_first_summary_row {
+#gobmlkxrjo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_first_summary_row.thick {
+#gobmlkxrjo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qtmvepuiqi .gt_last_summary_row {
+#gobmlkxrjo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1044,7 +1083,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_grand_summary_row {
+#gobmlkxrjo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1054,7 +1093,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtmvepuiqi .gt_first_grand_summary_row {
+#gobmlkxrjo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1064,7 +1103,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_last_grand_summary_row_top {
+#gobmlkxrjo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1074,11 +1113,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_striped {
+#gobmlkxrjo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qtmvepuiqi .gt_table_body {
+#gobmlkxrjo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1087,7 +1126,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_footnotes {
+#gobmlkxrjo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1101,7 +1140,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_footnote {
+#gobmlkxrjo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1110,7 +1149,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtmvepuiqi .gt_sourcenotes {
+#gobmlkxrjo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1124,7 +1163,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtmvepuiqi .gt_sourcenote {
+#gobmlkxrjo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1132,72 +1171,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtmvepuiqi .gt_left {
+#gobmlkxrjo .gt_left {
   text-align: left;
 }
 
-#qtmvepuiqi .gt_center {
+#gobmlkxrjo .gt_center {
   text-align: center;
 }
 
-#qtmvepuiqi .gt_right {
+#gobmlkxrjo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qtmvepuiqi .gt_font_normal {
+#gobmlkxrjo .gt_font_normal {
   font-weight: normal;
 }
 
-#qtmvepuiqi .gt_font_bold {
+#gobmlkxrjo .gt_font_bold {
   font-weight: bold;
 }
 
-#qtmvepuiqi .gt_font_italic {
+#gobmlkxrjo .gt_font_italic {
   font-style: italic;
 }
 
-#qtmvepuiqi .gt_super {
+#gobmlkxrjo .gt_super {
   font-size: 65%;
 }
 
-#qtmvepuiqi .gt_footnote_marks {
+#gobmlkxrjo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qtmvepuiqi .gt_asterisk {
+#gobmlkxrjo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qtmvepuiqi .gt_indent_1 {
+#gobmlkxrjo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qtmvepuiqi .gt_indent_2 {
+#gobmlkxrjo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qtmvepuiqi .gt_indent_3 {
+#gobmlkxrjo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qtmvepuiqi .gt_indent_4 {
+#gobmlkxrjo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qtmvepuiqi .gt_indent_5 {
+#gobmlkxrjo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qtmvepuiqi .katex-display {
+#gobmlkxrjo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qtmvepuiqi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gobmlkxrjo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1247,23 +1286,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Our final model includes key environmental and demographic factors, along with county fixed effects:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="xcgftyclis" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xcgftyclis table {
+<div id="nhmtdjaaei" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nhmtdjaaei table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xcgftyclis thead, #xcgftyclis tbody, #xcgftyclis tfoot, #xcgftyclis tr, #xcgftyclis td, #xcgftyclis th {
+#nhmtdjaaei thead, #nhmtdjaaei tbody, #nhmtdjaaei tfoot, #nhmtdjaaei tr, #nhmtdjaaei td, #nhmtdjaaei th {
   border-style: none;
 }
 
-#xcgftyclis p {
+#nhmtdjaaei p {
   margin: 0;
   padding: 0;
 }
 
-#xcgftyclis .gt_table {
+#nhmtdjaaei .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1289,12 +1328,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_caption {
+#nhmtdjaaei .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xcgftyclis .gt_title {
+#nhmtdjaaei .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1306,7 +1345,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#xcgftyclis .gt_subtitle {
+#nhmtdjaaei .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1318,7 +1357,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#xcgftyclis .gt_heading {
+#nhmtdjaaei .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1330,13 +1369,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_bottom_border {
+#nhmtdjaaei .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_col_headings {
+#nhmtdjaaei .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1351,7 +1390,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_col_heading {
+#nhmtdjaaei .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1371,7 +1410,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#xcgftyclis .gt_column_spanner_outer {
+#nhmtdjaaei .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1383,15 +1422,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#xcgftyclis .gt_column_spanner_outer:first-child {
+#nhmtdjaaei .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xcgftyclis .gt_column_spanner_outer:last-child {
+#nhmtdjaaei .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xcgftyclis .gt_column_spanner {
+#nhmtdjaaei .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1403,11 +1442,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#xcgftyclis .gt_spanner_row {
+#nhmtdjaaei .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xcgftyclis .gt_group_heading {
+#nhmtdjaaei .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1433,7 +1472,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#xcgftyclis .gt_empty_group_heading {
+#nhmtdjaaei .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1448,15 +1487,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#xcgftyclis .gt_from_md > :first-child {
+#nhmtdjaaei .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xcgftyclis .gt_from_md > :last-child {
+#nhmtdjaaei .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xcgftyclis .gt_row {
+#nhmtdjaaei .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1475,7 +1514,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#xcgftyclis .gt_stub {
+#nhmtdjaaei .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1488,7 +1527,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xcgftyclis .gt_stub_row_group {
+#nhmtdjaaei .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1502,15 +1541,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#xcgftyclis .gt_row_group_first td {
+#nhmtdjaaei .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xcgftyclis .gt_row_group_first th {
+#nhmtdjaaei .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xcgftyclis .gt_summary_row {
+#nhmtdjaaei .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1520,16 +1559,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xcgftyclis .gt_first_summary_row {
+#nhmtdjaaei .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_first_summary_row.thick {
+#nhmtdjaaei .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xcgftyclis .gt_last_summary_row {
+#nhmtdjaaei .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1539,7 +1578,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_grand_summary_row {
+#nhmtdjaaei .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1549,7 +1588,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xcgftyclis .gt_first_grand_summary_row {
+#nhmtdjaaei .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1559,7 +1598,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_last_grand_summary_row_top {
+#nhmtdjaaei .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1569,11 +1608,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_striped {
+#nhmtdjaaei .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xcgftyclis .gt_table_body {
+#nhmtdjaaei .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1582,7 +1621,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_footnotes {
+#nhmtdjaaei .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1596,7 +1635,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_footnote {
+#nhmtdjaaei .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1605,7 +1644,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xcgftyclis .gt_sourcenotes {
+#nhmtdjaaei .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1619,7 +1658,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#xcgftyclis .gt_sourcenote {
+#nhmtdjaaei .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1627,72 +1666,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#xcgftyclis .gt_left {
+#nhmtdjaaei .gt_left {
   text-align: left;
 }
 
-#xcgftyclis .gt_center {
+#nhmtdjaaei .gt_center {
   text-align: center;
 }
 
-#xcgftyclis .gt_right {
+#nhmtdjaaei .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xcgftyclis .gt_font_normal {
+#nhmtdjaaei .gt_font_normal {
   font-weight: normal;
 }
 
-#xcgftyclis .gt_font_bold {
+#nhmtdjaaei .gt_font_bold {
   font-weight: bold;
 }
 
-#xcgftyclis .gt_font_italic {
+#nhmtdjaaei .gt_font_italic {
   font-style: italic;
 }
 
-#xcgftyclis .gt_super {
+#nhmtdjaaei .gt_super {
   font-size: 65%;
 }
 
-#xcgftyclis .gt_footnote_marks {
+#nhmtdjaaei .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xcgftyclis .gt_asterisk {
+#nhmtdjaaei .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xcgftyclis .gt_indent_1 {
+#nhmtdjaaei .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xcgftyclis .gt_indent_2 {
+#nhmtdjaaei .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xcgftyclis .gt_indent_3 {
+#nhmtdjaaei .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xcgftyclis .gt_indent_4 {
+#nhmtdjaaei .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xcgftyclis .gt_indent_5 {
+#nhmtdjaaei .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xcgftyclis .katex-display {
+#nhmtdjaaei .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xcgftyclis div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nhmtdjaaei div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1864,8 +1903,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="key-demographic-findings">Key Demographic Findings</h3>
 <p>Several racial and ethnic group percentages are statistically significant predictors of <strong>Pollution Burden Score</strong> (log-transformed). The interpretation below assumes <strong>all predictors are also log-transformed</strong> unless otherwise noted.</p>
 <ul>
-<li><p><strong>Hispanic (%)</strong>: A 1% increase in the Hispanic population share is associated with an estimated <strong>7.1% decrease in the Pollution Burden Score</strong>, holding other factors constant (<em>β = -0.071, p &lt; 0.001</em>). This negative association is statistically significant and substantial, suggesting that tracts with larger Hispanic populations tend to experience higher pollution burdens.</p></li>
-<li><p><strong>African American (%)</strong>: A 1% increase in African American population share corresponds to a <strong>1.8% decrease in the Pollution Burden Score</strong> (<em>β = -0.018, p &lt; 0.001</em>), indicating a consistent and significant relationship. This further supports the presence of racial disparities in pollution exposure.</p></li>
+<li><p><strong>Hispanic (%)</strong>: A 1% increase in the Hispanic population share is associated with an estimated <strong>7.1% decrease in the Pollution Burden Score</strong> (<em>β = −0.071, p &lt; 0.001</em>), holding other factors constant. This suggests that census tracts with more Hispanic residents are, on average, associated with <strong>lower</strong> pollution burdens—not higher. This may challenge assumptions in some environmental justice literature and warrants further investigation.</p></li>
+<li><p><strong>African American (%)</strong>: A 1% increase in the African American population share is associated with a <strong>1.8% decrease in Pollution Burden Score</strong> (<em>β = −0.018, p &lt; 0.001</em>), similarly suggesting <strong>lower pollution burden</strong> in areas with more African American residents. This contrasts with commonly reported disparities and should be interpreted with caution, as it may reflect geographic patterns, model structure, or omitted variables.</p></li>
 <li><p><strong>Asian American (%)</strong>: Interestingly, the percentage of Asian American residents shows a <strong>positive association</strong> (<em>β = 0.006, p &lt; 0.001</em>), meaning that census tracts with higher Asian American populations tend to have <strong>slightly lower</strong> pollution burden scores.</p></li>
 <li><p><strong>White (%)</strong>: The percentage of White residents has a strong <strong>negative coefficient</strong> (<em>β = -0.020, p &lt; 0.001</em>), which suggests that higher White population share is linked to <strong>lower pollution burdens</strong>, consistent with patterns of environmental advantage.</p></li>
 </ul>
