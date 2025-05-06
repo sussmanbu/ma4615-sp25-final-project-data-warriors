@@ -85,9 +85,6 @@ coef_plot <- ggplot(tidy_model, aes(x = estimate, y = `term`)) +
 
 print(coef_plot)
 ```
-```{r}
-tidy_model
-```
 
 ```{r}
 #| echo: false
